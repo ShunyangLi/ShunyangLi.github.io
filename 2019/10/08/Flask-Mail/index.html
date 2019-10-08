@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="Flask,Mail,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
+
+
+<meta name="description" content="简介由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip">
+<meta name="keywords" content="Flask,Mail">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask Mail">
+<meta property="og:url" content="http://yoursite.com/2019/10/08/Flask-Mail/index.html">
+<meta property="og:site_name" content="Charles&#39;s blog">
+<meta property="og:description" content="简介由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-08T11:02:07.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flask Mail">
+<meta name="twitter:description" content="简介由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/08/Flask-Mail/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>Flask Mail | Charles's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charles's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我们
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/08/Flask-Mail/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charles">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charles's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flask Mail</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-08T18:24:57+11:00">
+                2019-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/" itemprop="url" rel="index">
+                    <span itemprop="name">Backend</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。</p>
+<h1 id="安装-Flask-Mail"><a href="#安装-Flask-Mail" class="headerlink" title="安装 Flask Mail"></a>安装 Flask Mail</h1><p>如果大家没有使用过flask mail，需要先用pip3安装一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install flask_mail</span><br></pre></td></tr></table></figure>
+
+<h2 id="Flask-Mail-的配置"><a href="#Flask-Mail-的配置" class="headerlink" title="Flask Mail 的配置"></a>Flask Mail 的配置</h2><table>
+<thead>
+<tr>
+<th align="center"><strong>配置</strong></th>
+<th align="center"><strong>默认值</strong></th>
+<th align="center"><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>MAIL_SERVER</strong></td>
+<td align="center">localhost</td>
+<td align="center">邮件服务器</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_PORT</strong></td>
+<td align="center">25</td>
+<td align="center">邮件端口（一般是465）</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_USE_TLS</strong></td>
+<td align="center">False</td>
+<td align="center">是否使用TLS协议（一般不使用）</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_USE_SSL</strong></td>
+<td align="center">False</td>
+<td align="center">是否使用SSL协议（大多数使用）</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_DEBUG</strong></td>
+<td align="center">app.debug</td>
+<td align="center">是否为DEBUG模式，打印调试消息（一般默认开启）</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_USERNAME</strong></td>
+<td align="center">None</td>
+<td align="center">用户名</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_PASSWORD</strong></td>
+<td align="center">None</td>
+<td align="center">密码 or 授权码</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_DEFAULT_SENDER</strong></td>
+<td align="center">None</td>
+<td align="center">默认发送者</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_MAX_EMAILS</strong></td>
+<td align="center">None</td>
+<td align="center">一次连接中的发送邮件的上限</td>
+</tr>
+<tr>
+<td align="center"><strong>MAIL_ASCII_ATTACHMENTS</strong></td>
+<td align="center">False</td>
+<td align="center">如果 MAIL_ASCII_ATTACHMENTS 设置成 True 的话，文件名将会转换成 ASCII 的。一般用于添加附件。</td>
+</tr>
+</tbody></table>
+<p>大部分情况下我们只需要设置<code>MAIL_USE_TLS</code>, <code>MAIL_USE_SSL</code>, <code>MAIL_USERNAME</code>, <code>MAIL_PASSWORD</code>, <code>MAIL_DEFAULT_SENDER</code>这些就可以了</p>
+<h2 id="使用Flask-Mail"><a href="#使用Flask-Mail" class="headerlink" title="使用Flask Mail"></a>使用Flask Mail</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置邮件服务器</span></span><br><span class="line"><span class="comment"># 如果是163邮箱的话是: smtp.163.com</span></span><br><span class="line"><span class="comment"># 如果是gmail邮箱的话是: smtp.gamil.com</span></span><br><span class="line"><span class="comment"># 如果是自己注册的域名邮箱的话，在购买域名邮箱的时候会给特定的server</span></span><br><span class="line">app.config[<span class="string">'MAIL_SERVER'</span>] = <span class="string">'smtp.qq.com'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口要根据设置来改，一般是用465</span></span><br><span class="line">app.config[<span class="string">'MAIL_PORT'</span>] = <span class="number">465</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 应用ssl传输协议，普遍是用ssl</span></span><br><span class="line">app.config[<span class="string">'MAIL_USE_SSL'</span>] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置邮件的用户名，只需要@xxqq.com前面的内容，不需要包含@xx.com</span></span><br><span class="line">app.config[<span class="string">'MAIL_USERNAME'</span>] = <span class="string">'123456'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在qq邮件里面，这个密码是指的授权码!</span></span><br><span class="line"><span class="comment"># 不是密码，一定要授权码，一般是16位的字符</span></span><br><span class="line"><span class="comment"># 如果是gmail或者别的可以直接是用密码</span></span><br><span class="line">app.config[<span class="string">'MAIL_PASSWORD'</span>] = <span class="string">'aaaaaaaaaaaaaaaa'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置默认发送的邮箱，需要包含@xx.com</span></span><br><span class="line">app.config[<span class="string">'MAIL_DEFAULT_SENDER'</span>] = <span class="string">'123456@qq.com'</span></span><br><span class="line"></span><br><span class="line">mail = Mail(app)</span><br></pre></td></tr></table></figure>
+
+<h3 id="首先给大家说一下怎么使用HTML模板来发送邮件"><a href="#首先给大家说一下怎么使用HTML模板来发送邮件" class="headerlink" title="首先给大家说一下怎么使用HTML模板来发送邮件"></a>首先给大家说一下怎么使用HTML模板来发送邮件</h3><p>大部分时候不管发送邮件验证还是什么，HTML的模板都是不变的，只是改变了里面的内容，所以我们先说一下怎么使用HTML模板来发送，最主要的一个function就是<code>render_template</code>这个函数，因为flask使用的是<strong><em>Jinja2</em></strong>的模板，<code>render_template</code>函数可以把Jinja2的模板转义成string的格式。所以我们用的<code>return render_template</code>就是把HTML转成string，然后发回给浏览器。</p>
+<p>我们用Jinja2定义一个HTML文件叫<code>activate.html</code>, 这样我们就可以传进来参数，来修改username和link了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Hello &#123;&#123; username &#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;Onclick the link to set your new password，&#123;&#123; link &#125;&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="不使用异步发送"><a href="#不使用异步发送" class="headerlink" title="不使用异步发送"></a>不使用异步发送</h3><p>Flask mail可以是用异步发送，可以不适用，首先讲一下不使用异步发送的做法。也可以用<code>render_template</code>的方法来修改<code>msg.html</code>的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># recipients是list，可以添加多个收件人</span></span><br><span class="line"><span class="comment"># sender 是发件人</span></span><br><span class="line"><span class="comment"># Message第一个变量Hello是邮件的标题</span></span><br><span class="line">msg = Message(<span class="string">'Hello'</span>, sender=<span class="string">'123456@qq.com'</span>, recipients=[<span class="string">'123456@qq.com'</span>])</span><br><span class="line">msg.body = <span class="string">'Hello'</span></span><br><span class="line"><span class="comment"># HTML的内容可以直接写</span></span><br><span class="line">msg.html = <span class="string">"&lt;h1&gt;Hello world&lt;/h1&gt;"</span></span><br><span class="line"><span class="comment"># 也可以用render_template</span></span><br><span class="line">msg.html = render_template(<span class="string">'acrivate.html'</span>,username=<span class="string">'xxx'</span>,link=<span class="string">'google.com'</span>)</span><br><span class="line">mail.send(msg)</span><br></pre></td></tr></table></figure>
+
+<p>如果配置什么都没有错误的话可以直接发送出去了。</p>
+<h3 id="使用异步发送"><a href="#使用异步发送" class="headerlink" title="使用异步发送"></a>使用异步发送</h3><p>从电子邮件发送开始，直到电子邮件交付后，给浏览器发回其响应，在整个过程中，Web服务器会一直阻塞。如果我们试图发送电子邮件到一个服务器是缓慢的，所以使用多线程异步发送电子邮件可以避免处理请求过程中不必要的延迟，将发送电子邮件的函数使用Thread来运行。</p>
+<h4 id="然后定义异步发送的函数"><a href="#然后定义异步发送的函数" class="headerlink" title="然后定义异步发送的函数"></a>然后定义异步发送的函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"></span><br><span class="line"><span class="comment"># 异步发送function</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">async_send_mail</span><span class="params">(app, msg)</span>:</span></span><br><span class="line">    <span class="comment"># 获取当前程序的上下文</span></span><br><span class="line">    <span class="keyword">with</span> app.app_context():</span><br><span class="line">        <span class="comment"># 发送邮件</span></span><br><span class="line">        mail.send(msg)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义发送函数, message的配置和上面讲的一样</span></span><br><span class="line"><span class="comment"># **kwargs 指传进来的参数, 可以传多个参数进来。eg: username = 'xxx', link = 'xxx.com'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">(self, to, subject, template, **kwargs)</span>:</span></span><br><span class="line">    msg = Message(subject, sender = <span class="string">'123456@qq.com'</span>, recipients=[to])</span><br><span class="line">    msg.html = render_template(template + <span class="string">'.html'</span>, **kwargs)</span><br><span class="line">    thr = Thread(target=async_send_mail, args=[app, msg])</span><br><span class="line">    thr.start()</span><br><span class="line">    <span class="comment"># 返回调用的结果</span></span><br><span class="line">    <span class="keyword">return</span> thr</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 调用send_mail</span></span><br><span class="line"><span class="comment"># 第一个参数是收件人，第二个是标题，第三个是html的名字（不需要包含.html），第四个是render_template里面需要包含的变量（相当于render_template('activate.html', username='xxx',link='xxx.com')）</span></span><br><span class="line">send_mail(<span class="string">'123456@qq.com'</span>, <span class="string">'Activate you email'</span>, <span class="string">'activate'</span>, username=<span class="string">'xxx'</span>,link=<span class="string">'xxx.com'</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于Flask-Mail发送附件"><a href="#关于Flask-Mail发送附件" class="headerlink" title="关于Flask Mail发送附件"></a>关于Flask Mail发送附件</h2><p>当flask mail需要发送附件的时候，如果MAIL_ASCII_ATTACHMENTS 设置成True 的话，文件名将会转换成ASCII 的。 当文件名是以UTF-8 编码的时候，使用邮件转发的时候会修改邮件内容并且混淆Content-Disposition 描述，这个时候MAIL_ASCII_ATTACHMENTS 配置项是十分有用的。转换成ASCII 的基本方式就是对non-ASCII 字符的去除。任何一个unicode 字符能够被NFKD 分解成一个或者多个ASCII 字符。</p>
+<p><strong>发送照片：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> app.open_resource(<span class="string">"image.png"</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    msg.attach(<span class="string">"image.png"</span>, <span class="string">"image/png"</span>, fp.read())</span><br></pre></td></tr></table></figure>
+
+<p><strong>发送PDF：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> app.open_resource(<span class="string">'xx.pdf'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        msg.attach(<span class="string">'xx.pdf'</span>, <span class="string">"application/pdf"</span>, fp.read())</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>注：如果想在HTML里面使用css，需要自己在<code>&lt;style&gt;&lt;/style&gt;</code>里面写css，不可以直接用bootstrap这些框架。</em></strong></p>
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">-----本文结束-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flask/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Flask</a>
+          
+            <a href="/tags/Mail/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Mail</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/07/How-to-use-hexo/" rel="next" title="How to use hexo">
+                <i class="fa fa-chevron-left"></i> How to use hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Charles</p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的博客~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度搜索" target="_blank">百度搜索</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Flask-Mail"><span class="nav-number">2.</span> <span class="nav-text">安装 Flask Mail</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-Mail-的配置"><span class="nav-number">2.1.</span> <span class="nav-text">Flask Mail 的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Flask-Mail"><span class="nav-number">2.2.</span> <span class="nav-text">使用Flask Mail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先给大家说一下怎么使用HTML模板来发送邮件"><span class="nav-number">2.2.1.</span> <span class="nav-text">首先给大家说一下怎么使用HTML模板来发送邮件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用异步发送"><span class="nav-number">2.2.2.</span> <span class="nav-text">不使用异步发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用异步发送"><span class="nav-number">2.2.3.</span> <span class="nav-text">使用异步发送</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#然后定义异步发送的函数"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">然后定义异步发送的函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Flask-Mail发送附件"><span class="nav-number">2.3.</span> <span class="nav-text">关于Flask Mail发送附件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Charles</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
