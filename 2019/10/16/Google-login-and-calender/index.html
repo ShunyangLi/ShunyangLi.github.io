@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="Google Login,Frontend,Backend,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
+
+
+<meta name="description" content="Web 使用Google login和calender网页使用Google第三方登录和使用calender。使用JavaScript来实现。 1. 首先在Google API控制中心创建client id首先在[Google API 控制台](Google API 控制台) 选择或者创建一个项目。  当注册完之后根绝需要添加google API的范围。比如我需要google calendar所以我">
+<meta name="keywords" content="Google Login,Frontend,Backend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google login and calender">
+<meta property="og:url" content="http://yoursite.com/2019/10/16/Google-login-and-calender/index.html">
+<meta property="og:site_name" content="Charles&#39;s blog">
+<meta property="og:description" content="Web 使用Google login和calender网页使用Google第三方登录和使用calender。使用JavaScript来实现。 1. 首先在Google API控制中心创建client id首先在[Google API 控制台](Google API 控制台) 选择或者创建一个项目。  当注册完之后根绝需要添加google API的范围。比如我需要google calendar所以我">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/Google-login-and-calender/start.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/Google-login-and-calender/choose.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/Google-login-and-calender/list.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/Google-login-and-calender/web.png">
+<meta property="og:updated_time" content="2019-10-17T06:48:28.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google login and calender">
+<meta name="twitter:description" content="Web 使用Google login和calender网页使用Google第三方登录和使用calender。使用JavaScript来实现。 1. 首先在Google API控制中心创建client id首先在[Google API 控制台](Google API 控制台) 选择或者创建一个项目。  当注册完之后根绝需要添加google API的范围。比如我需要google calendar所以我">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/16/Google-login-and-calender/start.png">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/16/Google-login-and-calender/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>Google login and calender | Charles's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charles's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我们
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/Google-login-and-calender/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charles">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charles's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Google login and calender</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-16T17:29:12+11:00">
+                2019-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/" itemprop="url" rel="index">
+                    <span itemprop="name">Backend</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/Google-Login/" itemprop="url" rel="index">
+                    <span itemprop="name">Google Login</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/Google-Login/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/Google-Login/JS/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/16/Google-login-and-calender/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/16/Google-login-and-calender/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Web-使用Google-login和calender"><a href="#Web-使用Google-login和calender" class="headerlink" title="Web 使用Google login和calender"></a>Web 使用Google login和calender</h1><p>网页使用Google第三方登录和使用calender。使用<strong>JavaScript</strong>来实现。</p>
+<h2 id="1-首先在Google-API控制中心创建client-id"><a href="#1-首先在Google-API控制中心创建client-id" class="headerlink" title="1. 首先在Google API控制中心创建client id"></a>1. 首先在Google API控制中心创建client id</h2><p>首先在[Google API 控制台](<a href="https://console.developers.google.com/project/_/apiui/apis/library" target="_blank" rel="noopener">Google API 控制台</a>) 选择或者创建一个项目。</p>
+<p><img src="/2019/10/16/Google-login-and-calender/start.png" alt></p>
+<p>当注册完之后根绝需要添加google API的范围。比如我需要google calendar所以我需要添加google calendar的API。一般是用google calendar选择<code>../auth/calendar.events</code>和<code>../auth/calendar</code></p>
+<p><img src="/2019/10/16/Google-login-and-calender/choose.png" alt></p>
+<p><img src="/2019/10/16/Google-login-and-calender/list.png" alt></p>
+<p>然后<strong>创建 OAuth 客户端 ID</strong>, 选择创建web项目。<em>已获授权的 JavaScript 来源</em>和<em>已获授权的重定向 URI</em>可以写成<code>http://localhost:5000</code>。主要是根据大家的IP和port来确定的。当创建完之后会生成一个<strong>client_id</strong>。</p>
+<p><img src="/2019/10/16/Google-login-and-calender/web.png" alt></p>
+<h2 id="2-具体代码实现"><a href="#2-具体代码实现" class="headerlink" title="2. 具体代码实现"></a>2. 具体代码实现</h2><p><strong>切记在浏览器访问的时候输入的IP地址需要和你申请client id填写的IP相同。比如你申请写的<code>http://localhost:5000</code>，那么你浏览器打开的时候也需要用<code>http://localhost:5000</code>才能正常使用google login。</strong></p>
+<p>首先根绝官方文档来定义CSS的login button的样式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">    <span class="selector-tag">body</span> &#123; <span class="attribute">padding</span>: <span class="number">2em</span>; &#125;</span><br><span class="line">    <span class="comment">/* Shared */</span></span><br><span class="line">    <span class="selector-class">.loginBtn</span> &#123;</span><br><span class="line">        <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line">        <span class="comment">/* width: 13em;  - apply for fixed size */</span></span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">0.2em</span>;</span><br><span class="line">        <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span> <span class="number">0</span> <span class="number">46px</span>;</span><br><span class="line">        <span class="attribute">border</span>: none;</span><br><span class="line">        <span class="attribute">text-align</span>: left;</span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">34px</span>;</span><br><span class="line">        <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">        <span class="attribute">border-radius</span>: <span class="number">0.2em</span>;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#FFF</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.loginBtn</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">        <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">        <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">34px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.loginBtn</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">        <span class="attribute">outline</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.loginBtn</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">        <span class="attribute">box-shadow</span>: inset <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">32px</span> <span class="built_in">rgba</span>(0,0,0,0.1);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* Google */</span></span><br><span class="line">    <span class="selector-class">.loginBtn--google</span> &#123;</span><br><span class="line">        <span class="comment">/*font-family: "Roboto", Roboto, arial, sans-serif;*/</span></span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#DD4B39</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.loginBtn--google</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">        <span class="attribute">border-right</span>: <span class="number">#BB3F30</span> <span class="number">1px</span> solid;</span><br><span class="line">        <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png'</span>) <span class="number">6px</span> <span class="number">6px</span> no-repeat;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.loginBtn--google</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line">    <span class="selector-class">.loginBtn--google</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#E74B37</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们来定义HTML的内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"loginBtn loginBtn--google"</span> <span class="attr">id</span>=<span class="string">"googleLogin"</span>&gt;</span></span><br><span class="line">        Login with Google</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> ο<span class="attr">nclick</span>=<span class="string">"signOut();"</span>&gt;</span>Sign out<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://apis.google.com/js/api:client.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> googleUser = &#123;&#125;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">initClient</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        gapi.load(<span class="string">'auth2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">            auth2 = gapi.auth2.init(&#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 上一步获取的 client_id </span></span></span><br><span class="line"><span class="javascript">                client_id: <span class="string">'104xxxxxxxxxxxx'</span>, </span></span><br><span class="line"><span class="javascript">                cookiepolicy: <span class="string">'single_host_origin'</span>,</span></span><br><span class="line"><span class="javascript">                <span class="comment">// scope 是需要获取的google api的权限</span></span></span><br><span class="line"><span class="javascript">                <span class="comment">// 可以请求除了默认的'profile' and 'email'之外的数据, 比如这里的calendar</span></span></span><br><span class="line"><span class="javascript">                scope: <span class="string">'profile https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'</span></span></span><br><span class="line">            &#125;);</span><br><span class="line"><span class="javascript">            <span class="comment">// 当login button被点击之后执行function</span></span></span><br><span class="line"><span class="javascript">            attachSignin(<span class="built_in">document</span>.getElementById(<span class="string">'googleLogin'</span>));</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// 当页面load之后初始化client</span></span></span><br><span class="line">    initClient();</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">attachSignin</span>(<span class="params">element</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        auth2.attachClickHandler(element, &#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">googleUser</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 可以查看详细信息</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(googleUser);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> profile = auth2.currentUser.get().getBasicProfile();</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'ID: '</span> + profile.getId());</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'Full Name: '</span> + profile.getName());</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'Given Name: '</span> + profile.getGivenName());</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'Family Name: '</span> + profile.getFamilyName());</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'Image URL: '</span> + profile.getImageUrl());</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'Email: '</span> + profile.getEmail());</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="comment">// 这里包含了请求的access_token</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> token = auth2.currentUser.get().getAuthResponse();</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(token);</span></span><br><span class="line"><span class="javascript">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">erroe</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(error, <span class="literal">undefined</span>, <span class="number">2</span>));</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="comment">//注销</span></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">signOut</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> auth2 = gapi.auth2.getAuthInstance();</span></span><br><span class="line"><span class="javascript">        auth2.signOut().then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">'用户注销成功'</span>);</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Google-calendar-的使用"><a href="#Google-calendar-的使用" class="headerlink" title="Google calendar 的使用"></a>Google calendar 的使用</h1><p><a href="https://developers.google.com/calendar/v3/reference/events/insert#try-it" target="_blank" rel="noopener">Google calendar API</a> 的使用链接。</p>
+<h2 id="获取calendar-list"><a href="#获取calendar-list" class="headerlink" title="获取calendar list"></a>获取calendar list</h2><p>(我们一般是用的calendar id是google login之后的邮箱：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从前端获取到的access_token</span></span><br><span class="line">access_token = <span class="string">'ya29.xxxxxxx'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get the calendar list</span></span><br><span class="line">response = requests.get(</span><br><span class="line">    url = <span class="string">'https://www.googleapis.com/calendar/v3/users/me/calendarList'</span>,</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">        <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + access_token</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">response.raise_for_status()</span><br><span class="line">print(response.json())</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取当前calendar的event-list"><a href="#获取当前calendar的event-list" class="headerlink" title="获取当前calendar的event list"></a>获取当前calendar的event list</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从前端获取到的access_token</span></span><br><span class="line">access_token = <span class="string">'ya29.xxxxxxx'</span></span><br><span class="line">email = <span class="string">'xxx@gmail.com'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取email calendar的event list</span></span><br><span class="line">response = requests.get(</span><br><span class="line">    url = <span class="string">'https://www.googleapis.com/calendar/v3/calendars/'</span> + email + <span class="string">'/events'</span>,</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">        <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + access_token</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">response.raise_for_status()</span><br><span class="line">print(response.json())</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加新的event"><a href="#添加新的event" class="headerlink" title="添加新的event"></a>添加新的event</h2><p>值得注意的地方是需要把<code>EVENT_TEXT</code>转成<code>json</code>的格式。不然会报错。里面会返回event id和一系列有关这个event的东西。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从前端获取到的access_token</span></span><br><span class="line">access_token = <span class="string">'ya29.xxxxxxx'</span></span><br><span class="line">email = <span class="string">'xxx@gmail.com'</span></span><br><span class="line"></span><br><span class="line">EVENT_TEXT = &#123;</span><br><span class="line">    <span class="string">"summary"</span>: <span class="string">"hotel booking"</span>,</span><br><span class="line">    <span class="string">"description"</span>: <span class="string">"make a hotel booking"</span>,</span><br><span class="line">    <span class="string">"end"</span>: &#123;</span><br><span class="line">        <span class="string">"dateTime"</span>: <span class="string">"2019-10-17T23:14:31+11:00"</span>,</span><br><span class="line">        <span class="string">"timeZone"</span>: <span class="string">"Australia/Sydney"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"start"</span>: &#123;</span><br><span class="line">        <span class="string">"dateTime"</span>: <span class="string">"2019-10-17T00:00:00+11:00"</span>,</span><br><span class="line">        <span class="string">"timeZone"</span>: <span class="string">"Australia/Sydney"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">response = requests.post(</span><br><span class="line">    url =<span class="string">'https://www.googleapis.com/calendar/v3/calendars/'</span> + email +<span class="string">'/events'</span>,</span><br><span class="line">    </span><br><span class="line">    data = json.dumps(EVENT_TEXT),</span><br><span class="line"></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + access_token,</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">response.raise_for_status()</span><br><span class="line">print(response.json())</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新event"><a href="#更新event" class="headerlink" title="更新event"></a>更新event</h2><p>我们可以根绝insert返回的event id来更新这个事件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从前端获取到的access_token</span></span><br><span class="line">access_token = <span class="string">'ya29.xxxxxxx'</span></span><br><span class="line">email = <span class="string">'xxx@gmail.com'</span></span><br><span class="line"></span><br><span class="line">event_id = <span class="string">'xxxx'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 改变了日期</span></span><br><span class="line">EVENT_TEXT = &#123;</span><br><span class="line">    <span class="string">"summary"</span>: <span class="string">"Hotel"</span>,</span><br><span class="line">    <span class="string">"description"</span>: <span class="string">"make a hotel booking"</span>,</span><br><span class="line">    <span class="string">"end"</span>: &#123;</span><br><span class="line">        <span class="string">"dateTime"</span>: <span class="string">"2019-10-18T23:14:31+11:00"</span>,</span><br><span class="line">        <span class="string">"timeZone"</span>: <span class="string">"Australia/Sydney"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"start"</span>: &#123;</span><br><span class="line">        <span class="string">"dateTime"</span>: <span class="string">"2019-10-18T00:00:00+11:00"</span>,</span><br><span class="line">        <span class="string">"timeZone"</span>: <span class="string">"Australia/Sydney"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新event</span></span><br><span class="line">response = requests.put(</span><br><span class="line">    url =<span class="string">'https://www.googleapis.com/calendar/v3/calendars/'</span> + email +<span class="string">'/events/'</span> + event_id,</span><br><span class="line">    </span><br><span class="line">    data = json.dumps(EVENT_TEXT),</span><br><span class="line"></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + access_token,</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">response.raise_for_status()</span><br><span class="line">print(response.json())</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除event"><a href="#删除event" class="headerlink" title="删除event"></a>删除event</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从前端获取到的access_token</span></span><br><span class="line">access_token = <span class="string">'ya29.xxxxxxx'</span></span><br><span class="line">email = <span class="string">'xxx@gmail.com'</span></span><br><span class="line"></span><br><span class="line">event_id = <span class="string">'xxxx'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除event</span></span><br><span class="line">response = requests.delete(</span><br><span class="line">    url =<span class="string">'https://www.googleapis.com/calendar/v3/calendars/'</span> + email +<span class="string">'/events/'</span> + event_id,</span><br><span class="line">    </span><br><span class="line">    data = json.dumps(EVENT_TEXT),</span><br><span class="line"></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + access_token,</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">response.raise_for_status()</span><br><span class="line">print(response.json())</span><br></pre></td></tr></table></figure>
+
+<p>关于calendar还有很多用法，大家可以一起学习学习。</p>
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">-----本文结束<i class="fa fa-paw"></i>感谢您的阅读-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Google-Login/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Google Login</a>
+          
+            <a href="/tags/Frontend/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Frontend</a>
+          
+            <a href="/tags/Backend/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Backend</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/11/Flask-upload-files/" rel="next" title="Flask upload files">
+                <i class="fa fa-chevron-left"></i> Flask upload files
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Charles</p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的博客~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度搜索" target="_blank">百度搜索</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-使用Google-login和calender"><span class="nav-number">1.</span> <span class="nav-text">Web 使用Google login和calender</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-首先在Google-API控制中心创建client-id"><span class="nav-number">1.1.</span> <span class="nav-text">1. 首先在Google API控制中心创建client id</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-具体代码实现"><span class="nav-number">1.2.</span> <span class="nav-text">2. 具体代码实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Google-calendar-的使用"><span class="nav-number">2.</span> <span class="nav-text">Google calendar 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取calendar-list"><span class="nav-number">2.1.</span> <span class="nav-text">获取calendar list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取当前calendar的event-list"><span class="nav-number">2.2.</span> <span class="nav-text">获取当前calendar的event list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加新的event"><span class="nav-number">2.3.</span> <span class="nav-text">添加新的event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新event"><span class="nav-number">2.4.</span> <span class="nav-text">更新event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除event"><span class="nav-number">2.5.</span> <span class="nav-text">删除event</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Charles</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'f6AtjL4EGvNH0x9nC1llJvX0-gzGzoHsz',
+        appKey: '7pMECSFW5y4TvPDdAoYB2OHz',
+        placeholder: '请在此输入您的留言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
