@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-18T11:14:25.755Z</updated>
+  <updated>2019-10-18T11:15:10.603Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,31 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/10/18/PayPal/index/"/>
-    <id>http://yoursite.com/2019/10/18/PayPal/index/</id>
-    <published>2019-10-18T11:14:24.898Z</published>
-    <updated>2019-10-18T11:14:25.755Z</updated>
-    
-    <content type="html"><![CDATA[<!DOCTYPE html><head><meta name="generator" content="Hexo 3.9.0">    <meta name="viewport" content="width=device-width, initial-scale=1">    <meta http-equiv="X-UA-Compatible" content="IE=edge"></head><body>    <div id="paypal-button-container"></div></body><script src="https://www.paypal.com/sdk/js?client-id=sb&currency=AUD"></script><script>    // Render the PayPal button into #paypal-button-container    paypal.Buttons({        createOrder: function(data, actions) {            // Set up the transaction            return actions.order.create({                purchase_units: [{                    amount: {                        currency_code: "AUD",                        value: '0.01'                    }                }]            });        },        onApprove: function(data, actions) {            // 交易成功            return actions.order.capture().then(function(details) {                // 显示支付人的姓名                console.log(details);                alert('Transaction completed by ' + details.payer.name.given_name);            });        }    }).render('#paypal-button-container');</script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!DOCTYPE html&gt;
-
-&lt;head&gt;&lt;meta name=&quot;generator&quot; content=&quot;Hexo 3.9.0&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>PayPal</title>
