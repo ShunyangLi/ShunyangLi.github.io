@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://shunyangli.github.io/"/>
   <updated>2019-10-18T11:21:50.382Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://shunyangli.github.io/</id>
   
   <author>
     <name>Charles</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>PayPal</title>
-    <link href="http://yoursite.com/2019/10/18/PayPal/"/>
-    <id>http://yoursite.com/2019/10/18/PayPal/</id>
+    <link href="https://shunyangli.github.io/2019/10/18/PayPal/"/>
+    <id>https://shunyangli.github.io/2019/10/18/PayPal/</id>
     <published>2019-10-18T05:57:00.000Z</published>
     <updated>2019-10-18T11:21:50.382Z</updated>
     
@@ -35,23 +35,23 @@
     </summary>
     
     
-      <category term="web" scheme="http://yoursite.com/categories/web/"/>
+      <category term="web" scheme="https://shunyangli.github.io/categories/web/"/>
     
-      <category term="PayPal" scheme="http://yoursite.com/categories/web/PayPal/"/>
+      <category term="PayPal" scheme="https://shunyangli.github.io/categories/web/PayPal/"/>
     
     
-      <category term="Frontend" scheme="http://yoursite.com/tags/Frontend/"/>
+      <category term="Frontend" scheme="https://shunyangli.github.io/tags/Frontend/"/>
     
-      <category term="JS" scheme="http://yoursite.com/tags/JS/"/>
+      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
     
-      <category term="PayPal" scheme="http://yoursite.com/tags/PayPal/"/>
+      <category term="PayPal" scheme="https://shunyangli.github.io/tags/PayPal/"/>
     
   </entry>
   
   <entry>
     <title>Google login and calender</title>
-    <link href="http://yoursite.com/2019/10/16/Google-login-and-calender/"/>
-    <id>http://yoursite.com/2019/10/16/Google-login-and-calender/</id>
+    <link href="https://shunyangli.github.io/2019/10/16/Google-login-and-calender/"/>
+    <id>https://shunyangli.github.io/2019/10/16/Google-login-and-calender/</id>
     <published>2019-10-16T06:29:12.000Z</published>
     <updated>2019-10-17T06:49:03.034Z</updated>
     
@@ -67,27 +67,27 @@
     </summary>
     
     
-      <category term="Backend" scheme="http://yoursite.com/categories/Backend/"/>
+      <category term="Backend" scheme="https://shunyangli.github.io/categories/Backend/"/>
     
-      <category term="Google Login" scheme="http://yoursite.com/categories/Backend/Google-Login/"/>
+      <category term="Google Login" scheme="https://shunyangli.github.io/categories/Backend/Google-Login/"/>
     
-      <category term="JS" scheme="http://yoursite.com/categories/Backend/Google-Login/JS/"/>
+      <category term="JS" scheme="https://shunyangli.github.io/categories/Backend/Google-Login/JS/"/>
     
-      <category term="web" scheme="http://yoursite.com/categories/Backend/Google-Login/JS/web/"/>
+      <category term="web" scheme="https://shunyangli.github.io/categories/Backend/Google-Login/JS/web/"/>
     
     
-      <category term="Frontend" scheme="http://yoursite.com/tags/Frontend/"/>
+      <category term="Frontend" scheme="https://shunyangli.github.io/tags/Frontend/"/>
     
-      <category term="Google Login" scheme="http://yoursite.com/tags/Google-Login/"/>
+      <category term="Google Login" scheme="https://shunyangli.github.io/tags/Google-Login/"/>
     
-      <category term="Backend" scheme="http://yoursite.com/tags/Backend/"/>
+      <category term="Backend" scheme="https://shunyangli.github.io/tags/Backend/"/>
     
   </entry>
   
   <entry>
     <title>Flask upload files</title>
-    <link href="http://yoursite.com/2019/10/11/Flask-upload-files/"/>
-    <id>http://yoursite.com/2019/10/11/Flask-upload-files/</id>
+    <link href="https://shunyangli.github.io/2019/10/11/Flask-upload-files/"/>
+    <id>https://shunyangli.github.io/2019/10/11/Flask-upload-files/</id>
     <published>2019-10-11T08:07:31.000Z</published>
     <updated>2019-10-13T06:11:17.458Z</updated>
     
@@ -103,25 +103,25 @@
     </summary>
     
     
-      <category term="Backend" scheme="http://yoursite.com/categories/Backend/"/>
+      <category term="Backend" scheme="https://shunyangli.github.io/categories/Backend/"/>
     
-      <category term="API" scheme="http://yoursite.com/categories/Backend/API/"/>
+      <category term="API" scheme="https://shunyangli.github.io/categories/Backend/API/"/>
     
-      <category term="JQuery" scheme="http://yoursite.com/categories/Backend/API/JQuery/"/>
+      <category term="JQuery" scheme="https://shunyangli.github.io/categories/Backend/API/JQuery/"/>
     
     
-      <category term="Flask" scheme="http://yoursite.com/tags/Flask/"/>
+      <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="API" scheme="http://yoursite.com/tags/API/"/>
+      <category term="API" scheme="https://shunyangli.github.io/tags/API/"/>
     
-      <category term="Upload file" scheme="http://yoursite.com/tags/Upload-file/"/>
+      <category term="Upload file" scheme="https://shunyangli.github.io/tags/Upload-file/"/>
     
   </entry>
   
   <entry>
     <title>Flask API</title>
-    <link href="http://yoursite.com/2019/10/09/Flask-API/"/>
-    <id>http://yoursite.com/2019/10/09/Flask-API/</id>
+    <link href="https://shunyangli.github.io/2019/10/09/Flask-API/"/>
+    <id>https://shunyangli.github.io/2019/10/09/Flask-API/</id>
     <published>2019-10-09T12:08:04.000Z</published>
     <updated>2019-10-12T14:31:45.467Z</updated>
     
@@ -137,21 +137,21 @@
     </summary>
     
     
-      <category term="Backend" scheme="http://yoursite.com/categories/Backend/"/>
+      <category term="Backend" scheme="https://shunyangli.github.io/categories/Backend/"/>
     
-      <category term="API" scheme="http://yoursite.com/categories/Backend/API/"/>
+      <category term="API" scheme="https://shunyangli.github.io/categories/Backend/API/"/>
     
     
-      <category term="Flask" scheme="http://yoursite.com/tags/Flask/"/>
+      <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="API" scheme="http://yoursite.com/tags/API/"/>
+      <category term="API" scheme="https://shunyangli.github.io/tags/API/"/>
     
   </entry>
   
   <entry>
     <title>Flask Mail</title>
-    <link href="http://yoursite.com/2019/10/08/Flask-Mail/"/>
-    <id>http://yoursite.com/2019/10/08/Flask-Mail/</id>
+    <link href="https://shunyangli.github.io/2019/10/08/Flask-Mail/"/>
+    <id>https://shunyangli.github.io/2019/10/08/Flask-Mail/</id>
     <published>2019-10-08T07:24:57.000Z</published>
     <updated>2019-10-18T11:58:48.256Z</updated>
     
@@ -167,19 +167,19 @@
     </summary>
     
     
-      <category term="Backend" scheme="http://yoursite.com/categories/Backend/"/>
+      <category term="Backend" scheme="https://shunyangli.github.io/categories/Backend/"/>
     
     
-      <category term="Flask" scheme="http://yoursite.com/tags/Flask/"/>
+      <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="Mail" scheme="http://yoursite.com/tags/Mail/"/>
+      <category term="Mail" scheme="https://shunyangli.github.io/tags/Mail/"/>
     
   </entry>
   
   <entry>
     <title>How to use hexo</title>
-    <link href="http://yoursite.com/2019/10/07/How-to-use-hexo/"/>
-    <id>http://yoursite.com/2019/10/07/How-to-use-hexo/</id>
+    <link href="https://shunyangli.github.io/2019/10/07/How-to-use-hexo/"/>
+    <id>https://shunyangli.github.io/2019/10/07/How-to-use-hexo/</id>
     <published>2019-10-07T03:19:00.000Z</published>
     <updated>2019-10-07T03:21:48.954Z</updated>
     
@@ -195,10 +195,10 @@
     </summary>
     
     
-      <category term="Frontend" scheme="http://yoursite.com/categories/Frontend/"/>
+      <category term="Frontend" scheme="https://shunyangli.github.io/categories/Frontend/"/>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="https://shunyangli.github.io/tags/hexo/"/>
     
   </entry>
   
