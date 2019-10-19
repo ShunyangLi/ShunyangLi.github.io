@@ -74,7 +74,7 @@
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/enable.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/qq.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/ma.png">
-<meta property="og:updated_time" content="2019-10-18T11:58:48.256Z">
+<meta property="og:updated_time" content="2019-10-19T02:03:44.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask Mail">
 <meta name="twitter:description" content="简介由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip">
@@ -461,6 +461,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> app.open_resource(<span class="string">'xx.pdf'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        msg.attach(<span class="string">'xx.pdf'</span>, <span class="string">"application/pdf"</span>, fp.read())</span><br></pre></td></tr></table></figure>
 
 <p><strong><em>注：如果想在HTML里面使用css，需要自己在<code>&lt;style&gt;&lt;/style&gt;</code>里面写css，不可以直接用bootstrap这些框架。</em></strong></p>
+<p><a href="demo.png">demo</a> 文件提供下载。</p>
 <h1 id="关于怎么使用Gmail"><a href="#关于怎么使用Gmail" class="headerlink" title="关于怎么使用Gmail"></a>关于怎么使用Gmail</h1><ol>
 <li>首先开启安全性较低的应用的访问权限 <a href="https://myaccount.google.com/lesssecureapps" target="_blank" rel="noopener">URL</a></li>
 </ol>
