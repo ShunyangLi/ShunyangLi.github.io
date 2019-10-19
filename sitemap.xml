@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/2019/10/16/Google-login-and-calender/</loc>
+    
+    <lastmod>2019-10-19T07:41:16.476Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://shunyangli.github.io/2019/10/09/Flask-API/</loc>
+    
+    <lastmod>2019-10-19T07:40:50.921Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://shunyangli.github.io/2019/10/18/PayPal/</loc>
+    
+    <lastmod>2019-10-19T07:38:46.699Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2019/10/08/Flask-Mail/</loc>
     
     <lastmod>2019-10-19T02:05:26.148Z</lastmod>
@@ -9,30 +30,9 @@
   </url>
   
   <url>
-    <loc>https://shunyangli.github.io/2019/10/18/PayPal/</loc>
-    
-    <lastmod>2019-10-18T11:21:50.382Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/2019/10/16/Google-login-and-calender/</loc>
-    
-    <lastmod>2019-10-17T06:49:03.034Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://shunyangli.github.io/2019/10/11/Flask-upload-files/</loc>
     
     <lastmod>2019-10-13T06:11:17.458Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/2019/10/09/Flask-API/</loc>
-    
-    <lastmod>2019-10-12T14:31:45.467Z</lastmod>
     
   </url>
   

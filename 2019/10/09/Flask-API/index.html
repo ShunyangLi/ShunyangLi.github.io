@@ -62,19 +62,19 @@
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="Flask API给大家分享一下学习flask api的note。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用flask_restplus。第二种是用flask_restplus。首先给大家说一下不用flask_restplus怎么写。 不使用 flask_restplus在不适用flask_restplu">
+<meta name="description" content="Flask API给大家分享一下flask api 和 Flask-RESTful API  的两种不同用法。。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用flask_restplus。第二种是用flask_restplus。首先给大家说一下不用flask_restplus怎么写。 不使用 flask_re">
 <meta name="keywords" content="Flask,API">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask API">
 <meta property="og:url" content="https://shunyangli.github.io/2019/10/09/Flask-API/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="Flask API给大家分享一下学习flask api的note。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用flask_restplus。第二种是用flask_restplus。首先给大家说一下不用flask_restplus怎么写。 不使用 flask_restplus在不适用flask_restplu">
+<meta property="og:description" content="Flask API给大家分享一下flask api 和 Flask-RESTful API  的两种不同用法。。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用flask_restplus。第二种是用flask_restplus。首先给大家说一下不用flask_restplus怎么写。 不使用 flask_re">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/09/Flask-API/s.png">
-<meta property="og:updated_time" content="2019-10-12T14:31:45.467Z">
+<meta property="og:updated_time" content="2019-10-19T07:40:50.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask API">
-<meta name="twitter:description" content="Flask API给大家分享一下学习flask api的note。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用flask_restplus。第二种是用flask_restplus。首先给大家说一下不用flask_restplus怎么写。 不使用 flask_restplus在不适用flask_restplu">
+<meta name="twitter:description" content="Flask API给大家分享一下flask api 和 Flask-RESTful API  的两种不同用法。。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用flask_restplus。第二种是用flask_restplus。首先给大家说一下不用flask_restplus怎么写。 不使用 flask_re">
 <meta name="twitter:image" content="https://shunyangli.github.io/2019/10/09/Flask-API/s.png">
 
 <script type="text/javascript" id="hexo.configurations">
@@ -347,7 +347,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k 字
+                  1.2k 字
                 </span>
               
 
@@ -384,7 +384,7 @@
       
 
       
-        <h1 id="Flask-API"><a href="#Flask-API" class="headerlink" title="Flask API"></a>Flask API</h1><p>给大家分享一下学习flask api的note。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用<code>flask_restplus</code>。第二种是用<code>flask_restplus</code>。首先给大家说一下不用<code>flask_restplus</code>怎么写。</p>
+        <h1 id="Flask-API"><a href="#Flask-API" class="headerlink" title="Flask API"></a>Flask API</h1><p>给大家分享一下<code>flask api</code> 和 <a href="https://flask-restful.readthedocs.io/en/latest/" target="_blank" rel="noopener">Flask-RESTful API </a> 的两种不同用法。。首先API只会返回json的类型，不会返回HTML。API一般适用于前后端分离的情况。Flask API的实现方式有两种。第一种就是不用<code>flask_restplus</code>。第二种是用<code>flask_restplus</code>。首先给大家说一下不用<code>flask_restplus</code>怎么写。</p>
 <h2 id="不使用-flask-restplus"><a href="#不使用-flask-restplus" class="headerlink" title="不使用 flask_restplus"></a>不使用 flask_restplus</h2><p>在不适用<code>flask_restplus</code>的情况下我们可以直接使用route的形式来写API。只是把<code>return render_template</code>改成了<code>return jsonify</code> 来返回一个json类型的数据。可以根据不同的request的方式(GET, POST, DELETE)可以处理不同的事情，比如DELETE可以用来删除数据， POST可以添加数据，GET可以获取数据。具体实现方法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, jsonify</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECRET_KEY 可以设置为任意的string</span></span><br><span class="line">app.config[<span class="string">"SECRET_KEY"</span>] = <span class="string">"WHATEVER"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/index', methods=["POST","GET","DELETE"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"GET"</span>:</span><br><span class="line">        username = request.args.get(<span class="string">"username"</span>)</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;<span class="string">"GET"</span>: username&#125;)</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"POST"</span>:</span><br><span class="line">        username = request.args.get(<span class="string">"username"</span>)</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;<span class="string">"POST"</span>: username&#125;)</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"DELETE"</span>:</span><br><span class="line">        username = request.args.get(<span class="string">"username"</span>)</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;<span class="string">"DELETE"</span>: username&#125;)</span><br><span class="line"></span><br><span class="line">app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 

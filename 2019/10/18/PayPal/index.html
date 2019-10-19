@@ -62,23 +62,23 @@
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。所以今年来详细讲一下怎么在web里面使用PayPal。具体的网址如下：PayPal 1. 创建PayPal Sandbox 账户首先是创建PayPal Sandbox的账户。因为Sandbox的环境下并不是真正收费的，所以大家可以">
+<meta name="description" content="详细讲一下怎么在web里面利用JS使用PayPal。最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。具体的网址如下：PayPal 1. 创建PayPal Sandbox 账户首先是创建PayPal Sandbox的账户。因为Sandbox的环境下并不是真正收费的，所以大家可以尽">
 <meta name="keywords" content="Frontend,JS,PayPal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PayPal">
 <meta property="og:url" content="https://shunyangli.github.io/2019/10/18/PayPal/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。所以今年来详细讲一下怎么在web里面使用PayPal。具体的网址如下：PayPal 1. 创建PayPal Sandbox 账户首先是创建PayPal Sandbox的账户。因为Sandbox的环境下并不是真正收费的，所以大家可以">
+<meta property="og:description" content="详细讲一下怎么在web里面利用JS使用PayPal。最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。具体的网址如下：PayPal 1. 创建PayPal Sandbox 账户首先是创建PayPal Sandbox的账户。因为Sandbox的环境下并不是真正收费的，所以大家可以尽">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/18/PayPal/create.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/18/PayPal/app.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/18/PayPal/demo.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/18/PayPal/pay.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/18/PayPal/res.png">
-<meta property="og:updated_time" content="2019-10-18T11:21:50.382Z">
+<meta property="og:updated_time" content="2019-10-19T07:38:46.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PayPal">
-<meta name="twitter:description" content="最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。所以今年来详细讲一下怎么在web里面使用PayPal。具体的网址如下：PayPal 1. 创建PayPal Sandbox 账户首先是创建PayPal Sandbox的账户。因为Sandbox的环境下并不是真正收费的，所以大家可以">
+<meta name="twitter:description" content="详细讲一下怎么在web里面利用JS使用PayPal。最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。具体的网址如下：PayPal 1. 创建PayPal Sandbox 账户首先是创建PayPal Sandbox的账户。因为Sandbox的环境下并不是真正收费的，所以大家可以尽">
 <meta name="twitter:image" content="https://shunyangli.github.io/2019/10/18/PayPal/create.png">
 
 <script type="text/javascript" id="hexo.configurations">
@@ -388,7 +388,7 @@
       
 
       
-        <p>最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。所以今年来详细讲一下怎么在web里面使用PayPal。具体的网址如下：<a href="https://developer.paypal.com/docs/checkout/integrate/#3-render-the-smart-payment-buttons" target="_blank" rel="noopener">PayPal</a></p>
+        <p>详细讲一下怎么在web里面利用JS使用PayPal。最近找了一些关于支付的API，国内大部分都是微信，支付宝什么的。但是因为微信支付宝申请起来挺麻烦的，所以尝试使用了一下PayPal。PayPal可以作为国际使用支付方式。具体的网址如下：<a href="https://developer.paypal.com/docs/checkout/integrate/#3-render-the-smart-payment-buttons" target="_blank" rel="noopener">PayPal</a></p>
 <h1 id="1-创建PayPal-Sandbox-账户"><a href="#1-创建PayPal-Sandbox-账户" class="headerlink" title="1. 创建PayPal Sandbox 账户"></a>1. 创建PayPal Sandbox 账户</h1><p>首先是创建PayPal Sandbox的账户。因为Sandbox的环境下并不是真正收费的，所以大家可以尽情的测试。</p>
 <p>第一步：申请<a href="[https://developer.paypal.com](https://developer.paypal.com/)">PayPal Develpoer</a>的账号。</p>
 <p>第二步：选择Sandbox环境，创建App。创建完之后会有一个client id，在js里面会使用到：</p>
