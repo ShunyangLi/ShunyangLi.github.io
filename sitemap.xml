@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/about/index.html</loc>
+    
+    <lastmod>2019-10-19T07:46:05.280Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2019/10/16/Google-login-and-calender/</loc>
     
     <lastmod>2019-10-19T07:41:16.476Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://shunyangli.github.io/2019/10/07/How-to-use-hexo/</loc>
     
     <lastmod>2019-10-07T03:21:48.954Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/about/index.html</loc>
-    
-    <lastmod>2019-10-07T03:16:15.930Z</lastmod>
     
   </url>
   
