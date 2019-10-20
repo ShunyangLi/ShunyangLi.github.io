@@ -62,22 +62,22 @@
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="简介由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip">
+<meta name="description" content="Flask mail的使用教程，包括发送HTML，附件等等。Flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip3">
 <meta name="keywords" content="Flask,Mail">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask Mail">
 <meta property="og:url" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="简介由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip">
+<meta property="og:description" content="Flask mail的使用教程，包括发送HTML，附件等等。Flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip3">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/less.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/enable.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/qq.png">
 <meta property="og:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/ma.png">
-<meta property="og:updated_time" content="2019-10-19T02:05:26.148Z">
+<meta property="og:updated_time" content="2019-10-20T02:15:35.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask Mail">
-<meta name="twitter:description" content="简介由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip">
+<meta name="twitter:description" content="Flask mail的使用教程，包括发送HTML，附件等等。Flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。 安装 Flask Mail如果大家没有使用过flask mail，需要先用pip3">
 <meta name="twitter:image" content="https://shunyangli.github.io/2019/10/08/Flask-Mail/less.png">
 
 <script type="text/javascript" id="hexo.configurations">
@@ -376,7 +376,7 @@
       
 
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>由于最近项目的需求，了解了一下flask mail的内容，flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。</p>
+        <p>Flask mail的使用教程，包括发送HTML，附件等等。Flask mail一般是用来做注册时候的邮箱验证，或者改密码的时候的验证，还有就是一些预定信息的通知，或者是tax的一些内容。当然网上的教程很多，但是大部分都不够全面，有的是基础，有的是加深，所以我打算在这里做一个关于flask mail尽量全面的教程。</p>
 <h1 id="安装-Flask-Mail"><a href="#安装-Flask-Mail" class="headerlink" title="安装 Flask Mail"></a>安装 Flask Mail</h1><p>如果大家没有使用过flask mail，需要先用pip3安装一下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install flask_mail</span><br></pre></td></tr></table></figure>
 
@@ -709,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Flask-Mail"><span class="nav-number">2.</span> <span class="nav-text">安装 Flask Mail</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flask-Mail-的配置"><span class="nav-number">3.</span> <span class="nav-text">Flask Mail 的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Flask-Mail"><span class="nav-number">4.</span> <span class="nav-text">使用Flask Mail</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么使用HTML模板"><span class="nav-number">4.1.</span> <span class="nav-text">怎么使用HTML模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不使用异步发送"><span class="nav-number">4.2.</span> <span class="nav-text">不使用异步发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用异步发送"><span class="nav-number">4.3.</span> <span class="nav-text">使用异步发送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Flask-Mail发送附件"><span class="nav-number">5.</span> <span class="nav-text">关于Flask Mail发送附件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于怎么使用Gmail"><span class="nav-number">6.</span> <span class="nav-text">关于怎么使用Gmail</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于怎么使用QQ邮箱"><span class="nav-number">7.</span> <span class="nav-text">关于怎么使用QQ邮箱</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Flask-Mail"><span class="nav-number">1.</span> <span class="nav-text">安装 Flask Mail</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flask-Mail-的配置"><span class="nav-number">2.</span> <span class="nav-text">Flask Mail 的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Flask-Mail"><span class="nav-number">3.</span> <span class="nav-text">使用Flask Mail</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么使用HTML模板"><span class="nav-number">3.1.</span> <span class="nav-text">怎么使用HTML模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不使用异步发送"><span class="nav-number">3.2.</span> <span class="nav-text">不使用异步发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用异步发送"><span class="nav-number">3.3.</span> <span class="nav-text">使用异步发送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Flask-Mail发送附件"><span class="nav-number">4.</span> <span class="nav-text">关于Flask Mail发送附件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于怎么使用Gmail"><span class="nav-number">5.</span> <span class="nav-text">关于怎么使用Gmail</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于怎么使用QQ邮箱"><span class="nav-number">6.</span> <span class="nav-text">关于怎么使用QQ邮箱</span></a></li></ol></div>
             
 
           </div>

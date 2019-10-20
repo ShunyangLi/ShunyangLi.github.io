@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/2019/10/08/Flask-Mail/</loc>
+    
+    <lastmod>2019-10-20T02:15:35.658Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/about/index.html</loc>
     
     <lastmod>2019-10-19T07:46:05.280Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://shunyangli.github.io/2019/10/18/PayPal/</loc>
     
     <lastmod>2019-10-19T07:38:46.699Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/2019/10/08/Flask-Mail/</loc>
-    
-    <lastmod>2019-10-19T02:05:26.148Z</lastmod>
     
   </url>
   
