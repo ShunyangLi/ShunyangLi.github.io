@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shunyangli.github.io/"/>
-  <updated>2019-10-19T07:38:46.699Z</updated>
+  <updated>2019-10-31T07:22:55.442Z</updated>
   <id>https://shunyangli.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Socket IO</title>
+    <link href="https://shunyangli.github.io/2019/10/31/Socket-IO/"/>
+    <id>https://shunyangli.github.io/2019/10/31/Socket-IO/</id>
+    <published>2019-10-31T06:47:45.000Z</published>
+    <updated>2019-10-31T07:22:55.442Z</updated>
+    
+    <content type="html"><![CDATA[<p>Flask socket IO 是Flask应用程序能够访问客户端和服务器之间的低延迟双向通信。Socket IO可以保持backend和frontend之间实时双向通讯。Socket IO 主要使用了WebSocket协议。只要是支持<a href="https://socket.io/" target="_blank" rel="noopener">socket.io</a> 的语言都可以使用。<a href="https://github.com/socketio/socket.io" target="_blank" rel="noopener">scoket.io GitHub</a> socket io的GitHub源码所在。</p><h1 id="安装和依赖"><a href="#安装和依赖" class="headerlink" title="安装和依赖"></a>安装和依赖</h1><p>直接使用<code>pip3</code>安装就行:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install flask-socketio</span><br></pre></td></tr></table></figure><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>Flask socketio 这个扩展完全兼容了python2.7和python3.3+版本。对于flask Socket io的异步服务的推荐选择：</p><p><a href="http://eventlet.net/" target="_blank" rel="noopener">eventlet</a> 推荐使用，这个效率比较高，支持长轮询和 WebSocket 传输。也可以直接用<code>pip3</code> 来安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install eventlet</span><br></pre></td></tr></table></figure><h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><p>在Flask的程序中使用flask socket io：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, render_template</span><br><span class="line"><span class="keyword">from</span> flask_socketio <span class="keyword">import</span> SocketIO</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'vnkdjnfjknfl1232#'</span></span><br><span class="line">socketio = SocketIO(app)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    socketio.run(app)</span><br></pre></td></tr></table></figure><p><code>app.config[&#39;SECRET_KEY&#39;]</code> 必须要配置，是为了保证加密传输的安全性。<code>socketio.run</code> 封装并替换了<code>app.run</code>的启动方式。在此环境下优先使用<code>eventlet</code></p><p>以及在HTML里面怎么使用socket io：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> socket = io.connect(<span class="string">'http://'</span> + <span class="built_in">document</span>.domain + <span class="string">':'</span> + location.port);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>这里的<code>document.domain</code>和<code>location.port</code>是web相对的IP和端口。可以自动适配，也可以手动修改成所需要的IP和端口。</p><h1 id="接受和发送消息"><a href="#接受和发送消息" class="headerlink" title="接受和发送消息"></a>接受和发送消息</h1><p>接受消息在flask里面可以这样使用，这是<code>msg</code>可以是不同的数据类型，可以是json，str，也可以是多个参数的组合:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('receive')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_receive</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">'You receive message: '</span>, msg)</span><br></pre></td></tr></table></figure><p>发送消息:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('send')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_send</span><span class="params">(msg)</span>:</span></span><br><span class="line">    socketio.emit(<span class="string">'receive'</span>, msg)</span><br></pre></td></tr></table></figure><p>也可以只用<code>send</code>的方式发送。具体的可以查一下，一般只用定向发送。</p><p>在HTML里面接受数据的使用方法和在flask里面类似：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'receive'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> msg </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(len, wid);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>这样就可以接收到从后端传输的数据。</p><p>发送消息：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socket.emit(<span class="string">'receive'</span>, &#123;</span><br><span class="line">    msg: <span class="string">'hello world'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>这样后端就能接收到来自前端的消息。</p><p>之前写了一个用socket io实现的live chat给大家分享一下:</p><p><a href="socket.zip">live chat</a></p><p>最后：这两天事情有点多，等有时间重新详细写一下。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Flask socket IO 是Flask应用程序能够访问客户端和服务器之间的低延迟双向通信。Socket IO可以保持backend和frontend之间实时双向通讯。Socket IO 主要使用了WebSocket协议。只要是支持&lt;a href=&quot;https://so
+      
+    
+    </summary>
+    
+    
+      <category term="Backend" scheme="https://shunyangli.github.io/categories/Backend/"/>
+    
+    
+      <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
+    
+      <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
+    
+      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>PayPal</title>
@@ -40,9 +70,9 @@
       <category term="PayPal" scheme="https://shunyangli.github.io/categories/web/PayPal/"/>
     
     
-      <category term="Frontend" scheme="https://shunyangli.github.io/tags/Frontend/"/>
-    
       <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
+    
+      <category term="Frontend" scheme="https://shunyangli.github.io/tags/Frontend/"/>
     
       <category term="PayPal" scheme="https://shunyangli.github.io/tags/PayPal/"/>
     
