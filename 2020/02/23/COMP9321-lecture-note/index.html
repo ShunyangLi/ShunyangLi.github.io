@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="google-site-verification" content="IOATCl5WoBxLBupME1kt4CHNSMNPlQtjHsNC-UXFvUQ">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="COMP,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
+
+
+<meta name="description" content="SQL VS MongoDB   RDMBS MongoDB    Database Database   Table Collection   Tuple/Row Document   column filed   Table join Embedded Document   Primary Key Primary Key（provided by mongodb itself）   PS: Co">
+<meta name="keywords" content="COMP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="COMP9321 lecture note">
+<meta property="og:url" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/index.html">
+<meta property="og:site_name" content="Charles&#39;s blog">
+<meta property="og:description" content="SQL VS MongoDB   RDMBS MongoDB    Database Database   Table Collection   Tuple/Row Document   column filed   Table join Embedded Document   Primary Key Primary Key（provided by mongodb itself）   PS: Co">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/1.png">
+<meta property="og:updated_time" content="2020-02-27T16:05:26.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="COMP9321 lecture note">
+<meta name="twitter:description" content="SQL VS MongoDB   RDMBS MongoDB    Database Database   Table Collection   Tuple/Row Document   column filed   Table join Embedded Document   Primary Key Primary Key（provided by mongodb itself）   PS: Co">
+<meta name="twitter:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/1.png">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>COMP9321 lecture note | Charles's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charles's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我们
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charles">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charles's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">COMP9321 lecture note</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-23T18:19:47+07:00">
+                2020-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/02/23/COMP9321-lecture-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/23/COMP9321-lecture-note/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  811 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SQL-VS-MongoDB"><a href="#SQL-VS-MongoDB" class="headerlink" title="SQL VS MongoDB"></a>SQL VS MongoDB</h1><table>
+<thead>
+<tr>
+<th align="center">RDMBS</th>
+<th align="center">MongoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Database</td>
+<td align="center">Database</td>
+</tr>
+<tr>
+<td align="center">Table</td>
+<td align="center">Collection</td>
+</tr>
+<tr>
+<td align="center">Tuple/Row</td>
+<td align="center">Document</td>
+</tr>
+<tr>
+<td align="center">column</td>
+<td align="center">filed</td>
+</tr>
+<tr>
+<td align="center">Table join</td>
+<td align="center">Embedded Document</td>
+</tr>
+<tr>
+<td align="center">Primary Key</td>
+<td align="center">Primary Key（provided by mongodb itself）</td>
+</tr>
+</tbody></table>
+<p>PS: Collections do not require a schema. Document within a collection can have different filelds</p>
+<p>MongoDB更适合做数据分析。eg:</p>
+<p><img src="/2020/02/23/COMP9321-lecture-note/1.png" alt></p>
+<h1 id="Relational-vs-Document"><a href="#Relational-vs-Document" class="headerlink" title="Relational vs. Document"></a>Relational vs. Document</h1><p><strong>Which data model leads to simpler application code?</strong> </p>
+<ul>
+<li>If the application data model looks like a tree (document-like) -&gt; it can be loaded at once using document-based model </li>
+<li>If M-M relationships are central to the application data model -&gt; relational model is efficient in joins. If document model is used, some of the ‘join’ logic will have to move to application code </li>
+</ul>
+<p><strong>Consider the kinds of relationships between data items. If they are highly interconnected data (e.g., social network)</strong> </p>
+<ul>
+<li>document model is not so good, </li>
+<li>relational model is OK … </li>
+<li>graph models would be natural (to be seen later</li>
+</ul>
+<p>Relational：适合做关联数据</p>
+<p>Document：适合做数据分析，类似树的结构</p>
+<p><strong>About schema flexibility, good or bad?</strong></p>
+<ul>
+<li>Most document-based database do not enfore any schema in documents(schema-less databases，可以插入任何类型的数据)</li>
+<li>Schema-on-read<ul>
+<li>The structure of the data is implicit, only interpreted when the data is read by application code</li>
+<li>≈ dynamic (runtime) type checking</li>
+</ul>
+</li>
+<li>Schema-on-write<ul>
+<li>The traditional approach of RDB - explicit schema and the database ensures all written data conforms to it</li>
+<li>≈ static (compile-time) type checking</li>
+</ul>
+</li>
+<li>When application wants to change the format of its data then schema-on-read/write does matter (eg:  User name in one field -&gt; User name in two fields.)</li>
+</ul>
+<h1 id="Manage-and-publish-metadata"><a href="#Manage-and-publish-metadata" class="headerlink" title="Manage and publish metadata"></a>Manage and publish metadata</h1><p>*<em>Metadata: *</em> Metadata is a “map”, is a means by which the complexity of an object is represented in a simpler form. Include:</p>
+<ul>
+<li><strong>Descriptive metadata:</strong> description of an object</li>
+<li><strong>Administrative metadata:</strong> information about the origin and maintenance of an object</li>
+<li><strong>Structural metadata:</strong> information about how an object is organised (e.g., ToC)</li>
+<li><strong>Provenance metadata:</strong> traces/processes involved in producing the object.</li>
+</ul>
+<h1 id="Labs-and-soultion"><a href="#Labs-and-soultion" class="headerlink" title="Labs and soultion"></a>Labs and soultion</h1><p>*<em>Prepare for lab: *</em></p>
+<ul>
+<li>Install <code>pandas</code>: <code>pip3 install pandas</code></li>
+<li>Install <code>requests</code>: <code>pip3 install requests</code></li>
+</ul>
+<p><strong><em>All the <code>data_frame = read_csv(&#39;xx.csv&#39;)</code></em></strong> </p>
+<ol>
+<li><p>CSV files</p>
+<ul>
+<li><p>Download the csv files:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/mysilver/COMP9321-Data-Services/master/Week2_DataAccess/Demographic_Statistics_By_Zip_Code.csv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Read csv file in pandas</p>
+<p>因为pandas已经封装好的有读取<code>csv</code>文件的库，所以我们只需要调用该库即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_csv</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param filename: the filename which need to read</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> pd.read_csv(filename)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Print row and column</p>
+<p>在print column的时候我们直接输出df即可，row我们可以使用<code>iterrows</code>的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data_frame = read_csv(<span class="string">"xx.csv"</span>)</span><br><span class="line"><span class="comment"># show col</span></span><br><span class="line">print(<span class="string">", "</span>.join([col <span class="keyword">for</span> col <span class="keyword">in</span> data_frame]))</span><br><span class="line"><span class="comment"># show row</span></span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> data_frame.iterrows():</span><br><span class="line">    print(<span class="string">", "</span>.join([str(row[col]) <span class="keyword">for</span> col <span class="keyword">in</span> data_frame]))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Store in csv</p>
+<p>导出csv文件也有相对应的库：<code>to_csv</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">store_scv</span><span class="params">(data_frame, filename)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param data_frame: the pandas data frame</span></span><br><span class="line"><span class="string">    :param filename: the filename which need to be stored</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    data_frame.to_csv(filename, sep=<span class="string">','</span>, encoding=<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>SQlite files</p>
+<p>Firstly, we need to connect to the sqlite file by using <code>sqlite</code> package. (Install sqlite: <code>pip3 install sqlite3</code>)</p>
+<p>All the<code>conn=conn_db(&#39;xx.db&#39;)</code></p>
+<ul>
+<li><p>Connect to the database</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conn_db</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param filename: the filename of db</span></span><br><span class="line"><span class="string">    :return: return the cursor</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> sqlite3.connect(filename)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Store all the data into sqlite file</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">store_sqlite</span><span class="params">(data_frame, table_name, conn)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param conn: sqlite3 con</span></span><br><span class="line"><span class="string">    :param data_frame: the pandas data frame</span></span><br><span class="line"><span class="string">    :param table_name: the tables name in sql</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    data_frame.to_sql(table_name, conn)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Query by pandas</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_db</span><span class="params">(query, conn)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param query: query language (eg: "SELECT * FROM xx")</span></span><br><span class="line"><span class="string">    :param conn: connect sqlite3</span></span><br><span class="line"><span class="string">    :return: the data frame after reading database</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> pd.read_sql_query(query, conn)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>NoSql</p>
+<p>在做lab之前应该先安装MongoDB，具体的可以Google一下</p>
+<p>应该先安装<code>pymongo</code>(<code>pip3 install pymongo</code>)</p>
+<ul>
+<li><p>Connect MongoDB</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect_mongo</span><span class="params">(database_name, collection, host=<span class="string">'127.0.0.1'</span>, port=<span class="string">'27017'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param collection: the database collection</span></span><br><span class="line"><span class="string">    :param database_name: which database need to connect</span></span><br><span class="line"><span class="string">    :param host: the host of mongodb</span></span><br><span class="line"><span class="string">    :param port: the port of mongodb</span></span><br><span class="line"><span class="string">    :return: cursor</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    client = MongoClient(<span class="string">'mongodb://%s:%s/'</span> % (host, port))</span><br><span class="line">    <span class="keyword">return</span> client[database_name][collection]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Store data into MongoDB</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">store_mongo</span><span class="params">(db, data_frame)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :param db: database</span></span><br><span class="line"><span class="string">    :param data_frame: the data frame</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> index, row <span class="keyword">in</span> data_frame.iterrows():</span><br><span class="line">        t = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> data_frame:</span><br><span class="line">            t[col] = str(row[col])</span><br><span class="line">        data.append(t)</span><br><span class="line">    db.insert_many(data)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>RESTful</p>
+<p>We use <code>requests</code> to get web data.</p>
+<ul>
+<li><p>Get web data</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_web_json</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    get the json file from an url</span></span><br><span class="line"><span class="string">    :param url: the json url</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = requests.get(url)</span><br><span class="line">    <span class="keyword">return</span> res.json()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">-----本文结束<i class="fa fa-paw"></i>感谢您的阅读-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/COMP/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> COMP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/05/Nginx/" rel="next" title="Nginx">
+                <i class="fa fa-chevron-left"></i> Nginx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Charles</p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的博客~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度搜索" target="_blank">百度搜索</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-VS-MongoDB"><span class="nav-number">1.</span> <span class="nav-text">SQL VS MongoDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Relational-vs-Document"><span class="nav-number">2.</span> <span class="nav-text">Relational vs. Document</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manage-and-publish-metadata"><span class="nav-number">3.</span> <span class="nav-text">Manage and publish metadata</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Labs-and-soultion"><span class="nav-number">4.</span> <span class="nav-text">Labs and soultion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Charles</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'f6AtjL4EGvNH0x9nC1llJvX0-gzGzoHsz',
+        appKey: '7pMECSFW5y4TvPDdAoYB2OHz',
+        placeholder: '请在此输入您的留言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
