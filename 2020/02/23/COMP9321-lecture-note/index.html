@@ -74,7 +74,9 @@
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/3.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/1.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/4.png">
-<meta property="og:updated_time" content="2020-02-28T10:32:50.207Z">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/5.png">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/6.png">
+<meta property="og:updated_time" content="2020-02-29T07:44:53.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP9321 lecture note">
 <meta name="twitter:description" content="Week 1What is in a data model Problem with relational modelsThe Object-Relational Mismatch (Impedance Mismatch)  Refers to the problem of a mismatch between application data model (your business objec">
@@ -317,7 +319,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  890 字
+                  1.3k 字
                 </span>
               
 
@@ -333,7 +335,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5 分钟
+                  7 分钟
                 </span>
               
             </div>
@@ -497,6 +499,73 @@
 </ul>
 </li>
 </ol>
+<h1 id="Week-2-Data-Cleansing"><a href="#Week-2-Data-Cleansing" class="headerlink" title="Week 2 Data Cleansing"></a>Week 2 Data Cleansing</h1><h2 id="Why-data-cleaning"><a href="#Why-data-cleaning" class="headerlink" title="Why data cleaning"></a>Why data cleaning</h2><ul>
+<li>Datasets are messy, messy data can give wrong insights</li>
+<li>Data cleaning find and remove or correct data that detracts(减损) from the quality,  and thus the usability, of data.</li>
+<li>The goal of data cleansing is to achieve consistent, complete, accurate, and uniform data</li>
+</ul>
+<h2 id="Dirty-data"><a href="#Dirty-data" class="headerlink" title="Dirty data"></a>Dirty data</h2><h3 id="The-statistics-view"><a href="#The-statistics-view" class="headerlink" title="The statistics view"></a>The statistics view</h3><p>We want to model ideal samples of that process, but in practice we have non-ideal samples:</p>
+<ul>
+<li><strong>Distortion(失真):</strong> some samples are corrupted by a process</li>
+<li><strong>Selection Bias:</strong> likelihood of a sample depends on its value</li>
+<li><strong>Left and right censorship(审查):</strong>  users come and go from our scrutiny</li>
+<li><strong>Dependence:</strong> samples are supposed to be independent, but are not (e.g. social networks)</li>
+</ul>
+<h3 id="The-database-view"><a href="#The-database-view" class="headerlink" title="The database view"></a>The database view</h3><ul>
+<li>I got my hands on this data set</li>
+<li>Some of the values are missing, corrupted, wrong, duplicated</li>
+<li>Results are absolute (relational model)</li>
+<li>You get a better answer by improving the quality of the values in your dataset</li>
+</ul>
+<h3 id="The-Domain-Expert’s-View"><a href="#The-Domain-Expert’s-View" class="headerlink" title="The Domain Expert’s View:"></a>The Domain Expert’s View:</h3><p>Domain experts have an implicit model of the data that they can test against…</p>
+<ul>
+<li>This Data Doesn’t look right</li>
+<li>This Answer Doesn’t look right</li>
+</ul>
+<h3 id="The-Data-Scientist’s-View"><a href="#The-Data-Scientist’s-View" class="headerlink" title="The Data Scientist’s View:"></a>The Data Scientist’s View:</h3><p><img src="/2020/02/23/COMP9321-lecture-note/5.png" alt></p>
+<h3 id="Example-about-dirty-data"><a href="#Example-about-dirty-data" class="headerlink" title="Example about dirty data"></a>Example about dirty data</h3><p><img src="/2020/02/23/COMP9321-lecture-note/6.png" alt></p>
+<h2 id="Data-quantity-problem"><a href="#Data-quantity-problem" class="headerlink" title="Data quantity problem"></a>Data quantity problem</h2><ul>
+<li>(Source) Data is dirty on its own.</li>
+<li>Transformations corrupt the data (complexity of software pipelines).</li>
+<li>Data sets are clean but integration (i.e., combining them) mess them up.</li>
+<li>“Rare” errors can become frequent after transformation or integration. </li>
+<li>Data sets are clean but suffer “bit rot”</li>
+<li><strong>Old data loses its value/accuracy over time</strong></li>
+<li><strong>Any combination of the above</strong></li>
+</ul>
+<h2 id="How-data-quantity-problem-happen"><a href="#How-data-quantity-problem-happen" class="headerlink" title="How data quantity problem happen"></a>How data quantity problem happen</h2><p><strong>Incomplete data come from：</strong></p>
+<ul>
+<li>non available data value when collected</li>
+<li>different criteria between the time when the data was collected and when it is analyzed</li>
+<li>human/hardware/software problems </li>
+</ul>
+<p>*<em>Noisy data comes from: *</em></p>
+<ul>
+<li><strong>data collection:</strong> faulty instruments （有缺陷的仪器）</li>
+<li><strong>data entry:</strong> human or computer errors </li>
+<li><strong>data transmission</strong></li>
+</ul>
+<p><strong>Inconsistent (and duplicate) data comes from:</strong> </p>
+<ul>
+<li><strong>Different data sources</strong>, so <strong>non-uniform</strong> naming conventions/data codes </li>
+<li>Functional dependency and/or referential integrity violation（功能依赖性和/或参照完整性违规）</li>
+</ul>
+<h2 id="Application-Scenarios（应用场景）"><a href="#Application-Scenarios（应用场景）" class="headerlink" title="Application Scenarios（应用场景）"></a>Application Scenarios（应用场景）</h2><p><strong>Integrate data from different sources（整合来自不同来源的数据）</strong></p>
+<ul>
+<li>eg：populating data from different operational data stores or a mediator-based architecture Eliminate errors and duplicates within a single source </li>
+</ul>
+<p><strong>Eliminate errors and duplicates within a single source （消除单一来源中的错误和重复）</strong></p>
+<ul>
+<li>eg：duplicates in a file of customers </li>
+</ul>
+<p>*<em>Migrate data from a source schema into a different fixed target schema *</em></p>
+<ul>
+<li>eg： discontinued application packages </li>
+</ul>
+<p>*<em>Convert poorly structured data into structured data *</em></p>
+<ul>
+<li>eg：processing data collected from the Web</li>
+</ul>
 
       
     </div>
@@ -726,7 +795,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-1"><span class="nav-number">1.</span> <span class="nav-text">Week 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-in-a-data-model"><span class="nav-number">1.1.</span> <span class="nav-text">What is in a data model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-with-relational-models"><span class="nav-number">1.2.</span> <span class="nav-text">Problem with relational models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-VS-MongoDB"><span class="nav-number">1.3.</span> <span class="nav-text">SQL VS MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-vs-Document"><span class="nav-number">1.4.</span> <span class="nav-text">Relational vs. Document</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-database"><span class="nav-number">1.5.</span> <span class="nav-text">Graph database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manage-and-publish-metadata"><span class="nav-number">1.6.</span> <span class="nav-text">Manage and publish metadata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Labs-and-soultion"><span class="nav-number">1.7.</span> <span class="nav-text">Labs and soultion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-1"><span class="nav-number">1.</span> <span class="nav-text">Week 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-in-a-data-model"><span class="nav-number">1.1.</span> <span class="nav-text">What is in a data model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-with-relational-models"><span class="nav-number">1.2.</span> <span class="nav-text">Problem with relational models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-VS-MongoDB"><span class="nav-number">1.3.</span> <span class="nav-text">SQL VS MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-vs-Document"><span class="nav-number">1.4.</span> <span class="nav-text">Relational vs. Document</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-database"><span class="nav-number">1.5.</span> <span class="nav-text">Graph database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manage-and-publish-metadata"><span class="nav-number">1.6.</span> <span class="nav-text">Manage and publish metadata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Labs-and-soultion"><span class="nav-number">1.7.</span> <span class="nav-text">Labs and soultion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-2-Data-Cleansing"><span class="nav-number">2.</span> <span class="nav-text">Week 2 Data Cleansing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-data-cleaning"><span class="nav-number">2.1.</span> <span class="nav-text">Why data cleaning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dirty-data"><span class="nav-number">2.2.</span> <span class="nav-text">Dirty data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-statistics-view"><span class="nav-number">2.2.1.</span> <span class="nav-text">The statistics view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-database-view"><span class="nav-number">2.2.2.</span> <span class="nav-text">The database view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Domain-Expert’s-View"><span class="nav-number">2.2.3.</span> <span class="nav-text">The Domain Expert’s View:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Data-Scientist’s-View"><span class="nav-number">2.2.4.</span> <span class="nav-text">The Data Scientist’s View:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-about-dirty-data"><span class="nav-number">2.2.5.</span> <span class="nav-text">Example about dirty data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-quantity-problem"><span class="nav-number">2.3.</span> <span class="nav-text">Data quantity problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-data-quantity-problem-happen"><span class="nav-number">2.4.</span> <span class="nav-text">How data quantity problem happen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Scenarios（应用场景）"><span class="nav-number">2.5.</span> <span class="nav-text">Application Scenarios（应用场景）</span></a></li></ol></li></ol></div>
             
 
           </div>
