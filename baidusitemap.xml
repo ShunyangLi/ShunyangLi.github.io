@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://shunyangli.github.io/2020/02/28/Algorithm/</loc>
+    <lastmod>2020-03-02</lastmod>
+  </url>  <url>
     <loc>https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/</loc>
     <lastmod>2020-02-29</lastmod>
   </url>  <url>
     <loc>https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/</loc>
-    <lastmod>2020-02-28</lastmod>
-  </url>  <url>
-    <loc>https://shunyangli.github.io/2020/02/28/Algorithm/</loc>
     <lastmod>2020-02-28</lastmod>
   </url>  <url>
     <loc>https://shunyangli.github.io/2020/02/05/Nginx/</loc>
