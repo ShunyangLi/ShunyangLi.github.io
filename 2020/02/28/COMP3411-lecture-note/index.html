@@ -62,18 +62,18 @@
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog">
+<meta name="description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog Prolog 有三种非常基本结构:  事实(facts) 规则(rules) 查询(queries)  Factsprolog 的facts如下(文件以.pl结尾)： 123programmer(linux).programmer(bill).designer(">
 <meta name="keywords" content="COMP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="COMP3411 lecture note">
 <meta property="og:url" content="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog">
+<meta property="og:description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog Prolog 有三种非常基本结构:  事实(facts) 规则(rules) 查询(queries)  Factsprolog 的facts如下(文件以.pl结尾)： 123programmer(linux).programmer(bill).designer(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-28T16:19:54.259Z">
+<meta property="og:updated_time" content="2020-03-03T10:14:40.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP3411 lecture note">
-<meta name="twitter:description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog">
+<meta name="twitter:description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog Prolog 有三种非常基本结构:  事实(facts) 规则(rules) 查询(queries)  Factsprolog 的facts如下(文件以.pl结尾)： 123programmer(linux).programmer(bill).designer(">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -312,7 +312,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10 字
+                  304 字
                 </span>
               
 
@@ -350,6 +350,26 @@
 
       
         <h1 id="Introduction-of-prolog"><a href="#Introduction-of-prolog" class="headerlink" title="Introduction of prolog"></a>Introduction of prolog</h1><p>Install prolog on Mac: <code>brew install swi-prolog</code></p>
+<p>Prolog 有三种非常基本结构:</p>
+<ul>
+<li>事实(facts)</li>
+<li>规则(rules)</li>
+<li>查询(queries)</li>
+</ul>
+<h2 id="Facts"><a href="#Facts" class="headerlink" title="Facts"></a>Facts</h2><p>prolog 的<strong>facts</strong>如下(文件以<code>.pl</code>结尾)：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">programmer(linux).</span><br><span class="line">programmer(bill).</span><br><span class="line">designer(jonathan).</span><br></pre></td></tr></table></figure>
+
+<p>在当前文件夹下，执行<code>swipl</code>命令进入到prolog的命令行，然后<code>consult(&#39;xx.pl&#39;).</code>来加载prolog文件。</p>
+<h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sunny(today).</span><br><span class="line">happy(tom).</span><br><span class="line">football(tom) :- sunny(today),happy(tom).</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们加载我们的代码, 询问 <code>football(tom)</code>. Prolog 会返回 <code>true</code>, 规则是什么呢, 规则的前半部分也就是 <code>football(tom)</code> 是规则的头部(head), 规则的后半部分 <code>sunny(today),happy(tom)</code> 是规则的目标(goals). 当规则的 goals 成立时, head 就会成立也就是:</p>
+<p><strong>如果今天的天气很好, tom 也很开心, 那么他就会去踢足球.</strong></p>
+<p>Prolog 使用 <code>,</code> 来表示 <strong>和</strong>, 使用 <code>;</code> 来表示 <strong>或</strong>. 所以在这里, 后面的两个条件都需要成立. 这样 Prolog 就能推出 <code>football(tom)</code>.</p>
+<p>我们可以在 Rules 中添加变量增强我们的表达能力, 比如这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">father(tom,john).</span><br><span class="line">father(john,ive).</span><br><span class="line">grandfather(X,Z):-father(X,Y),father(Y,Z).</span><br></pre></td></tr></table></figure>
+
+<p>我相信这对于我们是非常容易理解的, 在这里也不过多说明了.</p>
+<p><strong>“:–” means “if” or “is implied by”. Also called “neck”.</strong> </p>
 
       
     </div>
@@ -579,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-of-prolog"><span class="nav-number">1.</span> <span class="nav-text">Introduction of prolog</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-of-prolog"><span class="nav-number">1.</span> <span class="nav-text">Introduction of prolog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Facts"><span class="nav-number">1.1.</span> <span class="nav-text">Facts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rules"><span class="nav-number">1.2.</span> <span class="nav-text">Rules</span></a></li></ol></li></ol></div>
             
 
           </div>
