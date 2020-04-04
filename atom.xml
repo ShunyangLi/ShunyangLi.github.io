@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shunyangli.github.io/"/>
-  <updated>2020-03-02T09:32:55.258Z</updated>
+  <updated>2020-04-03T05:19:21.108Z</updated>
   <id>https://shunyangli.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rust Note</title>
+    <link href="https://shunyangli.github.io/2020/04/03/Rust-Note/"/>
+    <id>https://shunyangli.github.io/2020/04/03/Rust-Note/</id>
+    <published>2020-04-03T05:12:07.000Z</published>
+    <updated>2020-04-03T05:19:21.108Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Rust-数据类型"><a href="#Rust-数据类型" class="headerlink" title="Rust 数据类型"></a>Rust 数据类型</h1><p><strong>bool</strong>，rust自带bool类型，可以为<code>true</code>或者<code>false</code>：</p><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isvalid = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">let</span> isvalid:<span class="built_in">bool</span> = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure><p>声明类型可以用<code>:</code>来声明</p><p><strong>char</strong>，一个<code>char</code>类型表示Unicode字符，在rust里面占用了四个字节（32bit），需要用<code>&#39;&#39;</code>来表示char:</p><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = <span class="string">'c'</span>;</span><br></pre></td></tr></table></figure><p>数字类型：</p><p>在rust里面可用的字符有：i, f, u。u表示unsigned</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Rust-数据类型&quot;&gt;&lt;a href=&quot;#Rust-数据类型&quot; class=&quot;headerlink&quot; title=&quot;Rust 数据类型&quot;&gt;&lt;/a&gt;Rust 数据类型&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;bool&lt;/strong&gt;，rust自带bool类型，可以为&lt;cod
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Rust" scheme="https://shunyangli.github.io/tags/Rust/"/>
+    
+  </entry>
   
   <entry>
     <title>Algorithm</title>
@@ -146,9 +170,9 @@
     
       <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
-    
       <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
+    
+      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
     
   </entry>
   
