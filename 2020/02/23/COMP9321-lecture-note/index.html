@@ -79,7 +79,7 @@
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/7.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/8.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/9.png">
-<meta property="og:updated_time" content="2020-04-05T04:47:10.544Z">
+<meta property="og:updated_time" content="2020-04-05T05:42:39.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP9321 lecture note">
 <meta name="twitter:description" content="Week 1What is in a data model Problem with relational modelsThe Object-Relational Mismatch (Impedance Mismatch)  Refers to the problem of a mismatch between application data model (your business objec">
@@ -813,7 +813,7 @@
 <li>返回前k个点钟出现频率最高的类别作为测试数据的预测分类</li>
 </ol>
 <p>在<a href="https://github.com/eijaz1/k-NN-Tutorial-Scikit-learn" target="_blank" rel="noopener">github</a>上找了一个例子给大家看下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Pregnancies：怀孕的次数</span></span><br><span class="line"><span class="string">Glucose：血浆葡萄糖浓度</span></span><br><span class="line"><span class="string">BloodPressure：舒张压</span></span><br><span class="line"><span class="string">SkinThickness：肱三头肌皮肤皱皱厚度</span></span><br><span class="line"><span class="string">Insulin： 胰岛素</span></span><br><span class="line"><span class="string">BMI：身体质量指数</span></span><br><span class="line"><span class="string">dpf：糖尿病血统指数</span></span><br><span class="line"><span class="string">Age：年龄</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">4df = pd.read_csv(<span class="string">'diabetes_data.csv'</span>)</span><br><span class="line">4<span class="comment"># 前几个数据是用来训练的</span></span><br><span class="line">4x = df.iloc[:,<span class="number">0</span>:<span class="number">8</span>]</span><br><span class="line">4<span class="comment"># 相对应的结果 diabetes</span></span><br><span class="line">4y = df.iloc[:,<span class="number">8</span>]</span><br><span class="line">4<span class="comment"># 将数据集拆分为训练和测试数据</span></span><br><span class="line">4X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = <span class="number">0.2</span>, random_state=<span class="number">1</span>, stratify=y)</span><br><span class="line"></span><br><span class="line">4<span class="comment"># 初始化knn</span></span><br><span class="line">4knn = KNeighborsClassifier(n_neighbors = <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">4<span class="comment"># Fit the classifier to the data</span></span><br><span class="line">4knn.fit(X_train,y_train)</span><br><span class="line">4knn.predict(X_test)</span><br><span class="line">4print(knn.score(X_test, y_test))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Pregnancies：怀孕的次数</span></span><br><span class="line"><span class="string">Glucose：血浆葡萄糖浓度</span></span><br><span class="line"><span class="string">BloodPressure：舒张压</span></span><br><span class="line"><span class="string">SkinThickness：肱三头肌皮肤皱皱厚度</span></span><br><span class="line"><span class="string">Insulin： 胰岛素</span></span><br><span class="line"><span class="string">BMI：身体质量指数</span></span><br><span class="line"><span class="string">dpf：糖尿病血统指数</span></span><br><span class="line"><span class="string">Age：年龄</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    df = pd.read_csv(<span class="string">'diabetes_data.csv'</span>)</span><br><span class="line">    <span class="comment"># 前几个数据是用来训练的</span></span><br><span class="line">    x = df.iloc[:,<span class="number">0</span>:<span class="number">8</span>]</span><br><span class="line">    <span class="comment"># 相对应的结果 diabetes</span></span><br><span class="line">    y = df.iloc[:,<span class="number">8</span>]</span><br><span class="line">    <span class="comment"># 将数据集拆分为训练和测试数据</span></span><br><span class="line">    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = <span class="number">0.2</span>, random_state=<span class="number">1</span>, stratify=y)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 初始化knn</span></span><br><span class="line">    knn = KNeighborsClassifier(n_neighbors = <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fit the classifier to the data</span></span><br><span class="line">    knn.fit(X_train,y_train)</span><br><span class="line">    knn.predict(X_test)</span><br><span class="line">    print(knn.score(X_test, y_test))</span><br></pre></td></tr></table></figure>
 
 <p>就直接把数据拆分为test和train两个集合，然后进行训练，训练完之后对比结果，<code>knn.score</code>是输出准确性。想看源码的可以直接在网上搜索，很多实现的源码。</p>
 <p><strong>How to choose k</strong></p>
@@ -1387,6 +1387,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
