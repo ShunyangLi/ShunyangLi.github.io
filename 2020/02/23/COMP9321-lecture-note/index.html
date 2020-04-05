@@ -77,7 +77,9 @@
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/5.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/6.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/7.png">
-<meta property="og:updated_time" content="2020-03-16T10:35:27.889Z">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/8.png">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/9.png">
+<meta property="og:updated_time" content="2020-04-05T04:47:10.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP9321 lecture note">
 <meta name="twitter:description" content="Week 1What is in a data model Problem with relational modelsThe Object-Relational Mismatch (Impedance Mismatch)  Refers to the problem of a mismatch between application data model (your business objec">
@@ -320,7 +322,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.6k 字
+                  5.1k 字
                 </span>
               
 
@@ -336,7 +338,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  20 分钟
+                  27 分钟
                 </span>
               
             </div>
@@ -773,6 +775,129 @@
 <li>To show <strong>two variables</strong> and their <strong>correlations</strong> (i.e., X axis vs. Y axis)</li>
 </ul>
 <p><strong>lab的话因为当时在泰国，然后在赶due，就没写，不过不是很难。以后会补上的。这周的lecture没有讲什么特别多有用的东西，主要是在实现数据图例化的时候需要注意的事项。</strong></p>
+<h1 id="Week-7-Classification"><a href="#Week-7-Classification" class="headerlink" title="Week 7: Classification"></a>Week 7: Classification</h1><p>前几周的都是理论也都学过很多次了，没什么意思，就从week7的machine learning重新看起</p>
+<h2 id="Machine-learning-for-data-analytics"><a href="#Machine-learning-for-data-analytics" class="headerlink" title="Machine learning for data analytics"></a>Machine learning for data analytics</h2><p>其实就是在剩余的时间我们会学点啥，就是把前几周的知识结合在一起了。。。会用到pandas，flask和machine learning等。</p>
+<ol>
+<li><strong>Define</strong> and <strong>Initialize</strong> a Model </li>
+<li><strong>Train your Model</strong> (using your training dataset) </li>
+<li><strong>Validate</strong> the Model (by prediction using your test dataset) </li>
+<li>Use it: <strong>Explore or Deploy</strong> as a web service </li>
+<li>Update and Revalidate</li>
+</ol>
+<h3 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h3><p>大家这个在9417或者别的ai课应该都有学过这些简单的理论的。</p>
+<p>Assume: <code>y=f(x)</code></p>
+<p><strong>Classification</strong>: y is <strong>discrete</strong> (class labels).</p>
+<p><strong>Regression</strong>: y is <strong>continuous</strong>, e.g. linear regression.</p>
+<h4 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h4><ol>
+<li>Supervised learning</li>
+<li>Need the data <strong>labeled with correct answer</strong></li>
+<li>Trained classifiers then can map input data to a category</li>
+</ol>
+<p>常用的分类算法就是KNN</p>
+<h5 id="KNN-（k-Nearest-Neighbour）"><a href="#KNN-（k-Nearest-Neighbour）" class="headerlink" title="KNN （k-Nearest Neighbour）"></a>KNN （k-Nearest Neighbour）</h5><p>It is a <strong>non parametric and instance-based</strong> learning algorithm</p>
+<p><strong>Non-parametric</strong> means it makes no explicit assumptions about the functional form of how the prediction is made, avoiding the dangers of mismodeling the underlying distribution of the data.</p>
+<p><strong>Instance-based</strong> learning means that our algorithm doesn’t explicitly learn a model. Instead, it chooses to memorize the training instances which are subsequently used as “knowledge” for the prediction phase. Concretely, this means that only when a query to our database is made (i.e. when we ask it to predict a label given an input), will the algorithm use the training instances to spit out an answer.</p>
+<p>学校给的算法思路：</p>
+<p>k- Nearest Neighbour Classifier Algorithm Give a training set X_train（数据） with lables y_train（结果） and given a new instance x_test to be classified: </p>
+<ul>
+<li>Find the most similar instances (let’s call then X_NN) to x_test that are in X_train. </li>
+<li>Get the labels y_NN for the instances in X_NN. </li>
+<li>Predict the label for x_test by combining the labels y_NN (e.g., using majority rule)</li>
+</ul>
+<p>KNN是通过测量不同特征值之间的距离进行分类。如果一个样本在特征空间中的k个醉相思的样本中的大多数属于某一类别，则该样本也属于这个类别。其中k通常不大于20。knn计算距离的公式一般是用欧几里得或者曼哈顿距离:<br>$$<br>欧几里得距离： d(x, y) = \sqrt{\sum_{k=1}^{n}(x_{k}-y_{k})^2}\<br>曼哈顿距离: d(x, y) = \sqrt{\sum_{k=1}^{n}|x_{k}-y_{k}|}\<br>$$<br>算法的思路：</p>
+<ol>
+<li>计算测试数据与各个训练数据之间的距离</li>
+<li>按照距离来排序</li>
+<li>选取距离最小的k个点</li>
+<li>确定前k个点所在类别的出现频率</li>
+<li>返回前k个点钟出现频率最高的类别作为测试数据的预测分类</li>
+</ol>
+<p>在<a href="https://github.com/eijaz1/k-NN-Tutorial-Scikit-learn" target="_blank" rel="noopener">github</a>上找了一个例子给大家看下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Pregnancies：怀孕的次数</span></span><br><span class="line"><span class="string">Glucose：血浆葡萄糖浓度</span></span><br><span class="line"><span class="string">BloodPressure：舒张压</span></span><br><span class="line"><span class="string">SkinThickness：肱三头肌皮肤皱皱厚度</span></span><br><span class="line"><span class="string">Insulin： 胰岛素</span></span><br><span class="line"><span class="string">BMI：身体质量指数</span></span><br><span class="line"><span class="string">dpf：糖尿病血统指数</span></span><br><span class="line"><span class="string">Age：年龄</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">4df = pd.read_csv(<span class="string">'diabetes_data.csv'</span>)</span><br><span class="line">4<span class="comment"># 前几个数据是用来训练的</span></span><br><span class="line">4x = df.iloc[:,<span class="number">0</span>:<span class="number">8</span>]</span><br><span class="line">4<span class="comment"># 相对应的结果 diabetes</span></span><br><span class="line">4y = df.iloc[:,<span class="number">8</span>]</span><br><span class="line">4<span class="comment"># 将数据集拆分为训练和测试数据</span></span><br><span class="line">4X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = <span class="number">0.2</span>, random_state=<span class="number">1</span>, stratify=y)</span><br><span class="line"></span><br><span class="line">4<span class="comment"># 初始化knn</span></span><br><span class="line">4knn = KNeighborsClassifier(n_neighbors = <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">4<span class="comment"># Fit the classifier to the data</span></span><br><span class="line">4knn.fit(X_train,y_train)</span><br><span class="line">4knn.predict(X_test)</span><br><span class="line">4print(knn.score(X_test, y_test))</span><br></pre></td></tr></table></figure>
+
+<p>就直接把数据拆分为test和train两个集合，然后进行训练，训练完之后对比结果，<code>knn.score</code>是输出准确性。想看源码的可以直接在网上搜索，很多实现的源码。</p>
+<p><strong>How to choose k</strong></p>
+<p>k值如果过大可能会导致更好的性能，但是同时也会倒是找到的数据不是neighbor。通常k的取值为：$$k&lt;\sqrt{n}$$ 其中n是训练数据的数量。</p>
+<h6 id="Generalization-Overfitting-and-Underfitting"><a href="#Generalization-Overfitting-and-Underfitting" class="headerlink" title="Generalization, Overfitting and Underfitting"></a>Generalization, Overfitting and Underfitting</h6><p>泛化，过度拟合和不足拟合</p>
+<ul>
+<li>Generalization ability refers to an algorithm’s ability to give accurate predictions for new, previously unseen data.</li>
+<li>Models that are <strong>too complex</strong> for the amount of training data available are said to <strong>overfit</strong> and are not likely to generalize well to new data instances. （数据太复杂，导致过度拟合）</li>
+<li>Models that are <strong>too simple</strong>, that do not even do well on the training data, are said to <strong>underfit</strong> and also not likely to generalize well. （数据太简单，导致拟合不足）</li>
+</ul>
+<h6 id="When-to-use-Nearest-Neighbor"><a href="#When-to-use-Nearest-Neighbor" class="headerlink" title="When to use Nearest Neighbor"></a>When to use Nearest Neighbor</h6><p>When to Consider：</p>
+<ul>
+<li>Instance map to points in Rn </li>
+<li>Less than 20 attributes per instance </li>
+<li>Lots of training data </li>
+</ul>
+<p>Advantages </p>
+<ul>
+<li>Training is very fast </li>
+<li>Learn complex target functions</li>
+<li>Do not lose information </li>
+</ul>
+<p>Disadvantages </p>
+<ul>
+<li>Slow at query </li>
+<li>Easily fooled by irrelevant attributes </li>
+<li>The Bigger the dataset the more impact on performance</li>
+</ul>
+<p>Nearest neighbors <strong>sensitive to mis-labeled data</strong> (“class noise”). Solution? </p>
+<p>Smooth by having k nearest neighbors vote</p>
+<p>nn算法需要对数据进行一个简单的清洗池，然后选择适当的k值可以提高准确率</p>
+<h6 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h6><p><strong>Expensive at test time:</strong> To find one nearest neighbor of a query point x, we must compute the distance to all N training examples. Complexity: <strong>O(kdN)</strong> for kNN</p>
+<ul>
+<li>Use subset of dimensions </li>
+<li>Compute only an approximate distance (e.g., LSH) </li>
+<li>Remove redundant data (e.g., condensing)</li>
+</ul>
+<p><strong>Storage Requirements</strong>: Must store all training data </p>
+<ul>
+<li>Remove redundant data (e.g., condensing) </li>
+<li>Pre-sorting often increases the storage requirements</li>
+</ul>
+<p><strong>High Dimensional Data:</strong> “Curse of Dimensionality” </p>
+<ul>
+<li>Required amount of training data increases exponentially with dimension</li>
+<li>Computational cost also increases</li>
+</ul>
+<h2 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h2><p>决策树既可以做分类，又可以做回归。决策树常见的算法：<em>ID3（贪心</em>算法<em>），C4.5（贪心</em>算法<em>）与C5.0生成树</em>算法用熵（entropy）。</p>
+<p>决策树的好处：</p>
+<ul>
+<li>Handling of categorical variables</li>
+<li>Handling of missing values and unknown labels</li>
+<li>Detection of nonlinear relationships</li>
+<li>Visualization and interpretation in decision trees</li>
+</ul>
+<p>When to consider Decision Trees </p>
+<ul>
+<li>Instances describable by attribute-value pairs </li>
+<li>Target function is discrete valued </li>
+<li>Disjunctive hypothesis may be required </li>
+<li>Possibly noisy training data </li>
+<li>Missing attribute values </li>
+</ul>
+<p>Examples: </p>
+<ul>
+<li>Medical diagnosis </li>
+<li>Credit risk analysis </li>
+<li>Object classification for robot manipulator (Tan 1993)</li>
+</ul>
+<p>A decision tree has <strong>2 kinds of nodes</strong> </p>
+<ol>
+<li>Each l<strong>eaf node</strong> has a class label, determined by majority vote of training examples reaching that leaf. </li>
+<li>Each <strong>internal node</strong> is a question on features. It branches out according to the answers.</li>
+</ol>
+<p>Diagram of decision tree</p>
+<p><img src="/2020/02/23/COMP9321-lecture-note/8.png" alt></p>
+<p><img src="/2020/02/23/COMP9321-lecture-note/9.png" alt></p>
+<p>首先了解一下典型的算法ID3：</p>
+<p>期望信息越小，信息增益越大。熵（entropy）：<br>$$<br>info(D) = -\sum_{i=1}^{m}p_{i}log_{2}(p_{i})<br>$$<br>现在我们假设将训练元组D按属性A进行划分，则A对D划分的期望信息为:<br>$$<br>info_{A}(D) = \sum_{j=1}^{v}\frac{|D_{j}|}{|D|}info(D_{j})\<br>gain(A) = info(D)-info_{A}(D)<br>$$</p>
+<h3 id="Avoid-Overfitting"><a href="#Avoid-Overfitting" class="headerlink" title="Avoid Overfitting"></a>Avoid Overfitting</h3><p>避免过度拟合的方法：</p>
+<ol>
+<li>Stop growing the tree when the error doesn’t drop by more than a threshold with any new cut.</li>
+<li>Prune a large tree from the leaves to the root. Weakest link pruning:</li>
+</ol>
 
       
     </div>
@@ -1008,7 +1133,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-1"><span class="nav-number">1.</span> <span class="nav-text">Week 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-in-a-data-model"><span class="nav-number">1.1.</span> <span class="nav-text">What is in a data model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-with-relational-models"><span class="nav-number">1.2.</span> <span class="nav-text">Problem with relational models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-VS-MongoDB"><span class="nav-number">1.3.</span> <span class="nav-text">SQL VS MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-vs-Document"><span class="nav-number">1.4.</span> <span class="nav-text">Relational vs. Document</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-database"><span class="nav-number">1.5.</span> <span class="nav-text">Graph database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manage-and-publish-metadata"><span class="nav-number">1.6.</span> <span class="nav-text">Manage and publish metadata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Labs-and-soultion"><span class="nav-number">1.7.</span> <span class="nav-text">Labs and soultion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-2-Data-Cleansing"><span class="nav-number">2.</span> <span class="nav-text">Week 2 Data Cleansing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-data-cleaning"><span class="nav-number">2.1.</span> <span class="nav-text">Why data cleaning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dirty-data"><span class="nav-number">2.2.</span> <span class="nav-text">Dirty data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-statistics-view"><span class="nav-number">2.2.1.</span> <span class="nav-text">The statistics view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-database-view"><span class="nav-number">2.2.2.</span> <span class="nav-text">The database view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Domain-Expert’s-View"><span class="nav-number">2.2.3.</span> <span class="nav-text">The Domain Expert’s View:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Data-Scientist’s-View"><span class="nav-number">2.2.4.</span> <span class="nav-text">The Data Scientist’s View:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-about-dirty-data"><span class="nav-number">2.2.5.</span> <span class="nav-text">Example about dirty data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-quantity-problem"><span class="nav-number">2.3.</span> <span class="nav-text">Data quantity problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-data-quantity-problem-happen"><span class="nav-number">2.4.</span> <span class="nav-text">How data quantity problem happen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Scenarios（应用场景）"><span class="nav-number">2.5.</span> <span class="nav-text">Application Scenarios（应用场景）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Quality-Problems"><span class="nav-number">2.6.</span> <span class="nav-text">Data Quality Problems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Cleaning-Makes-Everything-Okay"><span class="nav-number">2.7.</span> <span class="nav-text">Data Cleaning Makes Everything Okay?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conventional-Definition-of-Data-Quality"><span class="nav-number">2.8.</span> <span class="nav-text">Conventional Definition of Data Quality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-the-data-by-using-Python"><span class="nav-number">2.9.</span> <span class="nav-text">Understanding the data by using Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Missing-Data"><span class="nav-number">2.10.</span> <span class="nav-text">Dealing with Missing Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺少数据的计算"><span class="nav-number">2.10.0.1.</span> <span class="nav-text">缺少数据的计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Labs-soulution"><span class="nav-number">2.11.</span> <span class="nav-text">Labs soulution</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-3-Visualization"><span class="nav-number">3.</span> <span class="nav-text">Week 3 Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-good-visualisation"><span class="nav-number">3.1.</span> <span class="nav-text">What is good visualisation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-color-using"><span class="nav-number">3.2.</span> <span class="nav-text">About color using</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphs"><span class="nav-number">3.3.</span> <span class="nav-text">Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Scatter-Plot-graphs"><span class="nav-number">3.3.0.1.</span> <span class="nav-text">Scatter Plot graphs:</span></a></li></ol></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-1"><span class="nav-number">1.</span> <span class="nav-text">Week 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-in-a-data-model"><span class="nav-number">1.1.</span> <span class="nav-text">What is in a data model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-with-relational-models"><span class="nav-number">1.2.</span> <span class="nav-text">Problem with relational models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-VS-MongoDB"><span class="nav-number">1.3.</span> <span class="nav-text">SQL VS MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-vs-Document"><span class="nav-number">1.4.</span> <span class="nav-text">Relational vs. Document</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-database"><span class="nav-number">1.5.</span> <span class="nav-text">Graph database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manage-and-publish-metadata"><span class="nav-number">1.6.</span> <span class="nav-text">Manage and publish metadata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Labs-and-soultion"><span class="nav-number">1.7.</span> <span class="nav-text">Labs and soultion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-2-Data-Cleansing"><span class="nav-number">2.</span> <span class="nav-text">Week 2 Data Cleansing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-data-cleaning"><span class="nav-number">2.1.</span> <span class="nav-text">Why data cleaning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dirty-data"><span class="nav-number">2.2.</span> <span class="nav-text">Dirty data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-statistics-view"><span class="nav-number">2.2.1.</span> <span class="nav-text">The statistics view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-database-view"><span class="nav-number">2.2.2.</span> <span class="nav-text">The database view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Domain-Expert’s-View"><span class="nav-number">2.2.3.</span> <span class="nav-text">The Domain Expert’s View:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Data-Scientist’s-View"><span class="nav-number">2.2.4.</span> <span class="nav-text">The Data Scientist’s View:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-about-dirty-data"><span class="nav-number">2.2.5.</span> <span class="nav-text">Example about dirty data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-quantity-problem"><span class="nav-number">2.3.</span> <span class="nav-text">Data quantity problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-data-quantity-problem-happen"><span class="nav-number">2.4.</span> <span class="nav-text">How data quantity problem happen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Scenarios（应用场景）"><span class="nav-number">2.5.</span> <span class="nav-text">Application Scenarios（应用场景）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Quality-Problems"><span class="nav-number">2.6.</span> <span class="nav-text">Data Quality Problems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Cleaning-Makes-Everything-Okay"><span class="nav-number">2.7.</span> <span class="nav-text">Data Cleaning Makes Everything Okay?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conventional-Definition-of-Data-Quality"><span class="nav-number">2.8.</span> <span class="nav-text">Conventional Definition of Data Quality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-the-data-by-using-Python"><span class="nav-number">2.9.</span> <span class="nav-text">Understanding the data by using Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Missing-Data"><span class="nav-number">2.10.</span> <span class="nav-text">Dealing with Missing Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺少数据的计算"><span class="nav-number">2.10.0.1.</span> <span class="nav-text">缺少数据的计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Labs-soulution"><span class="nav-number">2.11.</span> <span class="nav-text">Labs soulution</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-3-Visualization"><span class="nav-number">3.</span> <span class="nav-text">Week 3 Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-good-visualisation"><span class="nav-number">3.1.</span> <span class="nav-text">What is good visualisation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-color-using"><span class="nav-number">3.2.</span> <span class="nav-text">About color using</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphs"><span class="nav-number">3.3.</span> <span class="nav-text">Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Scatter-Plot-graphs"><span class="nav-number">3.3.0.1.</span> <span class="nav-text">Scatter Plot graphs:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-7-Classification"><span class="nav-number">4.</span> <span class="nav-text">Week 7: Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-learning-for-data-analytics"><span class="nav-number">4.1.</span> <span class="nav-text">Machine learning for data analytics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Supervised-Learning"><span class="nav-number">4.1.1.</span> <span class="nav-text">Supervised Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Classification"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#KNN-（k-Nearest-Neighbour）"><span class="nav-number">4.1.1.1.1.</span> <span class="nav-text">KNN （k-Nearest Neighbour）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Generalization-Overfitting-and-Underfitting"><span class="nav-number">4.1.1.1.1.1.</span> <span class="nav-text">Generalization, Overfitting and Underfitting</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#When-to-use-Nearest-Neighbor"><span class="nav-number">4.1.1.1.1.2.</span> <span class="nav-text">When to use Nearest Neighbor</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Complexity"><span class="nav-number">4.1.1.1.1.3.</span> <span class="nav-text">Complexity</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree"><span class="nav-number">4.2.</span> <span class="nav-text">Decision Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Avoid-Overfitting"><span class="nav-number">4.2.1.</span> <span class="nav-text">Avoid Overfitting</span></a></li></ol></li></ol></li></div>
             
 
           </div>
