@@ -62,18 +62,23 @@
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog Prolog 有三种非常基本结构:  事实(facts) 规则(rules) 查询(queries)  Factsprolog 的facts如下(文件以.pl结尾)： 123programmer(linux).programmer(bill).designer(">
+<meta name="description" content="Decision tree决策树：是一种树形结构，每一个内部节点表示在某一属性上的测试，每一条分支代表一个测试输出，每一个叶子节点代表一种类别。决策树采用的是自顶向下的递归方法，其基本思想是以信息熵为度量建立一个信息熵下降最快的树。到叶子节点处的熵值为0，每一个叶子节点中的实例都属于同一类 Attribute value：bool，discrete，continuous One exmaple:">
 <meta name="keywords" content="COMP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="COMP3411 lecture note">
 <meta property="og:url" content="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog Prolog 有三种非常基本结构:  事实(facts) 规则(rules) 查询(queries)  Factsprolog 的facts如下(文件以.pl结尾)： 123programmer(linux).programmer(bill).designer(">
+<meta property="og:description" content="Decision tree决策树：是一种树形结构，每一个内部节点表示在某一属性上的测试，每一条分支代表一个测试输出，每一个叶子节点代表一种类别。决策树采用的是自顶向下的递归方法，其基本思想是以信息熵为度量建立一个信息熵下降最快的树。到叶子节点处的熵值为0，每一个叶子节点中的实例都属于同一类 Attribute value：bool，discrete，continuous One exmaple:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-03T10:14:40.999Z">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/1.png">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/2.png">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/3.png">
+<meta property="og:image" content="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/4.png">
+<meta property="og:updated_time" content="2020-04-07T12:36:00.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP3411 lecture note">
-<meta name="twitter:description" content="Introduction of prologInstall prolog on Mac: brew install swi-prolog Prolog 有三种非常基本结构:  事实(facts) 规则(rules) 查询(queries)  Factsprolog 的facts如下(文件以.pl结尾)： 123programmer(linux).programmer(bill).designer(">
+<meta name="twitter:description" content="Decision tree决策树：是一种树形结构，每一个内部节点表示在某一属性上的测试，每一条分支代表一个测试输出，每一个叶子节点代表一种类别。决策树采用的是自顶向下的递归方法，其基本思想是以信息熵为度量建立一个信息熵下降最快的树。到叶子节点处的熵值为0，每一个叶子节点中的实例都属于同一类 Attribute value：bool，discrete，continuous One exmaple:">
+<meta name="twitter:image" content="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/1.png">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -312,7 +317,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  304 字
+                  635 字
                 </span>
               
 
@@ -328,7 +333,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -349,27 +354,29 @@
       
 
       
-        <h1 id="Introduction-of-prolog"><a href="#Introduction-of-prolog" class="headerlink" title="Introduction of prolog"></a>Introduction of prolog</h1><p>Install prolog on Mac: <code>brew install swi-prolog</code></p>
-<p>Prolog 有三种非常基本结构:</p>
-<ul>
-<li>事实(facts)</li>
-<li>规则(rules)</li>
-<li>查询(queries)</li>
-</ul>
-<h2 id="Facts"><a href="#Facts" class="headerlink" title="Facts"></a>Facts</h2><p>prolog 的<strong>facts</strong>如下(文件以<code>.pl</code>结尾)：</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">programmer(linux).</span><br><span class="line">programmer(bill).</span><br><span class="line">designer(jonathan).</span><br></pre></td></tr></table></figure>
-
-<p>在当前文件夹下，执行<code>swipl</code>命令进入到prolog的命令行，然后<code>consult(&#39;xx.pl&#39;).</code>来加载prolog文件。</p>
-<h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sunny(today).</span><br><span class="line">happy(tom).</span><br><span class="line">football(tom) :- sunny(today),happy(tom).</span><br></pre></td></tr></table></figure>
-
-<p>接下来我们加载我们的代码, 询问 <code>football(tom)</code>. Prolog 会返回 <code>true</code>, 规则是什么呢, 规则的前半部分也就是 <code>football(tom)</code> 是规则的头部(head), 规则的后半部分 <code>sunny(today),happy(tom)</code> 是规则的目标(goals). 当规则的 goals 成立时, head 就会成立也就是:</p>
-<p><strong>如果今天的天气很好, tom 也很开心, 那么他就会去踢足球.</strong></p>
-<p>Prolog 使用 <code>,</code> 来表示 <strong>和</strong>, 使用 <code>;</code> 来表示 <strong>或</strong>. 所以在这里, 后面的两个条件都需要成立. 这样 Prolog 就能推出 <code>football(tom)</code>.</p>
-<p>我们可以在 Rules 中添加变量增强我们的表达能力, 比如这样:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">father(tom,john).</span><br><span class="line">father(john,ive).</span><br><span class="line">grandfather(X,Z):-father(X,Y),father(Y,Z).</span><br></pre></td></tr></table></figure>
-
-<p>我相信这对于我们是非常容易理解的, 在这里也不过多说明了.</p>
-<p><strong>“:–” means “if” or “is implied by”. Also called “neck”.</strong> </p>
+        <h1 id="Decision-tree"><a href="#Decision-tree" class="headerlink" title="Decision tree"></a>Decision tree</h1><p>决策树：是一种树形结构，每一个<strong>内部节点</strong>表示在某一属性上的测试，<strong>每一条分支代表一个测试输出</strong>，<strong>每一个叶子节点代表一种类别</strong>。决策树采用的是自顶向下的递归方法，其基本思想是以<strong>信息熵</strong>为度量建立一个<strong>信息熵下降最快的树</strong>。到叶子节点处的熵值为0，每一个叶子节点中的实例都属于同一类</p>
+<p><strong>Attribute value</strong>：bool，discrete，continuous</p>
+<p>One exmaple:</p>
+<p><img src="/2020/02/28/COMP3411-lecture-note/1.png" alt></p>
+<p><img src="/2020/02/28/COMP3411-lecture-note/2.png" alt></p>
+<h2 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h2><p>Training set must be <strong>consistent</strong></p>
+<p><strong>Information Entropy(信息熵)</strong>: is a measure of how much <strong>information we gain</strong> when the class value is revealed to us. An <strong>entropy of 1</strong> means that they are <strong>randomly distributed</strong></p>
+<p>信息熵表示一个事件的不确定性，这个不确定性越大我们越难得知这个事件到底是发生还是不发生。如果一个事件发生的结果有两种，任意一种结果发生的概率超过0.5，这个事件的不确定性就会减小，因为我们知道概率大于0.5的那个结果很可能会发生。一<strong>个事件的结果可能有多种，这多种结果发生的概率之间差别越大，这个事件的不确定性越小即它的信息熵越小，因为发生概率大的结果很可能会发生，所以该事件的不确定性越小。如果一个事件的结果只有一种，那信息熵显然为0。</strong></p>
+<p>$p_{i}$表示该事件发生的概率。<strong>entropy为0表明分类很清晰，没有混乱数据，当entropy为1时是最混乱的</strong><br>$$<br>H(&lt;p1..pn&gt;) = \sum_{n=1} -p_{i}log_{2}p_{i}<br>$$<br>比如$$H(&lt;0.5, 0.5&gt;) = 1$$</p>
+<p>Suppose we have <strong>p positive and n negative</strong> examples in a node.<br>$$<br>H(&lt;\frac{p}{p+n} + \frac{n}{p+n}&gt;)<br>$$</p>
+<p>Let Ei have pi positive and ni negative examples：<br>$$<br>H(&lt;\frac{p_{i}}{p_{i}+n_{i}} + \frac{n_{i}}{p_{i}+n_{i}}&gt;)<br>$$<br>an then we can get:<br>$$<br>\sum_{i}\frac{p_{i}+n_{i}}{p+n}H(&lt;\frac{p_{i}}{p_{i}+n_{i}} + \frac{n_{i}}{p_{i}+n_{i}}&gt;)<br>$$<br>example:</p>
+<p><img src="/2020/02/28/COMP3411-lecture-note/3.png" alt></p>
+<h2 id="Pruning-Of-Trees"><a href="#Pruning-Of-Trees" class="headerlink" title="Pruning Of Trees"></a>Pruning Of Trees</h2><p>修剪树有可能会提升准确率。</p>
+<ol>
+<li>For given tree, estimate its expected error </li>
+<li>Also estimate errors for variously pruned tree </li>
+<li>Choose tree with minimal estimated error </li>
+</ol>
+<p>We can estimate the error rate on the (unseen) test items using the <strong>Laplace error:</strong><br>$$<br>E=1-\frac{n+1}{N+k}<br>$$<br><strong>N = total number of training examples</strong> </p>
+<p><strong>n = number of training examples in the majority class</strong> </p>
+<p><strong>k = number of classes</strong></p>
+<p><img src="/2020/02/28/COMP3411-lecture-note/4.png" alt></p>
+<p>decision tree 是分类算法的一种，分类器预测每个实例的类：如果正确，则视为成功；否则，将视为成功。如果不是，则为错误。</p>
 
       
     </div>
@@ -605,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-of-prolog"><span class="nav-number">1.</span> <span class="nav-text">Introduction of prolog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Facts"><span class="nav-number">1.1.</span> <span class="nav-text">Facts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rules"><span class="nav-number">1.2.</span> <span class="nav-text">Rules</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Decision-tree"><span class="nav-number">1.</span> <span class="nav-text">Decision tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ID3"><span class="nav-number">1.1.</span> <span class="nav-text">ID3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pruning-Of-Trees"><span class="nav-number">1.2.</span> <span class="nav-text">Pruning Of Trees</span></a></li></ol></li></ol></div>
             
 
           </div>

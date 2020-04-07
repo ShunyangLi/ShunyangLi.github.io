@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/</loc>
+    
+    <lastmod>2020-04-07T12:36:00.254Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/</loc>
     
     <lastmod>2020-04-05T05:42:39.910Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://shunyangli.github.io/2020/04/03/Rust-Note/</loc>
     
     <lastmod>2020-04-03T05:19:21.108Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/</loc>
-    
-    <lastmod>2020-03-03T10:14:40.999Z</lastmod>
     
   </url>
   
