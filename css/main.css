@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d24bdd;
+  background: #ff9c90;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2902,13 +2902,10 @@ hr {
     text-align: center;
   }
 }
-html.mist .container {
-  background-color: rgba(219,219,219,0.5);
-}
-html.mist .highlight {
+.highlight {
   position: relative;
 }
-html.mist .btn-copy {
+.btn-copy {
   display: inline-block;
   cursor: pointer;
   background-color: #eee;
@@ -2933,11 +2930,14 @@ html.mist .btn-copy {
   top: 5px;
   opacity: 0;
 }
-html.mist .btn-copy span {
+.btn-copy span {
   margin-left: 5px;
 }
-html.mist .highlight:hover .btn-copy {
+.highlight:hover .btn-copy {
   opacity: 1;
+}
+html.mist .container {
+  background-color: rgba(219,219,219,0.5);
 }
 html.mist .pace .pace-progress {
   background: #222;
