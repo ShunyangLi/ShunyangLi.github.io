@@ -72,7 +72,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/28/Algorithm/1.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/02/28/Algorithm/dij.png">
-<meta property="og:updated_time" content="2020-03-02T09:32:55.258Z">
+<meta property="og:updated_time" content="2020-05-03T06:26:08.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Algorithm">
 <meta name="twitter:description" content="DFS &amp;amp; BFSDFS：Depth First Search，深度优先搜索算法，是一种以stack实现的算法。 BFS：Breath First Search，广度优先搜索算法，是一种以queue实现的算法。 stack和queue的区别：stack是先进后出，queue是先进先出。 假设我们已知一个graph如下：  首先我们使用DFS来遍历整个图 我们需要把图的数据录入到dict里面">
@@ -337,7 +337,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k 字
+                  2k 字
                 </span>
               
 
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8 分钟
+                  9 分钟
                 </span>
               
             </div>
@@ -433,6 +433,47 @@
 <p>具体代码实现:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Dijkstra 最短路径算法</span></span><br><span class="line"><span class="string">使用priority queue的数据结构来完整该算法，根据每一个node的priority来实现的</span></span><br><span class="line"><span class="string">谁的priority大，谁在前面。</span></span><br><span class="line"><span class="string">Python有priority queue可以直接使用</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">graphs = &#123;</span><br><span class="line">    <span class="string">'A'</span>: &#123;<span class="string">'B'</span>: <span class="number">5</span>, <span class="string">'C'</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    <span class="string">'B'</span>: &#123;<span class="string">'A'</span>: <span class="number">5</span>, <span class="string">'C'</span>: <span class="number">2</span>, <span class="string">'D'</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    <span class="string">'C'</span>: &#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'B'</span>: <span class="number">2</span>, <span class="string">'D'</span>: <span class="number">4</span>, <span class="string">'E'</span>: <span class="number">8</span>&#125;,</span><br><span class="line">    <span class="string">'D'</span>: &#123;<span class="string">'B'</span>: <span class="number">1</span>, <span class="string">'C'</span>: <span class="number">4</span>, <span class="string">'E'</span>: <span class="number">3</span>, <span class="string">'F'</span>: <span class="number">6</span>&#125;,</span><br><span class="line">    <span class="string">'E'</span>: &#123;<span class="string">'C'</span>: <span class="number">8</span>, <span class="string">'D'</span>: <span class="number">3</span>&#125;,</span><br><span class="line">    <span class="string">'F'</span>: &#123;<span class="string">'D'</span>: <span class="number">6</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_distance</span><span class="params">(graph, s)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    init the distance for every vertex</span></span><br><span class="line"><span class="string">    :param graph:</span></span><br><span class="line"><span class="string">    :param s:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    distance = &#123;s: <span class="number">0</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> vertex <span class="keyword">in</span> graph:</span><br><span class="line">        <span class="keyword">if</span> vertex != s:</span><br><span class="line">            distance[vertex] = math.inf</span><br><span class="line">    <span class="keyword">return</span> distance</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dijkstra</span><span class="params">(graph, s)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    find the shortest way</span></span><br><span class="line"><span class="string">    :param graph: graph data</span></span><br><span class="line"><span class="string">    :param s: start node</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    pq = []</span><br><span class="line">    visited = set()</span><br><span class="line">    parent = &#123;s: <span class="literal">None</span>&#125;</span><br><span class="line">    distance = init_distance(graph, s)</span><br><span class="line">    heapq.heappush(pq, (<span class="number">0</span>, s))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> len(pq) &gt; <span class="number">0</span>:</span><br><span class="line">        pair = heapq.heappop(pq)</span><br><span class="line">        <span class="comment"># because the data is lik: (0,A)</span></span><br><span class="line">        <span class="comment"># so we need to get two args</span></span><br><span class="line">        dist = pair[<span class="number">0</span>]</span><br><span class="line">        vertex = pair[<span class="number">1</span>]</span><br><span class="line">        visited.add(vertex)</span><br><span class="line">        <span class="comment"># get the closed vertex</span></span><br><span class="line">        nodes = graph[vertex].keys()</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">            <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                total_dist = dist + graph[vertex][node] <span class="comment"># calculate the distance from A</span></span><br><span class="line">                <span class="keyword">if</span> total_dist &lt; distance[node]:</span><br><span class="line">                    heapq.heappush(pq, (total_dist, node))</span><br><span class="line">                    parent[node] = vertex</span><br><span class="line">                    distance[node] = total_dist</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> distance, parent</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(dijkstra(graphs, <span class="string">'A'</span>))</span><br></pre></td></tr></table></figure>
 
+<h1 id="LinkList-algorithm"><a href="#LinkList-algorithm" class="headerlink" title="LinkList algorithm"></a>LinkList algorithm</h1><p>首先定义一个List Node的class：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ol>
+<li><p>如何找到链表的中间元素？</p>
+<blockquote>
+<p>可以采用快慢指针的原理，第一个指针向后走一步，第二个指针向后走两步，这样第二个指针结束的时候第一个指针刚好到中间</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_mid</span><span class="params">(head)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    找到该list中间的元素</span></span><br><span class="line"><span class="string">    :param head: the head of list</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    slow = head</span><br><span class="line">    fast = head</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> fast.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> fast.next.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        slow = slow.next</span><br><span class="line">        fast = fast.next.next</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用递归的思想来解决这个问题，在递归的时候我们已经可以得到相对应的长度，可以找到中点位置</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_mid_recursion</span><span class="params">(node, index)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    find the mid by recursion</span></span><br><span class="line"><span class="string">    :param node:</span></span><br><span class="line"><span class="string">    :param index:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">global</span> mid</span><br><span class="line">    <span class="keyword">if</span> node.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        find_mid_recursion(node.next, index+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        mid = int(index / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> mid == index:</span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+</ol>
 
       
     </div>
@@ -479,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/03/Rust-Note/" rel="prev" title="Rust Note">
-                Rust Note <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -560,7 +597,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -582,7 +619,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -670,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DFS-amp-BFS"><span class="nav-number">1.</span> <span class="nav-text">DFS &amp; BFS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先我们使用DFS来遍历整个图"><span class="nav-number">1.1.</span> <span class="nav-text">首先我们使用DFS来遍历整个图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然后我们使用bfs来遍历整个图"><span class="nav-number">1.2.</span> <span class="nav-text">然后我们使用bfs来遍历整个图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dijkstra-最短路径算法"><span class="nav-number">2.</span> <span class="nav-text">Dijkstra 最短路径算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DFS-amp-BFS"><span class="nav-number">1.</span> <span class="nav-text">DFS &amp; BFS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先我们使用DFS来遍历整个图"><span class="nav-number">1.1.</span> <span class="nav-text">首先我们使用DFS来遍历整个图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然后我们使用bfs来遍历整个图"><span class="nav-number">1.2.</span> <span class="nav-text">然后我们使用bfs来遍历整个图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dijkstra-最短路径算法"><span class="nav-number">2.</span> <span class="nav-text">Dijkstra 最短路径算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LinkList-algorithm"><span class="nav-number">3.</span> <span class="nav-text">LinkList algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">3.1.</span> <span class="nav-text">常见问题</span></a></li></ol></li></ol></div>
             
 
           </div>
