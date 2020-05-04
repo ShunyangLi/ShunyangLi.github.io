@@ -72,7 +72,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/03/Algorithm/1.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/03/Algorithm/dij.png">
-<meta property="og:updated_time" content="2020-05-03T08:03:08.996Z">
+<meta property="og:updated_time" content="2020-05-03T13:15:19.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Algorithm">
 <meta name="twitter:description" content="DFS &amp;amp; BFSDFS：Depth First Search，深度优先搜索算法，是一种以stack实现的算法。 BFS：Breath First Search，广度优先搜索算法，是一种以queue实现的算法。 stack和queue的区别：stack是先进后出，queue是先进先出。 假设我们已知一个graph如下：  首先我们使用DFS来遍历整个图 我们需要把图的数据录入到dict里面">
@@ -337,7 +337,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.3k 字
+                  2.4k 字
                 </span>
               
 
@@ -465,7 +465,14 @@
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(node)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    reverse the link list without recursion</span></span><br><span class="line"><span class="string">    :param node:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    curr = node</span><br><span class="line">    next = node.next</span><br><span class="line">    curr.next = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> next <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        temp = next.next</span><br><span class="line">        next.next = curr</span><br><span class="line"></span><br><span class="line">        curr = next</span><br><span class="line">        next = temp</span><br></pre></td></tr></table></figure>
 </li>
-<li></li>
+<li><p>删除经过排序的链表中重复的节点。</p>
+<blockquote>
+<p>判断当前数字是否和下一个相等，如果相等，记录该node，继续循环，找到与改数字不相同的数字，然后把curr.next = 该不相同node</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_diff</span><span class="params">(node)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    in a sort link list, remove the duplicate value</span></span><br><span class="line"><span class="string">    :param node:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    curr = node</span><br><span class="line">    record = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> curr.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        next_node = curr.next</span><br><span class="line">        <span class="keyword">if</span> curr.val == next_node.val <span class="keyword">and</span> record <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            record = curr</span><br><span class="line">        <span class="keyword">elif</span> curr.val != next_node.val <span class="keyword">and</span> record <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            record.next = next_node</span><br><span class="line">            record = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        curr = curr.next</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算两个链表数字之和</p>
+</li>
 </ol>
 
       
