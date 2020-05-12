@@ -60,30 +60,6 @@
   </entry>
   
   <entry>
-    <title>COMP3411 lecture note</title>
-    <link href="https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/"/>
-    <id>https://shunyangli.github.io/2020/02/28/COMP3411-lecture-note/</id>
-    <published>2020-02-28T06:35:31.000Z</published>
-    <updated>2020-04-07T12:36:00.254Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Decision-tree"><a href="#Decision-tree" class="headerlink" title="Decision tree"></a>Decision tree</h1><p>决策树：是一种树形结构，每一个<strong>内部节点</strong>表示在某一属性上的测试，<strong>每一条分支代表一个测试输出</strong>，<strong>每一个叶子节点代表一种类别</strong>。决策树采用的是自顶向下的递归方法，其基本思想是以<strong>信息熵</strong>为度量建立一个<strong>信息熵下降最快的树</strong>。到叶子节点处的熵值为0，每一个叶子节点中的实例都属于同一类</p><p><strong>Attribute value</strong>：bool，discrete，continuous</p><p>One exmaple:</p><p><img src="/2020/02/28/COMP3411-lecture-note/1.png" alt></p><p><img src="/2020/02/28/COMP3411-lecture-note/2.png" alt></p><h2 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h2><p>Training set must be <strong>consistent</strong></p><p><strong>Information Entropy(信息熵)</strong>: is a measure of how much <strong>information we gain</strong> when the class value is revealed to us. An <strong>entropy of 1</strong> means that they are <strong>randomly distributed</strong></p><p>信息熵表示一个事件的不确定性，这个不确定性越大我们越难得知这个事件到底是发生还是不发生。如果一个事件发生的结果有两种，任意一种结果发生的概率超过0.5，这个事件的不确定性就会减小，因为我们知道概率大于0.5的那个结果很可能会发生。一<strong>个事件的结果可能有多种，这多种结果发生的概率之间差别越大，这个事件的不确定性越小即它的信息熵越小，因为发生概率大的结果很可能会发生，所以该事件的不确定性越小。如果一个事件的结果只有一种，那信息熵显然为0。</strong></p><p>$p_{i}$表示该事件发生的概率。<strong>entropy为0表明分类很清晰，没有混乱数据，当entropy为1时是最混乱的</strong><br>$$<br>H(&lt;p1..pn&gt;) = \sum_{n=1} -p_{i}log_{2}p_{i}<br>$$<br>比如$$H(&lt;0.5, 0.5&gt;) = 1$$</p><p>Suppose we have <strong>p positive and n negative</strong> examples in a node.<br>$$<br>H(&lt;\frac{p}{p+n} + \frac{n}{p+n}&gt;)<br>$$</p><p>Let Ei have pi positive and ni negative examples：<br>$$<br>H(&lt;\frac{p_{i}}{p_{i}+n_{i}} + \frac{n_{i}}{p_{i}+n_{i}}&gt;)<br>$$<br>an then we can get:<br>$$<br>\sum_{i}\frac{p_{i}+n_{i}}{p+n}H(&lt;\frac{p_{i}}{p_{i}+n_{i}} + \frac{n_{i}}{p_{i}+n_{i}}&gt;)<br>$$<br>example:</p><p><img src="/2020/02/28/COMP3411-lecture-note/3.png" alt></p><h2 id="Pruning-Of-Trees"><a href="#Pruning-Of-Trees" class="headerlink" title="Pruning Of Trees"></a>Pruning Of Trees</h2><p>修剪树有可能会提升准确率。</p><ol><li>For given tree, estimate its expected error </li><li>Also estimate errors for variously pruned tree </li><li>Choose tree with minimal estimated error </li></ol><p>We can estimate the error rate on the (unseen) test items using the <strong>Laplace error:</strong><br>$$<br>E=1-\frac{n+1}{N+k}<br>$$<br><strong>N = total number of training examples</strong> </p><p><strong>n = number of training examples in the majority class</strong> </p><p><strong>k = number of classes</strong></p><p><img src="/2020/02/28/COMP3411-lecture-note/4.png" alt></p><p>decision tree 是分类算法的一种，分类器预测每个实例的类：如果正确，则视为成功；否则，将视为成功。如果不是，则为错误。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Decision-tree&quot;&gt;&lt;a href=&quot;#Decision-tree&quot; class=&quot;headerlink&quot; title=&quot;Decision tree&quot;&gt;&lt;/a&gt;Decision tree&lt;/h1&gt;&lt;p&gt;决策树：是一种树形结构，每一个&lt;strong&gt;内部节
-      
-    
-    </summary>
-    
-    
-    
-      <category term="COMP" scheme="https://shunyangli.github.io/tags/COMP/"/>
-    
-  </entry>
-  
-  <entry>
     <title>COMP9321 lecture note</title>
     <link href="https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/"/>
     <id>https://shunyangli.github.io/2020/02/23/COMP9321-lecture-note/</id>
@@ -161,9 +137,9 @@
     
       <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
-    
       <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
+    
+      <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
     
   </entry>
   
