@@ -72,7 +72,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/03/Algorithm/1.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/03/Algorithm/dij.png">
-<meta property="og:updated_time" content="2020-05-04T04:58:57.713Z">
+<meta property="og:updated_time" content="2020-05-12T10:54:42.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Algorithm">
 <meta name="twitter:description" content="DFS &amp;amp; BFSDFS：Depth First Search，深度优先搜索算法，是一种以stack实现的算法。 BFS：Breath First Search，广度优先搜索算法，是一种以queue实现的算法。 stack和queue的区别：stack是先进后出，queue是先进先出。 假设我们已知一个graph如下：  首先我们使用DFS来遍历整个图 我们需要把图的数据录入到dict里面">
@@ -337,7 +337,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.4k 字
+                  2.6k 字
                 </span>
               
 
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  11 分钟
+                  12 分钟
                 </span>
               
             </div>
@@ -472,6 +472,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_diff</span><span class="params">(node)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    in a sort link list, remove the duplicate value</span></span><br><span class="line"><span class="string">    :param node:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    curr = node</span><br><span class="line">    record = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> curr.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        next_node = curr.next</span><br><span class="line">        <span class="keyword">if</span> curr.val == next_node.val <span class="keyword">and</span> record <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            record = curr</span><br><span class="line">        <span class="keyword">elif</span> curr.val != next_node.val <span class="keyword">and</span> record <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            record.next = next_node</span><br><span class="line">            record = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        curr = curr.next</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>计算两个链表数字之和</p>
+<blockquote>
+<p>将链表代表的数字进行相加即可，注意首位代表的是个位。3-&gt;1-&gt;5 代表513，5-&gt;9-&gt;2 代表295，最终计算结果为 8-&gt;0-&gt;8， 808。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_list</span><span class="params">(l1, l2)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    add two link list together</span></span><br><span class="line"><span class="string">    将链表代表的数字进行相加即可，注意首位代表的是个位。3-&gt;1-&gt;5 代表513，5-&gt;9-&gt;2 代表295，最终计算结果为 8-&gt;0-&gt;8， 808。</span></span><br><span class="line"><span class="string">    :param l1:</span></span><br><span class="line"><span class="string">    :param l2:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    over_ten = <span class="literal">False</span></span><br><span class="line">    s = ListNode(<span class="number">0</span>)</span><br><span class="line">    head = s</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> l1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">or</span> l1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        v1 = l1.val <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        v2 = l2.val <span class="keyword">if</span> l2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        sum_value = v1 + v2</span><br><span class="line">        sum_value = sum_value + <span class="number">1</span> <span class="keyword">if</span> over_ten <span class="keyword">else</span> sum_value</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> sum_value &gt;= <span class="number">10</span>:</span><br><span class="line">            over_ten = <span class="literal">True</span></span><br><span class="line">            sum_value = sum_value % <span class="number">10</span></span><br><span class="line"></span><br><span class="line">        s.val = sum_value</span><br><span class="line"></span><br><span class="line">        l1 = l1.next <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">        l2 = l2.next <span class="keyword">if</span> l2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            s.next = ListNode(<span class="number">0</span>)</span><br><span class="line">            s = s.next</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 
@@ -520,6 +525,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/12/Network/" rel="prev" title="Network">
+                Network <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -597,7 +606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
