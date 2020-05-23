@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shunyangli.github.io/"/>
-  <updated>2020-05-12T05:08:40.373Z</updated>
+  <updated>2020-05-23T13:53:56.156Z</updated>
   <id>https://shunyangli.github.io/</id>
   
   <author>
@@ -21,13 +21,24 @@
     <link href="https://shunyangli.github.io/2020/05/12/Network/"/>
     <id>https://shunyangli.github.io/2020/05/12/Network/</id>
     <published>2020-05-12T05:08:40.000Z</published>
-    <updated>2020-05-12T05:08:40.373Z</updated>
+    <updated>2020-05-23T13:53:56.156Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="OSI-七层模型"><a href="#OSI-七层模型" class="headerlink" title="OSI 七层模型"></a>OSI 七层模型</h1><ol><li>物理层<ul><li>主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。</li></ul></li><li>数据链路层<ul><li>定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）</li></ul></li><li>网络层<ul><li>使用无连接的网际协议IP和许多种路由选择协议。<strong>分组传输，路由选择。</strong></li></ul></li><li>运输层<ul><li>向两个主机进程之间的通信提供服务。一个主机可以有多个进程，所以运输层有<strong>复用和分用的功能</strong>。<strong>复用就是多个应用层进程可以同时使用下面运输层的服务。分用则是运输层把收到的信息分别交付给上面的应用层中相对应的进程。</strong> 运输层的主要两种协议：<strong>TCP, UDP</strong></li></ul></li><li>会话层<ul><li>通过传输层建立数据传输的通路。主要是在系统之间发起会话或者接受会话请求。（设备之间要相互认知可以是IP或者MAC地址等）。</li></ul></li><li>表示层<ul><li>可确保一个系统的应用层所发送的信息可以被另一个系统的应用层读取。</li></ul></li><li>应用层<ul><li>直接为用户的应用场景提供服务，比如HTTP协议，FTP协议等。</li></ul></li></ol><h1 id="TCP-IP-四层协议"><a href="#TCP-IP-四层协议" class="headerlink" title="TCP/IP 四层协议"></a>TCP/IP 四层协议</h1><p><img src="/2020/05/12/Network/tcp.png" alt></p><ol><li>网络接口层</li><li>网际IP层</li><li>运输层</li><li>应用层</li></ol><h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><p>Domain name service（域名系统）。可以将域名和IP地址相互映射的一个分布式数据库。主要是将域名翻译成电脑理解的IP地址，整个过程叫DNS域名解析。</p><h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>URL由以下内容组成：<code>protocol://hostname:port/path/[parameters]#fragment</code>。</p><p>分别是：协议，域名，端口，路径，参数，分页。</p><p>有关HTTP的经典题目。</p><p><strong>经典面试题：</strong></p><ol><li>浏览器输入URL到返回页面的全过程？<ol><li>根据域名进行DNS解析，得到IP地址</li><li>根据IP地址建立TCP连接</li><li>发送HTTP请求</li><li>服务器处理请求</li><li>返回响应结果</li><li>关闭TCP连接</li><li>浏览器解析HTML</li><li>浏览器渲染</li></ol></li><li>一个浏览器和在与服务器建立一个TCP连接后是否会在一个HTTP请求完成后断开？<ul><li>在HTTP1.0 的时代在HTTP响应之后会断开TCP链接。但是每次重新建立和断开TCP代价过大（时间，CPU）。某些服务器对Connection: keep-alive 的header进行了支持。就是在完成HTTP请求之后TCP不会断开连接，这样可以重复使用。避免了SSL的开销</li><li>所以在HTTP1.1的时候就把connection header写进标准里面，并默认开启持久连接，除非请求中说明connection: close，否则浏览器和服务器直接会维持一段时间的TCP连接。</li></ul></li><li>一个TCP连接可以对应几个HTTP请求？<ul><li>当TCP是持久连接的时候可以发送多个HTTP请求。</li></ul></li><li>一个TCP连接中HTTP请求可以一起发送么（比如一起发三个请求，然后三个响应一起接受）？<ul><li>在HTTP1.1中，单个TCP连接在同一时刻只能处理一个请求。也就是说两个请求的生命周期不能重叠，任意两个HTTP请求从开始到结束的时间在同一个TCP连接里不能重叠。比如在请求<code>GET /index?q=x1</code> and <code>GET /index?q=x2</code>，服务器返回两个结果，但是浏览器没办法判断响应对应的请求</li><li>HTTP1.0试图使用Pipelining解决这个问题（按照顺序来响应请求），但是会出现一些问题：<ul><li>服务器不能正常处理HTTP pipelining</li><li>正确的流水线实现是复杂的</li><li><strong>Head-of-line Blocking连接头阻塞</strong>：假设服务器可以连续处理几个请求，<strong>按照标准服务器应该按照顺序来返回请求</strong>，假如某个请求会消耗大量时间，那么后面所有的请求都需要等着该请求处理完才可以响应</li></ul></li></ul></li><li>为什么有的时候刷新页面不需要重新建立SSL？<ul><li>因为TCP连接会维持一段时间，所以SSL可以复用</li></ul></li><li>浏览器对同一个Host建立TCP连接数量有没有限制？<ul><li>有，比如chrome最多允许6个TCP连接</li><li>如果收到HTML包含很多的图片标签，这些照片该怎么处理？<ul><li>如果图片都在HTTPS的连接并且在同一域名下，那么在SSL握手之后会和服务器协商使用HTTP2.0， 请求使用<strong>Multiplexing（多路复用）</strong>功能在这个连接上进行多路传输。（<strong>多路复用允许同时通过但一的HTTP2.0连接发起多重请求-响应</strong>）</li><li>如果不能使用HTTP2.0，那只能建立多个TCP连接了。</li></ul></li></ul></li><li>GET和POST的区别？<ul><li>首先GET和POST方法没有实质区别。只是报文格式不同。POST的报文：<code>POST /uri HTTP/1.1 \r\n</code>，GET的报文：<code>GET /uri HTTP/1.1 \r\n</code>。</li><li>GET的参数是在URL或者Cookie传参，POST则是在body，但是这个只是默认的通用的格式，并不是协议的限制。POST也可以使用URL传参，GET也可以用body传参。只是一个用法约定而一</li><li><strong>GET的数据长度会有一定限制</strong>，因为GET的参数普遍在URL中，浏览器会对URL的长度有一定限制，所以参数长度有一定限制。POST没有限制</li><li>GET的请求更适用于请求一些普遍可见的信息，不适合传输密码这些重要的隐私信息。当传输隐私信息可以使用POST来请求，不可见相对安全</li><li><strong>POST会发送两个TCP数据包</strong>，因为POST是把header和body分开，先发送header，当服务端返回100状态码之后再发送body</li><li></li></ul></li></ol>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;OSI-七层模型&quot;&gt;&lt;a href=&quot;#OSI-七层模型&quot; class=&quot;headerlink&quot; title=&quot;OSI 七层模型&quot;&gt;&lt;/a&gt;OSI 七层模型&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;物理层&lt;ul&gt;
+&lt;li&gt;主要作用就是传输比特流（1，0转化成电流强弱来进行传输）
+      
     
     </summary>
     
     
+    
+      <category term="network" scheme="https://shunyangli.github.io/tags/network/"/>
     
   </entry>
   
