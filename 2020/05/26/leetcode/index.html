@@ -70,7 +70,7 @@
 <meta property="og:site_name" content="Charles&#39;s blog">
 <meta property="og:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-26T13:05:49.661Z">
+<meta property="og:updated_time" content="2020-05-26T13:16:46.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
@@ -395,7 +395,7 @@
 
 <p>解题方法&amp;思路：</p>
 <p>首先说下题意，我刚开始是没理解题意来得（暴露了自己的无知╮(╯▽╰)╭），题意就是匹配到最长的子字符串，并且不能重复。比如<code>pwwkew</code> 可以匹配到<code>wke</code> 最后一个w不可以被匹配到，因为该子字符串已经包含了一个w。</p>
-<p>算法解析：我们可以使用<u>暴力解法：双循环（但是不推荐）</u>。我们可以使用HashMap来解决该问题，因为HashMap查询的时候只需要$O(1)$的时间复杂度。</p>
+<p>算法解析：<del>我们可以使用暴力解法：双循环（但是不推荐)</del>。我们可以使用HashMap来解决该问题，因为HashMap查询的时候只需要$O(1)$的时间复杂度。</p>
 <ol>
 <li>首先对该字符串进行遍历，如果该字符不在HashMap里面，则把该字符添加到HashMap，取max（HashMap length, ans）</li>
 <li>如果该字符已经出现在HashMap里面，从HashMap里面去除一个字符，然后current index保持不变（会对该index进行再次遍历）</li>
