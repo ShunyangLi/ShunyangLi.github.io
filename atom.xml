@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shunyangli.github.io/"/>
-  <updated>2020-05-23T13:53:56.156Z</updated>
+  <updated>2020-05-26T06:09:08.215Z</updated>
   <id>https://shunyangli.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode</title>
+    <link href="https://shunyangli.github.io/2020/05/26/leetcode/"/>
+    <id>https://shunyangli.github.io/2020/05/26/leetcode/</id>
+    <published>2020-05-26T05:37:21.000Z</published>
+    <updated>2020-05-26T06:09:08.215Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。</p><h1 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h1><p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p><p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the <em>same</em> element twice.</p><p><strong>Example:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure><p>这也是我处女面试的第一个算法，当时想的方法是最暴力的方法，直接两个循环完事，但是时间复杂度是$O(n^{2})$，那是相当的高o(╥﹏╥)o。后来想了一下找到了一个简单的方法，当时由于太紧张写的不太好。当时的问题方法也稍微有点不同，<em>当时要求的是找到相对应的数字，不是index</em>。 先回顾一下当时的算法：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] another(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tail = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// sort it</span></span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> value = nums[head] + nums[tail];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (value == target) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (value &gt; target) tail -= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> head += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (head == tail) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (head != tail) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;nums[head], nums[tail]&#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当时想到的是两头同时遍历的方法，但是有个前提要求就是list必须是排过序的，当<code>nums</code>无限大时排序所消耗的时间可以忽略的，这个方法有点类似于<strong>binary search</strong>。我当时也想过用<code>HashMap</code>，好像处于什么原因被面试官否定了，whatever不重要的。不闲扯了，我们开始看这题的比较优化的算法，时间复杂度是<code>O(n)</code>。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i ++) &#123;</span><br><span class="line">        <span class="keyword">int</span> minus = target - nums[i];</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(minus)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;map.get(minus), i&#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>算法思路：</p><ol><li>因为是用的<code>HashMap</code>所以在检测key是否contain的话使用的是hash的方法，所以复杂度是$O(1)$</li><li>第7-11行，是来判断这个HashMap是否包含这个num，如果这个num不包含在HashMap里面，然后把该num存到HashMap里面，num当做key，index当做value。这样就相当于把访问过的num和num的index存到HashMap里面，然后再遍历nums的时候得对每个数可以得到一个差值，然后判断这个差值是否存在HashMap里面，如果存在就代表得到这个结果了，如果不存在就把这个<code>nums[i]</code>存到HashMap。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。&lt;/p&gt;
+&lt;h1 id=&quot;1-Two-Sum&quot;&gt;&lt;a hre
+      
+    
+    </summary>
+    
+    
+    
+      <category term="leetcode" scheme="https://shunyangli.github.io/tags/leetcode/"/>
+    
+      <category term="algorithm" scheme="https://shunyangli.github.io/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Network</title>
