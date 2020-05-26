@@ -62,18 +62,18 @@
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 1. Two SumGiven an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have">
+<meta name="description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 1. Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input wo">
 <meta name="keywords" content="leetcode,algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode">
 <meta property="og:url" content="https://shunyangli.github.io/2020/05/26/leetcode/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 1. Two SumGiven an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have">
+<meta property="og:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 1. Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input wo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-26T06:09:08.215Z">
+<meta property="og:updated_time" content="2020-05-26T10:55:52.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
-<meta name="twitter:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 1. Two SumGiven an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have">
+<meta name="twitter:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 1. Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input wo">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -312,7 +312,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  622 字
+                  989 字
                 </span>
               
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -350,7 +350,8 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。</p>
-<h1 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h1><p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+<h1 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h1><p><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener">Two Sum</a></p>
+<p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
 <p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the <em>same</em> element twice.</p>
 <p><strong>Example:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
@@ -366,6 +367,22 @@
 <li>因为是用的<code>HashMap</code>所以在检测key是否contain的话使用的是hash的方法，所以复杂度是$O(1)$</li>
 <li>第7-11行，是来判断这个HashMap是否包含这个num，如果这个num不包含在HashMap里面，然后把该num存到HashMap里面，num当做key，index当做value。这样就相当于把访问过的num和num的index存到HashMap里面，然后再遍历nums的时候得对每个数可以得到一个差值，然后判断这个差值是否存在HashMap里面，如果存在就代表得到这个结果了，如果不存在就把这个<code>nums[i]</code>存到HashMap。</li>
 </ol>
+<h1 id="Add-Two-Numbers"><a href="#Add-Two-Numbers" class="headerlink" title="Add Two Numbers"></a>Add Two Numbers</h1><p><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="noopener">Add Two Numbers</a></p>
+<p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse order</strong> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807.</span><br></pre></td></tr></table></figure>
+
+<p>算法思想：</p>
+<p><strong>主要应该考虑一下边界情况：</strong></p>
+<ol>
+<li>当sum&gt;=10 </li>
+<li>两个链表不一样长</li>
+<li>在最后一个数字相加的时候sum&gt;=10</li>
+</ol>
+<p>第6行的while语句就是为了两条链表不一样长度。第7-8行判断如果该链表不为null就取该val，不然的话就为0（为了不影响下面的计算）。<code>int overflow = 0</code>是为了解决和超过10的情况，第9行把溢出的数字和v1，v2相加，然后把该结果取余就是结果。然后把<code>overflow = sum/10</code> 得到进位数。每次生成新的数字之后生成一个新的node没然后链接起来。<strong>主要是考虑不同的边界情况。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> overflow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (l1 == <span class="keyword">null</span> &amp;&amp; l2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode new_node = <span class="keyword">new</span> ListNode();</span><br><span class="line">    ListNode head = new_node;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> || l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> v1 = (l1 != <span class="keyword">null</span>) ? l1.val : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> v2 = (l2 != <span class="keyword">null</span>) ? l2.val : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = v1+v2 + overflow;</span><br><span class="line">        overflow = sum / <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (l1 != <span class="keyword">null</span>) l1 = l1.next;</span><br><span class="line">        <span class="keyword">if</span> (l2 != <span class="keyword">null</span>) l2 = l2.next;</span><br><span class="line">        new_node.val = sum % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (l1 != <span class="keyword">null</span> || l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            new_node.next = <span class="keyword">new</span> ListNode();</span><br><span class="line">            new_node = new_node.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (overflow &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        new_node.next = <span class="keyword">new</span> ListNode(overflow % <span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -599,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Two-Sum"><span class="nav-number">2.</span> <span class="nav-text">1. Two Sum</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Two-Sum"><span class="nav-number">2.</span> <span class="nav-text">1. Two Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-Two-Numbers"><span class="nav-number">3.</span> <span class="nav-text">Add Two Numbers</span></a></li></ol></div>
             
 
           </div>
