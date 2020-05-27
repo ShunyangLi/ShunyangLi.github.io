@@ -70,7 +70,7 @@
 <meta property="og:site_name" content="Charles&#39;s blog">
 <meta property="og:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-27T11:13:19.582Z">
+<meta property="og:updated_time" content="2020-05-27T11:23:25.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
@@ -312,7 +312,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k 字
+                  2.4k 字
                 </span>
               
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10 分钟
+                  11 分钟
                 </span>
               
             </div>
@@ -466,6 +466,20 @@
 <p>当<code>reverse &gt; intMAX/10</code>的时候我们基本上就可以确定他会溢出了，比如说<code>intMAX = 2147483647</code>，假设我们的<code>reverse = 214748365</code> 这时候<code>intMAX/10 =214748364</code>，<code>reverse &gt; intMAX</code>。这时候如果<code>reverse * 10</code>我们不管最后一个数字是什么了，<code>reverse</code>已经超出了int取值范围。</p>
 <p>正确代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> reverse = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> last_digit = x % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (reverse &gt; Integer.MAX_VALUE / <span class="number">10</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (reverse &lt; Integer.MIN_VALUE / <span class="number">10</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        reverse = reverse * <span class="number">10</span> + last_digit;</span><br><span class="line">        x = x / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> reverse ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Palindrome-Number"><a href="#Palindrome-Number" class="headerlink" title="Palindrome Number"></a>Palindrome Number</h1><p><a href="https://leetcode.com/problems/palindrome-number/" target="_blank" rel="noopener">palindrome number</a></p>
+<p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 121</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: -121</span><br><span class="line">Output: false</span><br><span class="line">Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 10</span><br><span class="line">Output: false</span><br><span class="line">Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
+
+<p>回文数也就是说该数字等于翻转后的数字，<code>num = reverse(num)</code>。首先我们可以确定如果该数字是负数直接false就好了。我们可以使用上一题的思路，把数字翻转然后看是否相等。<strong>也可以把边界情况考虑进行。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> reverse = <span class="number">0</span>, temp = x;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (temp != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> last_digit = temp % <span class="number">10</span>;</span><br><span class="line">        reverse = reverse * <span class="number">10</span> + last_digit;</span><br><span class="line">        temp = temp / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> reverse == x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -700,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-Sum"><span class="nav-number">2.</span> <span class="nav-text">Two Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-Two-Numbers"><span class="nav-number">3.</span> <span class="nav-text">Add Two Numbers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Substring-Without-Repeating-Characters"><span class="nav-number">4.</span> <span class="nav-text">Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Valid-Parentheses"><span class="nav-number">5.</span> <span class="nav-text">Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse-Integer"><span class="nav-number">6.</span> <span class="nav-text">Reverse Integer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-Sum"><span class="nav-number">2.</span> <span class="nav-text">Two Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-Two-Numbers"><span class="nav-number">3.</span> <span class="nav-text">Add Two Numbers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Substring-Without-Repeating-Characters"><span class="nav-number">4.</span> <span class="nav-text">Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Valid-Parentheses"><span class="nav-number">5.</span> <span class="nav-text">Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse-Integer"><span class="nav-number">6.</span> <span class="nav-text">Reverse Integer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Palindrome-Number"><span class="nav-number">7.</span> <span class="nav-text">Palindrome Number</span></a></li></ol></div>
             
 
           </div>
