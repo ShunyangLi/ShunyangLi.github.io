@@ -70,7 +70,7 @@
 <meta property="og:site_name" content="Charles&#39;s blog">
 <meta property="og:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-29T06:12:08.745Z">
+<meta property="og:updated_time" content="2020-05-29T06:27:10.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
@@ -312,7 +312,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4.1k 字
+                  4.3k 字
                 </span>
               
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  20 分钟
+                  21 分钟
                 </span>
               
             </div>
@@ -568,6 +568,17 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> curr = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (val != nums[i]) &#123;</span><br><span class="line">            nums[curr++] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> curr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="Implement-strStr"><a href="#Implement-strStr" class="headerlink" title="Implement strStr()"></a>Implement strStr()</h1><p><a href="https://leetcode.com/problems/implement-strstr/" target="_blank" rel="noopener">Implement strStr()</a></p>
+<p>Return the index of the first occurrence of needle in haystack, or <strong>-1</strong> if needle is not part of haystack.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: haystack = &quot;hello&quot;, needle = &quot;ll&quot;</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回要求的是index，我还以为是长度一度迷茫为啥不对o(╥﹏╥)o</strong>，一个for就能解决的问题，我们先去<code>needle</code>的第一个字符，然后在循环<code>haystack</code>的时候如果里面有字符和<code>needle</code>的第一个字符匹配了就用<code>substring</code>来接取相对应的长度，然后判断是否和<code>needle</code>相等（需要判断index的长度是不是超过了<code>haystack</code>的长度）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> c = needle.charAt(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; haystack.length(); i ++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (haystack.charAt(i) == c) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i + needle.length() &gt; haystack.length()) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (haystack.substring(i, i+needle.length()).equals(needle)) <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -801,7 +812,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-Sum"><span class="nav-number">2.</span> <span class="nav-text">Two Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-Two-Numbers"><span class="nav-number">3.</span> <span class="nav-text">Add Two Numbers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Substring-Without-Repeating-Characters"><span class="nav-number">4.</span> <span class="nav-text">Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Valid-Parentheses"><span class="nav-number">5.</span> <span class="nav-text">Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse-Integer"><span class="nav-number">6.</span> <span class="nav-text">Reverse Integer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Palindrome-Number"><span class="nav-number">7.</span> <span class="nav-text">Palindrome Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Common-Prefix"><span class="nav-number">8.</span> <span class="nav-text">Longest Common Prefix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Merge-Two-Sorted-Lists"><span class="nav-number">9.</span> <span class="nav-text">Merge Two Sorted Lists</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-Duplicates-from-Sorted-Array"><span class="nav-number">10.</span> <span class="nav-text">Remove Duplicates from Sorted Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Roman-to-Integer"><span class="nav-number">11.</span> <span class="nav-text">Roman to Integer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-Element"><span class="nav-number">12.</span> <span class="nav-text">Remove Element</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-Sum"><span class="nav-number">2.</span> <span class="nav-text">Two Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-Two-Numbers"><span class="nav-number">3.</span> <span class="nav-text">Add Two Numbers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Substring-Without-Repeating-Characters"><span class="nav-number">4.</span> <span class="nav-text">Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Valid-Parentheses"><span class="nav-number">5.</span> <span class="nav-text">Valid Parentheses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse-Integer"><span class="nav-number">6.</span> <span class="nav-text">Reverse Integer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Palindrome-Number"><span class="nav-number">7.</span> <span class="nav-text">Palindrome Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Common-Prefix"><span class="nav-number">8.</span> <span class="nav-text">Longest Common Prefix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Merge-Two-Sorted-Lists"><span class="nav-number">9.</span> <span class="nav-text">Merge Two Sorted Lists</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-Duplicates-from-Sorted-Array"><span class="nav-number">10.</span> <span class="nav-text">Remove Duplicates from Sorted Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Roman-to-Integer"><span class="nav-number">11.</span> <span class="nav-text">Roman to Integer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-Element"><span class="nav-number">12.</span> <span class="nav-text">Remove Element</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implement-strStr"><span class="nav-number">13.</span> <span class="nav-text">Implement strStr()</span></a></li></ol></div>
             
 
           </div>
