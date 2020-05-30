@@ -71,7 +71,7 @@
 <meta property="og:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/26/leetcode/1.png">
-<meta property="og:updated_time" content="2020-05-30T11:55:36.556Z">
+<meta property="og:updated_time" content="2020-05-30T12:05:03.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
@@ -314,7 +314,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6.1k 字
+                  6.2k 字
                 </span>
               
 
@@ -330,7 +330,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  30 分钟
+                  31 分钟
                 </span>
               
             </div>
@@ -671,6 +671,17 @@
 <p>庆幸一下终于可以独立思考出来一些简单的算法了。这个题其实算是还OK的，可以使用HashMap解决，因为HashMap监测key的时候的时间复杂度是$O(1)$，所以整体时间是$O(n)$。在loop里面去判断该数字是否存在HashMap里面，如果不存在就push进去，如果已经存在就删除。那么最后剩下的那个元素肯定是single（<del>单身狗</del>）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span> <span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> value : A) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(value)) &#123;</span><br><span class="line">            map.remove(value);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(value, value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(map.keySet().toArray()[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>Ps: 在discuss里面看到了一个特别骚的操作。。。真的骚操作。。。</p>
+<p>使用了异或（exclusive OR简称xor）这个来判断的，异或的话空间复杂度只有$O(1)$。</p>
+<blockquote>
+<p>$1\oplus0=1$</p>
+<p>$1\oplus1=1$</p>
+<p>$0\oplus0=0$</p>
+<p>$0\oplus1=1$</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        res ^= nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>行吧。。。牛逼。。</p>
 
       
     </div>
