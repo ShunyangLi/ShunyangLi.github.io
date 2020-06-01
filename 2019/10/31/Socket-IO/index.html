@@ -55,7 +55,7 @@
 
 
 
-  <meta name="keywords" content="Socket,Flask,JS,">
+  <meta name="keywords" content="Flask,JS,Socket,">
 
 
 
@@ -63,7 +63,7 @@
 
 
 <meta name="description" content="Flask socket IO 是Flask应用程序能够访问客户端和服务器之间的低延迟双向通信。Socket IO可以保持backend和frontend之间实时双向通讯。Socket IO 主要使用了WebSocket协议。只要是支持socket.io 的语言都可以使用。scoket.io GitHub socket io的GitHub源码所在。 安装和依赖直接使用pip3安装就行: 1pip3">
-<meta name="keywords" content="Socket,Flask,JS">
+<meta name="keywords" content="Flask,JS,Socket">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Socket IO">
 <meta property="og:url" content="https://shunyangli.github.io/2019/10/31/Socket-IO/index.html">
@@ -384,7 +384,7 @@
 
 <p><code>app.config[&#39;SECRET_KEY&#39;]</code> 必须要配置，是为了保证加密传输的安全性。<code>socketio.run</code> 封装并替换了<code>app.run</code>的启动方式。在此环境下优先使用<code>eventlet</code></p>
 <p>以及在HTML里面怎么使用socket io：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line">    var socket = io.connect('http://' + document.domain + ':' + location.port);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> socket = io.connect(<span class="string">'http://'</span> + <span class="built_in">document</span>.domain + <span class="string">':'</span> + location.port);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这里的<code>document.domain</code>和<code>location.port</code>是web相对的IP和端口。可以自动适配，也可以手动修改成所需要的IP和端口。</p>
 <h1 id="接受和发送消息"><a href="#接受和发送消息" class="headerlink" title="接受和发送消息"></a>接受和发送消息</h1><p>接受消息在flask里面可以这样使用，这是<code>msg</code>可以是不同的数据类型，可以是json，str，也可以是多个参数的组合:</p>
@@ -430,11 +430,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Socket/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Socket</a>
-          
             <a href="/tags/Flask/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Flask</a>
           
             <a href="/tags/JS/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> JS</a>
+          
+            <a href="/tags/Socket/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Socket</a>
           
         </div>
       
