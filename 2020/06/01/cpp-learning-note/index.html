@@ -62,18 +62,18 @@
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="cpp 数据类型学过c语言应该对数据类型都有所了解，cpp的数据类型和c语言差不多，但是比c语言要多几种。 1bool, int, float, double, char, void(无类型), wchar_t(宽字符型)  wchar_t 是这样定义的，所以wchar_t和short int占用的空间一样： 1typedef short int wchar_t;  typedef的作用就是给数据">
+<meta name="description" content="COMP6771 learning note. cpp12345678#include &amp;lt;iostream&amp;gt;using namespace std;int main() &amp;#123;    cout &amp;lt;&amp;lt; &quot;Hello world&quot; &amp;lt;&amp;lt; endl;    return 0;&amp;#125;  12345678#include &amp;lt;iostream&amp;gt;usi">
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cpp learning note">
 <meta property="og:url" content="https://shunyangli.github.io/2020/06/01/cpp-learning-note/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="cpp 数据类型学过c语言应该对数据类型都有所了解，cpp的数据类型和c语言差不多，但是比c语言要多几种。 1bool, int, float, double, char, void(无类型), wchar_t(宽字符型)  wchar_t 是这样定义的，所以wchar_t和short int占用的空间一样： 1typedef short int wchar_t;  typedef的作用就是给数据">
+<meta property="og:description" content="COMP6771 learning note. cpp12345678#include &amp;lt;iostream&amp;gt;using namespace std;int main() &amp;#123;    cout &amp;lt;&amp;lt; &quot;Hello world&quot; &amp;lt;&amp;lt; endl;    return 0;&amp;#125;  12345678#include &amp;lt;iostream&amp;gt;usi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-01T11:27:40.456Z">
+<meta property="og:updated_time" content="2020-06-02T13:59:02.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cpp learning note">
-<meta name="twitter:description" content="cpp 数据类型学过c语言应该对数据类型都有所了解，cpp的数据类型和c语言差不多，但是比c语言要多几种。 1bool, int, float, double, char, void(无类型), wchar_t(宽字符型)  wchar_t 是这样定义的，所以wchar_t和short int占用的空间一样： 1typedef short int wchar_t;  typedef的作用就是给数据">
+<meta name="twitter:description" content="COMP6771 learning note. cpp12345678#include &amp;lt;iostream&amp;gt;using namespace std;int main() &amp;#123;    cout &amp;lt;&amp;lt; &quot;Hello world&quot; &amp;lt;&amp;lt; endl;    return 0;&amp;#125;  12345678#include &amp;lt;iostream&amp;gt;usi">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -312,7 +312,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k 字
+                  2.4k 字
                 </span>
               
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7 分钟
+                  10 分钟
                 </span>
               
             </div>
@@ -349,7 +349,12 @@
       
 
       
-        <h1 id="cpp-数据类型"><a href="#cpp-数据类型" class="headerlink" title="cpp 数据类型"></a>cpp 数据类型</h1><p>学过c语言应该对数据类型都有所了解，cpp的数据类型和c语言差不多，但是比c语言要多几种。</p>
+        <p>COMP6771 learning note.</p>
+<h1 id="cpp"><a href="#cpp" class="headerlink" title="cpp"></a>cpp</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">auto main() -&gt; int &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="cpp-数据类型"><a href="#cpp-数据类型" class="headerlink" title="cpp 数据类型"></a>cpp 数据类型</h1><p>学过c语言应该对数据类型都有所了解，cpp的数据类型和c语言差不多，但是比c语言要多几种。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span>, <span class="keyword">int</span>, <span class="keyword">float</span>, <span class="keyword">double</span>, <span class="keyword">char</span>, <span class="keyword">void</span>(无类型), <span class="keyword">wchar_t</span>(宽字符型)</span><br></pre></td></tr></table></figure>
 
 <p><code>wchar_t</code> 是这样定义的，所以<code>wchar_t</code>和<code>short int</code>占用的空间一样：</p>
@@ -447,6 +452,52 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">count is : 1</span><br></pre></td></tr></table></figure>
 
 <p>写着写着发现和C语言如此相似（基础部分）。(<em>^▽^</em>)</p>
+<h1 id="cpp-Const-类型"><a href="#cpp-Const-类型" class="headerlink" title="cpp Const 类型"></a>cpp Const 类型</h1><p><strong>Const</strong> 被当做一个很基础但是很有用的关键字。</p>
+<p><strong>先说下为什么用const：</strong></p>
+<ol>
+<li>Clear code (know a function won’t try and modify something just by reading the signature)</li>
+<li>Immutable objects are easier to reason about.</li>
+<li>The complier <strong>may</strong> be able to mkae certain optimisations</li>
+<li>Immutable objects are <strong>much</strong> easier to use in multithreading situations.</li>
+</ol>
+<p>eg:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> <span class="keyword">const</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">auto</span> <span class="keyword">const</span> y = <span class="number">173</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>const修饰普通类型的变量：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> b = a;</span><br><span class="line"></span><br><span class="line">a = <span class="number">8</span>; <span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+
+<p>a可以被定义为一个常量，也可以把a的内容赋值给b。<strong>但是不能对b再次赋值</strong>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">auto main() -&gt; int &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">int</span> *p = (<span class="keyword">int</span>*)&amp;a;</span><br><span class="line">    *p = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"A: "</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">Output: </span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">A: 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以通过得到a的地址，然后对地址直接重新赋值的方法来改变a的值。<strong>（指针就是一个变量的地址，&amp;取地址，*取内容）</strong>。</p>
+<p><strong>const修饰指针变量：</strong></p>
+<ol>
+<li>const修饰指针指向的内容，则内容为不变量</li>
+<li>const修饰指针，则指针为不变量</li>
+<li>const修饰指针和指针指向的内容，则指针和指针指向的内容都是不可变</li>
+</ol>
+<p>For 1：</p>
+<p>内容不可以变，但是可以通过地址重新改变数据。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b = a</span><br></pre></td></tr></table></figure>
+
+<p>当<code>int b = a</code>的时候b只是得到了a的内容，所以可以修改。</p>
+<p>For 2：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p = &amp;a;</span><br><span class="line">*p = <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// error code</span></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">10</span>;</span><br><span class="line">p = &amp;c;</span><br></pre></td></tr></table></figure>
+
+<p><em>在const左边，代表地址不可变，所以在第一次把a的地址赋值给p的时候没什么问题，但是当把c的地址赋值给p是就不行，*</em>因为地址不可以变**。</p>
+<p>For 3：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * <span class="keyword">const</span> p = &amp;a;</span><br></pre></td></tr></table></figure>
+
+<p>啥都变不了。</p>
+<p><strong>ps: 左定值，右定向，const修饰不变量</strong></p>
+<h1 id="cpp-functions"><a href="#cpp-functions" class="headerlink" title="cpp functions"></a>cpp functions</h1><p>c++function有两种放回形式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">auto square(int const x) -&gt; int &#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> <span class="keyword">const</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Overload：</strong></p>
+<p><strong>指函数名相同，但是它的参数表列个数或顺序，类型不同</strong>。<em>但是不能靠返回类型来判断。</em><br>（1）相同的范围（在同一个作用域中） ；<br>（2）函数名字相同；<br>（3）参数不同；<br>（4）virtual 关键字可有可无。<br>（5）返回值可以不同；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto square(int const x) -&gt; int &#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto square(double const x) -&gt; double &#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>突然发现了一个很有意思的东西：<code>const int * = int const *</code></strong></p>
 
       
     </div>
@@ -678,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-数据类型"><span class="nav-number">1.</span> <span class="nav-text">cpp 数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-变量作用域"><span class="nav-number">2.</span> <span class="nav-text">cpp 变量作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-常量"><span class="nav-number">3.</span> <span class="nav-text">cpp 常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp储存类型"><span class="nav-number">4.</span> <span class="nav-text">cpp储存类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp"><span class="nav-number">1.</span> <span class="nav-text">cpp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-数据类型"><span class="nav-number">2.</span> <span class="nav-text">cpp 数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-变量作用域"><span class="nav-number">3.</span> <span class="nav-text">cpp 变量作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-常量"><span class="nav-number">4.</span> <span class="nav-text">cpp 常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp储存类型"><span class="nav-number">5.</span> <span class="nav-text">cpp储存类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-Const-类型"><span class="nav-number">6.</span> <span class="nav-text">cpp Const 类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpp-functions"><span class="nav-number">7.</span> <span class="nav-text">cpp functions</span></a></li></ol></div>
             
 
           </div>
