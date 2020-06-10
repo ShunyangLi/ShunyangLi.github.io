@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/about/index.html</loc>
+    
+    <lastmod>2020-06-10T05:54:44.634Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2020/05/26/leetcode/</loc>
     
     <lastmod>2020-06-09T13:13:34.772Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>https://shunyangli.github.io/2019/10/08/Flask-Mail/</loc>
     
     <lastmod>2019-10-27T06:13:24.513Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/about/index.html</loc>
-    
-    <lastmod>2019-10-19T07:46:05.280Z</lastmod>
     
   </url>
   
