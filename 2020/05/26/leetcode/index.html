@@ -78,7 +78,8 @@
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/26/leetcode/6.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/26/leetcode/8.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/26/leetcode/9.png">
-<meta property="og:updated_time" content="2020-06-13T05:00:12.069Z">
+<meta property="og:image" content="https://shunyangli.github.io/2020/05/26/leetcode/10.png">
+<meta property="og:updated_time" content="2020-06-13T05:31:26.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="前言刷题更让我们对一门语言有更加深入的理解，也可以增进对数据结构的理解，百里无一害。 Two SumTwo Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would">
@@ -343,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10.4k 字
+                  10.5k 字
                 </span>
               
 
@@ -359,7 +360,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  52 分钟
+                  53 分钟
                 </span>
               
             </div>
@@ -911,6 +912,11 @@
 <p>solution 1：</p>
 <p>刚开始考虑的是先sort一下，然后判断index在0，末尾和中间的情况进行补全，但是貌似有点浪费时间了。。所以时间复杂度有点高$O(nlog_{n} + n)$。不过也算是一种方法对吧。。。o(╥﹏╥)o</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findDisappearedNumbers</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; dis = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>) <span class="keyword">return</span> dis;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> num = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">while</span> (num &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        num --;</span><br><span class="line">        dis.add(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    num = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i ++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (num + <span class="number">1</span> != nums[i] &amp;&amp; num != nums[i]) &#123;</span><br><span class="line">            num++;</span><br><span class="line">            dis.add(num);</span><br><span class="line">        &#125;</span><br><span class="line">        num = nums[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    num = nums[nums.length-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (num != nums.length) &#123;</span><br><span class="line">        num++;</span><br><span class="line">        dis.add(num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>solution 2：</p>
+<p>看了一下discussion感觉他们写的方法屌爆了。。。因为数组里面的数字是在数组长度<code>1-n</code>之内的，所以这个时候我们可以做一个指示器的格式，把数组里面每个数字所对应的坐标变成负数，然后再寻找一个array里面哪些是负数。很欢喜。。</p>
+<p><img src="/2020/05/26/leetcode/10.png" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findDisappearedNumbers</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; dis = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>) <span class="keyword">return</span> dis;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i ++) &#123;</span><br><span class="line">        <span class="keyword">int</span> index = Math.abs(nums[i]) - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[index] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            nums[index] = -nums[index];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i ++) <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) dis.add(i + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
