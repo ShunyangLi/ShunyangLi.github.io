@@ -71,7 +71,10 @@
 <meta property="og:description" content="OSI 七层模型 物理层 主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。   数据链路层 定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）   网络层 使用无连接的网际协议IP和许多种路由选择协议。分组传输，路由选择。   运输层 向两个主机进程之间的通信提供服务。一个主机可以有多个进程，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/12/Network/tcp.png">
-<meta property="og:updated_time" content="2020-05-23T13:53:56.156Z">
+<meta property="og:image" content="https://shunyangli.github.io/2020/05/12/Network/1.png">
+<meta property="og:image" content="https://shunyangli.github.io/2020/05/12/Network/2.png">
+<meta property="og:image" content="https://shunyangli.github.io/2020/05/12/Network/3.png">
+<meta property="og:updated_time" content="2020-06-24T12:56:22.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Network">
 <meta name="twitter:description" content="OSI 七层模型 物理层 主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。   数据链路层 定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）   网络层 使用无连接的网际协议IP和许多种路由选择协议。分组传输，路由选择。   运输层 向两个主机进程之间的通信提供服务。一个主机可以有多个进程，">
@@ -314,7 +317,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k 字
+                  4k 字
                 </span>
               
 
@@ -330,7 +333,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5 分钟
+                  14 分钟
                 </span>
               
             </div>
@@ -443,10 +446,106 @@
 <li><strong>GET的数据长度会有一定限制</strong>，因为GET的参数普遍在URL中，浏览器会对URL的长度有一定限制，所以参数长度有一定限制。POST没有限制</li>
 <li>GET的请求更适用于请求一些普遍可见的信息，不适合传输密码这些重要的隐私信息。当传输隐私信息可以使用POST来请求，不可见相对安全</li>
 <li><strong>POST会发送两个TCP数据包</strong>，因为POST是把header和body分开，先发送header，当服务端返回100状态码之后再发送body</li>
-<li></li>
 </ul>
 </li>
 </ol>
+<h1 id="TCP-amp-UDP"><a href="#TCP-amp-UDP" class="headerlink" title="TCP &amp; UDP"></a>TCP &amp; UDP</h1><p>首先是传输层里面的：</p>
+<p><strong>UDP协议：</strong></p>
+<ul>
+<li>无连接协议</li>
+<li>不能保证可靠的信息交付数据</li>
+<li>没有报文传输，不做处理</li>
+<li>没有拥塞控制，头部开销很小</li>
+</ul>
+<p><strong>TCP协议：</strong></p>
+<ul>
+<li>面向连接的协议</li>
+<li>有两端，点对点通信</li>
+<li>安全可靠</li>
+<li>两端可以同时发送接收数据的通信</li>
+<li>是面向字节流的协议</li>
+</ul>
+<p><strong>如果确认号是N，则代表N-1序号的数据都已经收到</strong></p>
+<ol>
+<li>TCP的可靠传输</li>
+</ol>
+<p>主要了解两个协议：<strong>停止等待协议，连续ARQ协议</strong></p>
+<ul>
+<li>停止等待协议：就是每发送完一个分组就停止发送，等待对方的确认。在收到确认后再发送下一组数据。</li>
+<li>连续ARQ协议：如果在传输过程中出现意外，比如B没收到A发送的报文，这时候A就会有一个超时计时器，当超时计时器到期没有收到B的确认报文，A就会重新发送</li>
+</ul>
+<ol start="2">
+<li>TCP的流量控制</li>
+</ol>
+<p>避免发送方的发送速率太快。<strong>利用滑动窗口实现的。</strong></p>
+<p>滑动窗口协议既保证了分组无差错，有序接收，也实现了流量控制。主要是的方式就是接收方返回的ACk中会包含自己的接收窗口的大小，并且利用大小来控制发送方的数据发送。</p>
+<p><strong>当窗口为0后，会启动持续定时器，避免死锁：</strong></p>
+<ul>
+<li>每当发送者收到一个零窗口的应答后就启动该计时器。时间一到便主动发送报文询问接收者的窗口大小。若接收者仍然返回零窗口，则重置该计时器继续等待；若窗口不为0，则表示应答报文丢失了，此时重置发送窗口后开始发送，这样就避免了死锁的产生。</li>
+</ul>
+<ol start="3">
+<li>TCP的拥塞控制</li>
+</ol>
+<p>为了防止过多的数据注入到网络中，避免出现网络负载过大的情况。常用的方法就是：</p>
+<ul>
+<li>慢开始，拥塞避免</li>
+<li>快重传，快回复</li>
+</ul>
+<p><strong>TCP报文头：</strong></p>
+<p><img src="/2020/05/12/Network/1.png" alt></p>
+<p><strong>1、源端口（Source Port）/ 目的端口（Destination Port）</strong>：他们各占2个字节，标示该段报文来自哪里（源端口）以及要传给哪个上层协议或应用程序（目的端口）。进行tcp通信时，一般client是通过系统自动选择的临时端口号，而服务器一般是使用知名服务端口号或者自己指定的端口号<code>（比如DNS协议对应端口53，HTTP协议对应80）</code></p>
+<p><strong>2、序号（Sequence Number）</strong>：占据四个字节，TCP是面向字节流的，TCP连接中传送的字节流中的每个字节都按顺序编号，例如如一段报文的序号字段值是<code>107</code>，而携带的数据共有<code>100个字段</code>，如果有下一个报文过来，那么序号就从<code>207（100+107）</code>开始，整个要传送的字节流的起始序号必须要在连接建立时设置。首部中的序号字段值指的是本报文段所发送的数据的第一个字节的序号</p>
+<p><strong>3、确认序号（Acknowledgment Number）</strong>：4个字节，是期望收到对方下一个报文段的第一个数据字节的序号，若确认号=N，则表明：到序号N-1为止的所有数据都已正确收到，例如：B收到A发送过来的报文，其序列号字段是<code>301</code>，而数据长度是<code>200字节</code>，这表明了B正确的收到了A到序号<code>500（301+200-1）</code>为止的数据，因此B希望收到A的下一个数据序号是<code>501</code>，于是B在发送给A的确认报文段中，会把ACK确认号设置为<code>501</code></p>
+<p><strong>4、数据偏移（Offset）</strong>：4个字节。指出TCP报文段的数据起始处距离报文段的起始处有多远，这个字段实际上是指出TCP报文段的首部长度。由于首部中还有长度不确定的选项字段，因此数据偏移字段是必要的。单位是32位字，也就是4字节，4位二进制最大表示15，所以数据偏移也就是TCP首部最大60字节</p>
+<p><strong>5、保留（Reserved）</strong>：6个字节。保留域</p>
+<p><strong>6、TCP Flags</strong>：控制位，由八个标志位组成，每个标志位表示控制的功能，我们主要来介绍TCP Flags中常用的六个，</p>
+<ul>
+<li><strong>URG（紧急指针标志）</strong>：当<code>URG=1</code>时，表明紧急指针字段有效。它告诉系统此报文段中有紧急数据，应尽快传送（相当于高优先级的数据），而不要按原来的排队顺序来传送。例如，已经发送了很长的一个程序在主机上运行。但后来发现了一些问题，需要取消该程序的运行。因此用户从键盘发出中断命令。如果不使用紧急数据，那么这两个字符将存储在接收TCP的缓存末尾。只有在所有的数据被处理完毕后这两个字符才被交付接收方的应用进程。这样做就浪费了许多时间</li>
+<li><strong>ACK（确认序号标志）</strong>：当<code>ACK=1</code>时确认号字段有效。当<code>ACK=0</code>时，确认号无效。TCP规定，在连接建立后所有的传送的报文段都必须把ACK置1</li>
+<li><strong>PSH（push标志）</strong>：当两个应用进程进行交互式的通信时，有时在一端的应用进程希望在键入一个命令后立即就能收到对方的响应。在这种情况下，TCP就可以使用推送操作。这时，发送方TCP把PSH置1，并立即创建一个报文段发送出去。接收方TCP收到PSH=1的报文段，就尽快地交付接收应用进程，而不再等到整个缓存都填满了后向上交付</li>
+<li><strong>RST（重置连接标志）</strong>：TCP连接中出现严重差错（如由于主机崩溃或其他原因），必须释放连接，然后再重新建立运输连接，可以用来拒绝一个非法的报文段或拒绝打开一个连接</li>
+<li><strong>SYN（同步序号，用于建立连接过程）</strong>：在连接建立时用来同步序号。当<code>SYN=1而ACK=0</code>时，表明这是一个连接请求报文段。对方若同意建立连接，则应在相应的报文段中使用<code>SYN=1和ACK=1</code>。因此，SYN置为1就表示这是一个连接请求或连接接受保温。</li>
+<li><strong>FIN（finish标志，用于释放连接）</strong>：当<code>FIN=1</code>时，表明此报文段的发送方的数据已发送完毕，并要求释放运输连接</li>
+</ul>
+<p><strong>7、窗口（Window）</strong>：<code>是TCP流量控制的一个手段</code>。这里说的窗口，指的是接收通告窗口（Receiver Window，RWND）。它告诉对方本端的TCP接收缓冲区还能容纳多少字节的数据，这样就可以控制发送数据的速度</p>
+<p><strong>8、检验和（Checksum）</strong>：检验范围包括首部和数据两部分，由发送端填充，接收端对TCP报文段执行CRC算法以检验TCP报文段在传输过程中是否损坏。这也是TCP可靠传输的一个重要保障</p>
+<p><strong>9、紧急指针（Urgent Pointer）</strong>：紧急指针仅在URG=1时才有意义，它指出本报文段中的紧急数据的字节数（紧急数据结束后就是普通数据）。因此，紧急指针指出了紧急数据的末尾在报文段中的位置。当所有紧急数据都处理完时，TCP就告诉应用程序恢复到正常操作。值得注意的是，即使窗口为零时也可发送紧急数据。</p>
+<p><strong>10、TCP可选项（TCP Options）</strong>：长度可变，最长可达40字节。当没有使用“选项”时，TCP的首部长度是20字节。</p>
+<p><strong>TCP三次握手：</strong></p>
+<p><img src="/2020/05/12/Network/2.png" alt></p>
+<p><strong>第一次握手：</strong>建立连接时，客户端发送SYN（SYN=j）到服务器，并进入SYN_SEND状态，等待服务器确认（SYN：同步序列编号）</p>
+<p><strong>第二次握手：</strong>服务器接受到SYN的包，必须确认客户端的SYN（ack=j+1），同时自己也发送一个SYN包（SYN=k）即SYN+ACK包，此时服务器进入SYN_RECV状态。</p>
+<p><strong>第三次握手：</strong>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK（ACK=k+1），该包发送完之后客户端和服务器进入TCP链接成功。完成三次握手。</p>
+<p><strong>为什么需要三次握手才能建立连接？</strong></p>
+<ul>
+<li>为了初始化SEQ的初始值，实现可靠数据传输，TCP协议的通信双方都必须维护一个序列号，以标识发送出去的数据包中哪些是已经被对方收到的。</li>
+<li>如果只有两次握手，最多只有客户端的SEQ能被确认（只能一方发送数据）</li>
+</ul>
+<p><strong>TCP的四次挥手：</strong></p>
+<p><img src="/2020/05/12/Network/3.png" alt></p>
+<p><strong>第一次握手：</strong>客户端发送一个FIN，用来关闭客户端到服务端的数据传送，客户端进入FIN_WAIT_1状态</p>
+<p><strong>第二次握手：</strong>服务端接受到FIN之后，发送一个ACK给客户端，确认序号为收到的序号+1（ack = seq+1）</p>
+<p><strong>第三次握手：</strong>服务端发送一个FIN，用来关闭服务端到客户端的数据传送，服务端进入LAST ACK状态</p>
+<p><strong>第四次握手：</strong>客户端在收到FIN后，<strong>客户端进入TIME_WAIT状态</strong>，接着发送一个ACK给服务端，ack=seq+q，服务端进入CLOSED状态。</p>
+<p>可以简单理解为：</p>
+<ol>
+<li>client发送FIN到Server请求关闭</li>
+<li>server发送ACK，SEQ给client表示收到了关闭的请求</li>
+<li>server关闭和client的通道并发送一个FIN的标识</li>
+<li>client收到server发送的FIN并发挥一个ACK表示确认收到，并关闭</li>
+</ol>
+<p><strong>为什么会有TIME_WAIT：</strong></p>
+<ul>
+<li>在client收到server的结束报文的时候不会立马关闭，会进入到TIME_WAIT状态。在这个状态client等待2MSL，主要原因：<ul>
+<li>确保对方有最够的时间收到ACK报文</li>
+<li>避免新旧连接混淆</li>
+</ul>
+</li>
+</ul>
+<p><strong>出现大量的CLOSE_WAIT状态的原因：</strong></p>
+<ul>
+<li>由于对方关闭socket链接，我方忙于读/写，没能及时关闭。</li>
+</ul>
 
       
     </div>
@@ -688,7 +787,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-四层协议"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP 四层协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">3.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">4.</span> <span class="nav-text">HTTP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-四层协议"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP 四层协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">3.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">4.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-amp-UDP"><span class="nav-number">5.</span> <span class="nav-text">TCP &amp; UDP</span></a></li></ol></div>
             
 
           </div>
