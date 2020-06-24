@@ -74,7 +74,7 @@
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/12/Network/1.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/12/Network/2.png">
 <meta property="og:image" content="https://shunyangli.github.io/2020/05/12/Network/3.png">
-<meta property="og:updated_time" content="2020-06-24T12:56:22.202Z">
+<meta property="og:updated_time" content="2020-06-24T13:20:54.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Network">
 <meta name="twitter:description" content="OSI 七层模型 物理层 主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。   数据链路层 定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）   网络层 使用无连接的网际协议IP和许多种路由选择协议。分组传输，路由选择。   运输层 向两个主机进程之间的通信提供服务。一个主机可以有多个进程，">
@@ -281,6 +281,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -317,7 +339,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4k 字
+                  6.3k 字
                 </span>
               
 
@@ -333,7 +355,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  14 分钟
+                  22 分钟
                 </span>
               
             </div>
@@ -395,6 +417,7 @@
 <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>URL由以下内容组成：<code>protocol://hostname:port/path/[parameters]#fragment</code>。</p>
 <p>分别是：协议，域名，端口，路径，参数，分页。</p>
 <p>有关HTTP的经典题目。</p>
+<p>HTTP支持的方法：<code>GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE, CONNECT</code></p>
 <p><strong>经典面试题：</strong></p>
 <ol>
 <li>浏览器输入URL到返回页面的全过程？<ol>
@@ -546,6 +569,71 @@
 <ul>
 <li>由于对方关闭socket链接，我方忙于读/写，没能及时关闭。</li>
 </ul>
+<h1 id="Web-前端知识"><a href="#Web-前端知识" class="headerlink" title="Web 前端知识"></a>Web 前端知识</h1><p>304：如果客户端发送了一个带条件的GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个304状态码。（就是为什么数据不会被更新降低请求量：合并资源，减少HTTP 请求数，minify / gzip 压缩，webP，lazyLoad。</p>
+<p><strong>加快请求速度：</strong>预解析DNS，减少域名数，并行加载，CDN 分发。</p>
+<p><strong>缓存</strong>：HTTP 协议缓存请求，离线缓存 manifest，离线数据缓存localStorage。</p>
+<p><strong>渲染</strong>：JS/CSS优化，加载顺序，服务端渲染，pipeline。</p>
+<p><strong>301和302的区别：</strong></p>
+<p>301 Moved Permanently 被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个URI之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。</p>
+<p>302 Found 请求的资源现在临时从不同的URI响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</p>
+<p>字面上的区别就是301是永久重定向，而302是临时重定向。</p>
+<p>301比较常用的场景是使用域名跳转。302用来做临时跳转 比如未登陆的用户访问用户中心重定向到登录页面</p>
+<p><strong>缓存（304和200的区别）：</strong></p>
+<p>状态码200：请求已成功，请求所希望的响应头或数据体将随此响应返回。即返回的数据为全量的数据，如果文件不通过GZIP压缩的话，文件是多大，则要有多大传输量。</p>
+<p>状态码304：如果客户端发送了一个带条件的 GET 请求且该请求已被允许，<strong>而文档的内容（自上次访问以来或者根据请求的条件）并没有改变</strong>，则服务器应当返回这个状态码。即客户端和服务器端只需要传输很少的数据量来做文件的校验，如果文件没有修改过，则不需要返回全量的数据。（<strong>可以通过在请求的时候封装一个时间戳来解决</strong>）</p>
+<h2 id="Cookie和Session的区别"><a href="#Cookie和Session的区别" class="headerlink" title="Cookie和Session的区别"></a>Cookie和Session的区别</h2><ol>
+<li>Cookie是存放在浏览器端的数据，每次都随请求发送给 Server。存储<code>cookie</code>是浏览器提供的功能。<code>cookie</code> 其实是存储在浏览器中的纯文本，浏览器的安装目录下会专门有一个 cookie 文件夹来存放各个域下设置的<code>cookie</code>。只有4K左右的大小。</li>
+<li>而Session是存放在服务器端的内存中，其 Session ID 是通过 Cookie 发送给客户端的，这个Session ID每次都随请求发送给 Server。</li>
+</ol>
+<h2 id="Cookie-和-LocalStorage-的区别"><a href="#Cookie-和-LocalStorage-的区别" class="headerlink" title="Cookie 和 LocalStorage 的区别"></a>Cookie 和 LocalStorage 的区别</h2><ol>
+<li><code>Set-Cookie</code>之后，用户的每次访问服务器，请求里面都会带着<code>Cookie</code>到服务器上，与HTTP有关，而<code>LocalStorage</code>不用发到服务器端，它是存储在浏览器里面的，与HTTP无关，是浏览器的属性，<code>window.localStorage</code>。</li>
+<li><code>Cookie</code>一般比较小，大约4k左右，而<code>LocalStorage</code>大约能用5M</li>
+<li><code>Cookie</code>默认会在用户关闭页面后失效，不过后端可以设置保存时间，而<code>LocalStorage</code>永久有效，除非用户手动清理。</li>
+</ol>
+<h2 id="LocalStorage-和-SessionStorage-的区别"><a href="#LocalStorage-和-SessionStorage-的区别" class="headerlink" title="LocalStorage 和 SessionStorage 的区别"></a>LocalStorage 和 SessionStorage 的区别</h2><ol>
+<li><code>LocalStorage</code>永久有效，除非用户手动清理<code>localStorage.clear()</code>。不会自动过期</li>
+<li>但是SessionStorage在会话结束后就会失效，也就是用户关闭了页面，就失效了。会自动过期</li>
+<li><strong>Localstorage和sessionstorage：可以保存5M的信息</strong></li>
+</ol>
+<h2 id="csrf和xss的网络攻击及防范"><a href="#csrf和xss的网络攻击及防范" class="headerlink" title="csrf和xss的网络攻击及防范"></a>csrf和xss的网络攻击及防范</h2><h3 id="参考回答："><a href="#参考回答：" class="headerlink" title="参考回答："></a>参考回答：</h3><p>CSRF：跨站请求伪造，可以理解为攻击者盗用了用户的身份，以用户的名义发送了恶意请求，比如用户登录了一个网站后，立刻在另一个tab页面访问量攻击者用来制造攻击的网站，这个网站要求访问刚刚登陆的网站，并发送了一个恶意请求，这时候CSRF就产生了，比如这个制造攻击的网站使用一张图片，但是这种图片的链接却是可以修改数据库的，这时候攻击者就可以以用户的名义操作这个数据库，防御方式的话：使用验证码，检查https头部的refer，<strong>使用token</strong></p>
+<p>XSS：跨站脚本攻击，是说攻击者通过注入恶意的脚本，在用户浏览网页的时候进行攻击，比如获取cookie，或者其他用户身份信息，可以分为存储型和反射型，存储型是攻击者输入一些数据并且存储到了数据库中，其他浏览者看到的时候进行攻击，反射型的话不存储在数据库中，往往表现为将攻击代码放在url地址的请求参数中，防御的话为<strong>cookie设置httpOnly属性</strong>，对用户的输入进行检查，进行特殊字符过滤</p>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><h4 id="https的原理及其局限性"><a href="#https的原理及其局限性" class="headerlink" title="https的原理及其局限性"></a><strong>https的原理及其局限性</strong></h4><p><strong>一、原理：</strong></p>
+<p>（1）客户使用https的URL访问Web服务器，要求与Web服务器建立SSL连接。</p>
+<p>（2）Web服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传送一份给客户端。</p>
+<p>（3）客户端的浏览器与Web服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</p>
+<p>（4）客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</p>
+<p>（5）Web服务器利用自己的私钥解密出会话密钥。</p>
+<p>（6）Web服务器利用会话密钥加密与客户端之间的通信。</p>
+<p><strong>二、HTTPS的优点</strong></p>
+<p>尽管HTTPS并非绝对安全，掌握根证书的机构、掌握加密算法的组织同样可以进行中间人形式的攻击，但HTTPS仍是现行架构下最安全的解决方案，主要有以下几个好处：</p>
+<p>（1）使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器；</p>
+<p>（2）HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性。</p>
+<p>（3）HTTPS是现行架构下最安全的解决方案，虽然不是绝对安全，但它大幅增加了中间人攻击的成本。</p>
+<p>（4）谷歌曾在2014年8月份调整搜索引擎算法，并称“比起同等HTTP网站，采用HTTPS加密的网站在搜索结果中的排名将会更高”。</p>
+<p><strong>三、HTTPS的缺点</strong></p>
+<p>虽然说HTTPS有很大的优势，但其相对来说，还是存在不足之处的：</p>
+<p>（1）HTTPS协议握手阶段比较费时，会使页面的加载时间延长近50%，增加10%到20%的耗电；</p>
+<p>（2）HTTPS连接缓存不如HTTP高效，会增加数据开销和功耗，甚至已有的安全措施也会因此而受到影响；</p>
+<p>（3）SSL证书需要钱，功能越强大的证书费用越高，个人网站、小网站没有必要一般不会用。</p>
+<p>（4）SSL证书通常需要绑定IP，不能在同一IP上绑定多个域名，IPv4资源不可能支撑这个消耗。</p>
+<p>（5）HTTPS协议的加密范围也比较有限，在黑客攻击、拒绝服务攻击、服务器劫持等方面几乎起不到什么作用。最关键的，SSL证书的信用链体系并不安全，特别是在某些国家可以控制CA根证书的情况下，中间人攻击一样可行。</p>
+<p><strong>Socket协议：基于TCP建立的链接</strong></p>
+<h1 id="Nginx的原理"><a href="#Nginx的原理" class="headerlink" title="Nginx的原理"></a>Nginx的原理</h1><ul>
+<li>Nginx接收用户请求是异步的，即先将用户请求全部接收下来，再一次性发送到后端Web服务器，极大减轻后端Web服务器的压力。 </li>
+<li>发送响应报文时，是边接收来自后端Web服务器的数据，边发送给客户端。 </li>
+<li><strong>多进程机制</strong><ul>
+<li>服务器每当收到一个客户端时，就有 服务器主进程 （ master process ）生成一个 子进程（ worker process ）出来和客户端建立连接进行交互，直到连接断开，该子进程就结束了。</li>
+</ul>
+</li>
+<li><strong>异步非阻塞机制</strong><ul>
+<li>每个工作进程 使用异步非阻塞方式 ，可以处理 多个客户端请求 。</li>
+</ul>
+</li>
+<li><strong>什么是反向代理</strong><ul>
+<li>反向代理服务器可以隐藏源服务器的存在和特征。它充当互联网云和web服务器之间的中间层。这对于安全方面来说是很好的，特别是当您使用web托管服务时。</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -682,7 +770,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -787,7 +875,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-四层协议"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP 四层协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">3.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">4.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-amp-UDP"><span class="nav-number">5.</span> <span class="nav-text">TCP &amp; UDP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-四层协议"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP 四层协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">3.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">4.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-amp-UDP"><span class="nav-number">5.</span> <span class="nav-text">TCP &amp; UDP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-前端知识"><span class="nav-number">6.</span> <span class="nav-text">Web 前端知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session的区别"><span class="nav-number">6.1.</span> <span class="nav-text">Cookie和Session的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-和-LocalStorage-的区别"><span class="nav-number">6.2.</span> <span class="nav-text">Cookie 和 LocalStorage 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocalStorage-和-SessionStorage-的区别"><span class="nav-number">6.3.</span> <span class="nav-text">LocalStorage 和 SessionStorage 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#csrf和xss的网络攻击及防范"><span class="nav-number">6.4.</span> <span class="nav-text">csrf和xss的网络攻击及防范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考回答："><span class="nav-number">6.4.1.</span> <span class="nav-text">参考回答：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS"><span class="nav-number">7.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#https的原理及其局限性"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">https的原理及其局限性</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx的原理"><span class="nav-number">8.</span> <span class="nav-text">Nginx的原理</span></a></li></div>
             
 
           </div>
