@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/2020/06/01/cpp-learning-note/</loc>
+    
+    <lastmod>2020-06-24T14:16:08.300Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2020/05/26/leetcode/</loc>
     
     <lastmod>2020-06-24T13:41:27.499Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://shunyangli.github.io/2020/05/12/Network/</loc>
     
     <lastmod>2020-06-24T13:20:54.709Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/2020/06/01/cpp-learning-note/</loc>
-    
-    <lastmod>2020-06-22T04:14:33.424Z</lastmod>
     
   </url>
   
