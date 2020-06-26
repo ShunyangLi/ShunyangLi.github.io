@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/2020/05/03/Algorithm/</loc>
+    
+    <lastmod>2020-06-26T06:03:12.906Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2020/06/26/Distributed-Things/</loc>
     
     <lastmod>2020-06-26T05:34:04.090Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://shunyangli.github.io/about/index.html</loc>
     
     <lastmod>2020-06-10T05:54:44.634Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/2020/05/03/Algorithm/</loc>
-    
-    <lastmod>2020-05-12T11:36:07.878Z</lastmod>
     
   </url>
   
