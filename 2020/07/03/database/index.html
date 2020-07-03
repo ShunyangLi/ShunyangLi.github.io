@@ -70,7 +70,7 @@
 <meta property="og:site_name" content="Charles&#39;s blog">
 <meta property="og:description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-03T04:30:06.675Z">
+<meta property="og:updated_time" content="2020-07-03T04:45:32.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="database">
 <meta name="twitter:description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
@@ -312,7 +312,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  894 字
+                  1.2k 字
                 </span>
               
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -383,6 +383,15 @@
 <p>如果没办法保证一致性会发生什么？</p>
 </blockquote>
 <p>例一：A账户有200元，转账300元出去，此时A账户余额为-100元。你自然就发现了此时数据是不一致的，为什么呢？因为你定义了一个状态，余额这列必须大于0。</p>
+<p><strong>数据库必须要实现AID三大特性，才有可能实现一致性。</strong>例如，原子性无法保证，显然一致性也无法保证。</p>
+<h2 id="MySQL怎么实现ACID的"><a href="#MySQL怎么实现ACID的" class="headerlink" title="MySQL怎么实现ACID的"></a>MySQL怎么实现ACID的</h2><p>MySQL里面InnoDB是使用<strong><code>undo log</code> 是实现原子性</strong>的关键，<strong>当事物回滚的时候能够撤销所有已经成功执行的SQL语句。</strong>他需要记录你要回滚的相应日志信息：</p>
+<ol>
+<li>当你delete一条数据的时候，就需要记录这条数据的信息，回滚的时候，insert这条旧数据</li>
+<li>当你update一条数据的时候，就需要记录之前的旧值，回滚的时候，根据旧值执行update操作</li>
+<li>当年insert一条数据的时候，就需要这条记录的主键，回滚的时候，根据主键执行delete操作</li>
+</ol>
+<p>InnoDB使用<strong><code>redo log</code>是实现持久性</strong>的关键，Mysql是先把磁盘上的数据加载到内存中，在内存中对数据进行修改，同时会在<code>redo log</code>里面记录该操作，当宕机重启之后，会将<code>redo log</code>中的内容回复到数据库里面。</p>
+<p><strong>MySQL使用的是锁和MVCC机制保证隔离性。</strong></p>
 
       
     </div>
@@ -620,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Database"><span class="nav-number">1.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的三大范式"><span class="nav-number">2.</span> <span class="nav-text">数据库的三大范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引擎"><span class="nav-number">3.</span> <span class="nav-text">引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL的ACID原理"><span class="nav-number">4.</span> <span class="nav-text">MySQL的ACID原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Database"><span class="nav-number">1.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的三大范式"><span class="nav-number">2.</span> <span class="nav-text">数据库的三大范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引擎"><span class="nav-number">3.</span> <span class="nav-text">引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL的ACID原理"><span class="nav-number">4.</span> <span class="nav-text">MySQL的ACID原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL怎么实现ACID的"><span class="nav-number">4.1.</span> <span class="nav-text">MySQL怎么实现ACID的</span></a></li></ol></li></ol></div>
             
 
           </div>
