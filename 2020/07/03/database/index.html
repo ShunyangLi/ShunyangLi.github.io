@@ -55,25 +55,25 @@
 
 
 
-  <meta name="keywords" content="Flask,JS,Socket,">
+  <meta name="keywords" content="db,">
 
 
 
   <link rel="alternate" href="/atom.xml" title="Charles's blog" type="application/atom+xml">
 
 
-<meta name="description" content="Flask socket IO 是Flask应用程序能够访问客户端和服务器之间的低延迟双向通信。Socket IO可以保持backend和frontend之间实时双向通讯。Socket IO 主要使用了WebSocket协议。只要是支持socket.io 的语言都可以使用。scoket.io GitHub socket io的GitHub源码所在。 安装和依赖直接使用pip3安装就行: 1pip3">
-<meta name="keywords" content="Flask,JS,Socket">
+<meta name="description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
+<meta name="keywords" content="db">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Socket IO">
-<meta property="og:url" content="https://shunyangli.github.io/2019/10/31/Socket-IO/index.html">
+<meta property="og:title" content="database">
+<meta property="og:url" content="https://shunyangli.github.io/2020/07/03/database/index.html">
 <meta property="og:site_name" content="Charles&#39;s blog">
-<meta property="og:description" content="Flask socket IO 是Flask应用程序能够访问客户端和服务器之间的低延迟双向通信。Socket IO可以保持backend和frontend之间实时双向通讯。Socket IO 主要使用了WebSocket协议。只要是支持socket.io 的语言都可以使用。scoket.io GitHub socket io的GitHub源码所在。 安装和依赖直接使用pip3安装就行: 1pip3">
+<meta property="og:description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-16T10:31:10.328Z">
+<meta property="og:updated_time" content="2020-07-03T04:30:06.675Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Socket IO">
-<meta name="twitter:description" content="Flask socket IO 是Flask应用程序能够访问客户端和服务器之间的低延迟双向通信。Socket IO可以保持backend和frontend之间实时双向通讯。Socket IO 主要使用了WebSocket协议。只要是支持socket.io 的语言都可以使用。scoket.io GitHub socket io的GitHub源码所在。 安装和依赖直接使用pip3安装就行: 1pip3">
+<meta name="twitter:title" content="database">
+<meta name="twitter:description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -100,14 +100,14 @@
 </script>
 
 
-  <link rel="canonical" href="https://shunyangli.github.io/2019/10/31/Socket-IO/">
+  <link rel="canonical" href="https://shunyangli.github.io/2020/07/03/database/">
 
 
 
 
   
   <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
-  <title>Socket IO | Charles's blog</title>
+  <title>database | Charles's blog</title>
   
 
 
@@ -236,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2019/10/31/Socket-IO/">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2020/07/03/database/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Charles">
@@ -253,7 +253,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Socket IO</h2>
+          <h2 class="post-title" itemprop="name headline">database</h2>
         
 
         <div class="post-meta">
@@ -265,8 +265,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-31T17:47:45+11:00">
-                2019-10-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-03T13:47:42+10:00">
+                2020-07-03
               </time>
             
 
@@ -276,28 +276,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Backend/" itemprop="url" rel="index">
-                    <span itemprop="name">Backend</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -306,8 +284,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/10/31/Socket-IO/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/31/Socket-IO/" itemprop="commentCount"></span>
+                <a href="/2020/07/03/database/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/03/database/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -334,7 +312,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  622 字
+                  894 字
                 </span>
               
 
@@ -350,7 +328,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2 分钟
+                  3 分钟
                 </span>
               
             </div>
@@ -371,43 +349,40 @@
       
 
       
-        <p>Flask socket IO 是Flask应用程序能够访问客户端和服务器之间的低延迟双向通信。Socket IO可以保持backend和frontend之间实时双向通讯。Socket IO 主要使用了WebSocket协议。只要是支持<a href="https://socket.io/" target="_blank" rel="noopener">socket.io</a> 的语言都可以使用。<a href="https://github.com/socketio/socket.io" target="_blank" rel="noopener">scoket.io GitHub</a> socket io的GitHub源码所在。</p>
-<h1 id="安装和依赖"><a href="#安装和依赖" class="headerlink" title="安装和依赖"></a>安装和依赖</h1><p>直接使用<code>pip3</code>安装就行:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install flask-socketio</span><br></pre></td></tr></table></figure>
-
-<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>Flask socketio 这个扩展完全兼容了python2.7和python3.3+版本。对于flask Socket io的异步服务的推荐选择：</p>
-<p><a href="http://eventlet.net/" target="_blank" rel="noopener">eventlet</a> 推荐使用，这个效率比较高，支持长轮询和 WebSocket 传输。也可以直接用<code>pip3</code> 来安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install eventlet</span><br></pre></td></tr></table></figure>
-
-<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><p>在Flask的程序中使用flask socket io：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, render_template</span><br><span class="line"><span class="keyword">from</span> flask_socketio <span class="keyword">import</span> SocketIO</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'vnkdjnfjknfl1232#'</span></span><br><span class="line">socketio = SocketIO(app)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    socketio.run(app)</span><br></pre></td></tr></table></figure>
-
-<p><code>app.config[&#39;SECRET_KEY&#39;]</code> 必须要配置，是为了保证加密传输的安全性。<code>socketio.run</code> 封装并替换了<code>app.run</code>的启动方式。在此环境下优先使用<code>eventlet</code></p>
-<p>以及在HTML里面怎么使用socket io：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> socket = io.connect(<span class="string">'http://'</span> + <span class="built_in">document</span>.domain + <span class="string">':'</span> + location.port);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这里的<code>document.domain</code>和<code>location.port</code>是web相对的IP和端口。可以自动适配，也可以手动修改成所需要的IP和端口。</p>
-<h1 id="接受和发送消息"><a href="#接受和发送消息" class="headerlink" title="接受和发送消息"></a>接受和发送消息</h1><p>接受消息在flask里面可以这样使用，这是<code>msg</code>可以是不同的数据类型，可以是json，str，也可以是多个参数的组合:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('receive')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_receive</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">'You receive message: '</span>, msg)</span><br></pre></td></tr></table></figure>
-
-<p>发送消息:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@socketio.on('send')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_send</span><span class="params">(msg)</span>:</span></span><br><span class="line">    socketio.emit(<span class="string">'receive'</span>, msg)</span><br></pre></td></tr></table></figure>
-
-<p>也可以只用<code>send</code>的方式发送。具体的可以查一下，一般只用定向发送。</p>
-<p>在HTML里面接受数据的使用方法和在flask里面类似：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'receive'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> msg </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(len, wid);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这样就可以接收到从后端传输的数据。</p>
-<p>发送消息：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socket.emit(<span class="string">'receive'</span>, &#123;</span><br><span class="line">    msg: <span class="string">'hello world'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这样后端就能接收到来自前端的消息。</p>
-<p>之前写了一个用socket io实现的live chat给大家分享一下:</p>
-<p><a href="socket.zip">live chat</a></p>
-<p><strong>重点提示一下，<code>socketio</code>存在跨域问题，试过网上的好几种方法都不可以。找到了唯一能用的方法：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socketio = SocketIO(app, cors_allowed_origins=&apos;*&apos;)</span><br></pre></td></tr></table></figure>
-
-<p>最后：这两天事情有点多，等有时间重新详细写一下。。。</p>
+        <h1 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h1><p>包含一些database常见的问题，MySQL的索引，怎么使用索引等等。</p>
+<h1 id="数据库的三大范式"><a href="#数据库的三大范式" class="headerlink" title="数据库的三大范式"></a>数据库的三大范式</h1><p>第一范式：每个列都不能再拆分</p>
+<p>第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分</p>
+<p>第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。</p>
+<h1 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h1><p>MySQL里面储存引擎MyISAM与InnoDB的区别：</p>
+<p><strong>InnoDB引擎：</strong>提供了对数据库ACID的支持，并且提供了行级锁和外键的约束。它的设计目的就是处理大数据容量的数据库系统。<strong>可以自适应哈希索引</strong>（聚簇索引：在索引中保存了数据，从而避免直接读取磁盘，因此对查询性能有很大的提升）</p>
+<p><strong>MyISAM引擎：</strong>不提供事务支持，也不支持行级锁和外键。<strong>只支持表级锁。支持压缩表和空间数据索引。</strong>（非聚簇索引：索引和数据分开存，在索引里面找到需要的内存地址，然后去读取）</p>
+<p>MyISAM 崩溃后发生损坏的概率比 InnoDB 高很多，而且恢复的速度也更慢。InnoDB现在是MySQL的默认引擎。</p>
+<h1 id="MySQL的ACID原理"><a href="#MySQL的ACID原理" class="headerlink" title="MySQL的ACID原理"></a>MySQL的ACID原理</h1><p><strong>原子性(Atomicity)、一致性(Consistency)、隔离性(Isolation)、持久性(Durability)</strong></p>
+<p>我们以从A账户转账50元到B账户为例进行说明一下ACID，四大特性。</p>
+<p><strong>原子性：</strong></p>
+<p>一个事物是一个不可分割的单位，其中的操作<strong>要么全做，要么不做，不存在中间状态。</strong>要么转账成功，要么失败，不存在中间状态。</p>
+<blockquote>
+<p>如果没办法保证原子性会怎么样？</p>
+</blockquote>
+<p>可能会导致A的账户少了50元，但是B的账户也没多50。系统总金额会少50.。。。</p>
+<p><strong>隔离性：</strong></p>
+<p>是指在并发执行的时候，<em>事务内部的操作与其他的事务是隔离的</em>，并发操作的时候各个事务之间不能相互干扰。</p>
+<blockquote>
+<p>如果没办法保证隔离性会发生什么？</p>
+</blockquote>
+<p>比如说A有200，B有0，A向B转账两次，每次50元。如果没发保证隔离性，就会导致A扣款了两次，但是B只增加了一次，A就变成了100，B只有50。又凭空蒸发了。</p>
+<p><strong>持久性：</strong></p>
+<p>指的是当事务提交之后，它对数据库的改变就应该是永久性的。如果接下来有什么错误发生也不会被影响到。</p>
+<blockquote>
+<p>如果没办法保证持久性会发生什么？</p>
+</blockquote>
+<p>如果你正在写入磁盘的时候，突然服务器宕机了，在内存中修改的数据全部丢失了，持久性就无法保证。</p>
+<p><strong>一致性：</strong></p>
+<p>是指事务执行前后，数据处于一种合法的状态。。那什么是合法的数据状态呢？ oK，这个状态是满足预定的约束就叫做合法的状态，再通俗一点，这状态是由你自己来定义的。<strong>「满足这个状态，数据就是一致的，不满足这个状态，数据就是不一致的」</strong>！（就是自己去规定的一个状态，比如账户余额必须大于100）</p>
+<blockquote>
+<p>如果没办法保证一致性会发生什么？</p>
+</blockquote>
+<p>例一：A账户有200元，转账300元出去，此时A账户余额为-100元。你自然就发现了此时数据是不一致的，为什么呢？因为你定义了一个状态，余额这列必须大于0。</p>
 
       
     </div>
@@ -430,11 +405,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Flask/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Flask</a>
-          
-            <a href="/tags/JS/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> JS</a>
-          
-            <a href="/tags/Socket/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Socket</a>
+            <a href="/tags/db/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> db</a>
           
         </div>
       
@@ -447,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/18/PayPal/" rel="next" title="PayPal">
-                <i class="fa fa-chevron-left"></i> PayPal
+              <a href="/2020/06/26/Distributed-Things/" rel="next" title="Distributed Things">
+                <i class="fa fa-chevron-left"></i> Distributed Things
               </a>
             
           </div>
@@ -456,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/05/Nginx/" rel="prev" title="Nginx">
-                Nginx <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -653,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装和依赖"><span class="nav-number">1.</span> <span class="nav-text">安装和依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">1.1.</span> <span class="nav-text">依赖</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化"><span class="nav-number">2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接受和发送消息"><span class="nav-number">3.</span> <span class="nav-text">接受和发送消息</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Database"><span class="nav-number">1.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的三大范式"><span class="nav-number">2.</span> <span class="nav-text">数据库的三大范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引擎"><span class="nav-number">3.</span> <span class="nav-text">引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL的ACID原理"><span class="nav-number">4.</span> <span class="nav-text">MySQL的ACID原理</span></a></li></ol></div>
             
 
           </div>
