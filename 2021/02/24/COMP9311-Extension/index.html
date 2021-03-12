@@ -70,7 +70,7 @@
 <meta property="og:site_name" content="Charles&#39;s blog">
 <meta property="og:description" content="COMP9311 extensionBackgroud information grieg means a server named grieg  Login CSE/GRIEGYou can log in to cse server by using the following command: 1ssh ZID@cse.unsw.edu.au  PS: Please replace ZID w">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-03-02T23:10:04.746Z">
+<meta property="og:updated_time" content="2021-03-12T00:42:48.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP9311 Extension ">
 <meta name="twitter:description" content="COMP9311 extensionBackgroud information grieg means a server named grieg  Login CSE/GRIEGYou can log in to cse server by using the following command: 1ssh ZID@cse.unsw.edu.au  PS: Please replace ZID w">
@@ -334,7 +334,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  528 字
+                  607 字
                 </span>
               
 
@@ -433,6 +433,35 @@
 
 <p>Where <code>ZID</code> is your zid. Now, you can use <code>ssh cse</code> instead of <code>ssh zid@cse.unsw.edu.au</code>.</p>
 <h1 id="Lab-02"><a href="#Lab-02" class="headerlink" title="Lab 02"></a>Lab 02</h1><p>The lab 02 slides is available <a href="https://docs.google.com/presentation/d/1nRCQGahTeVD0qvVuNeTMYEBgLvrqs-rvqKCjTJjMUOc/edit?usp=sharing" target="_blank" rel="noopener">here</a>, if you have any issues, please email me.</p>
+<h1 id="Lab03"><a href="#Lab03" class="headerlink" title="Lab03"></a>Lab03</h1><h2 id="Step-up"><a href="#Step-up" class="headerlink" title="Step up"></a>Step up</h2><ol>
+<li><p>Download the <a href="https://www.cse.unsw.edu.au/~cs9311/21T1/lab/04/weblog.zip" target="_blank" rel="noopener">weblog.zip</a> by using <code>wget</code> command in the terminal: <code>wget https://www.cse.unsw.edu.au/~cs9311/21T1/lab/04/weblog.zip</code></p>
+</li>
+<li><p>Unzip the weblog.zip files: <code>unzip weblog.zip</code></p>
+</li>
+<li><p>Create a database for this lab: <code>createdb weblog</code></p>
+</li>
+<li><p>Load SQL file</p>
+<ol>
+<li><p>switch to the weblog directory: <code>cd weblog</code></p>
+</li>
+<li><p>load schema: <code>psql weblog -f schema.sql</code></p>
+</li>
+<li><p>load data sql file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">psql weblog -f Hosts.sql</span><br><span class="line">psql weblog -f Sessions.sql</span><br><span class="line">psql weblog -f Accesses.sql</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<p>Regex online test:</p>
+<div>
+    <iframe src="https://regex101.com" width="300" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe>
+</div>
+
+
+
+
+
 
       
     </div>
@@ -670,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#COMP9311-extension"><span class="nav-number">1.</span> <span class="nav-text">COMP9311 extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgroud-information"><span class="nav-number">1.1.</span> <span class="nav-text">Backgroud information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-CSE-GRIEG"><span class="nav-number">1.2.</span> <span class="nav-text">Login CSE/GRIEG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-in-to-cse-server-without-password"><span class="nav-number">1.3.</span> <span class="nav-text">Log in to cse server without password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash-profile-settings"><span class="nav-number">1.4.</span> <span class="nav-text">.bash_profile settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-display"><span class="nav-number">1.5.</span> <span class="nav-text">Terminal display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-files-to-cse-server"><span class="nav-number">1.6.</span> <span class="nav-text">Upload files to cse server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-config"><span class="nav-number">1.7.</span> <span class="nav-text">SSH config</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-02"><span class="nav-number">2.</span> <span class="nav-text">Lab 02</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#COMP9311-extension"><span class="nav-number">1.</span> <span class="nav-text">COMP9311 extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgroud-information"><span class="nav-number">1.1.</span> <span class="nav-text">Backgroud information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-CSE-GRIEG"><span class="nav-number">1.2.</span> <span class="nav-text">Login CSE/GRIEG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-in-to-cse-server-without-password"><span class="nav-number">1.3.</span> <span class="nav-text">Log in to cse server without password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash-profile-settings"><span class="nav-number">1.4.</span> <span class="nav-text">.bash_profile settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-display"><span class="nav-number">1.5.</span> <span class="nav-text">Terminal display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-files-to-cse-server"><span class="nav-number">1.6.</span> <span class="nav-text">Upload files to cse server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-config"><span class="nav-number">1.7.</span> <span class="nav-text">SSH config</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-02"><span class="nav-number">2.</span> <span class="nav-text">Lab 02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab03"><span class="nav-number">3.</span> <span class="nav-text">Lab03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-up"><span class="nav-number">3.1.</span> <span class="nav-text">Step up</span></a></li></ol></li></ol></div>
             
 
           </div>
