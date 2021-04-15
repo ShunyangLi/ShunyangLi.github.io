@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shunyangli.github.io/"/>
-  <updated>2021-03-12T02:19:31.320Z</updated>
+  <updated>2021-04-15T11:39:56.261Z</updated>
   <id>https://shunyangli.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Automatically generate gitignore</title>
+    <link href="https://shunyangli.github.io/2021/04/15/Automatically-generate-gitignore/"/>
+    <id>https://shunyangli.github.io/2021/04/15/Automatically-generate-gitignore/</id>
+    <published>2021-04-15T11:25:59.000Z</published>
+    <updated>2021-04-15T11:39:56.261Z</updated>
+    
+    <content type="html"><![CDATA[<p>We use <a href="https://github.com/" target="_blank" rel="noopener">Git</a> a lot when working on projects, but not all of the files we need to put into github, such as datasets, virtual environments, and configuration files. So we need to configure .gitignore to automatically ignore these files that don’t need to be added to the Git admin. Configuring .gitignore is usually tedious because you need to add all the uncessary files.</p><p><a href="https://github.com/Antrikshy/ignr.py" target="_blank" rel="noopener">ignr</a> is a tool which can generate .gitignore files automatically. It is implmeneted by Python.</p><h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>If you already installed python and pip, then you can execute the following command:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ignr</span><br></pre></td></tr></table></figure><h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>The <a href="https://github.com/Antrikshy/ignr.py" target="_blank" rel="noopener">ignr</a> supports over four hundred different .gitignore templates, which we can view with the<code>ignr -l</code>command or search for with the <code>ignr -s</code>  command. For example:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ignr -s python</span><br></pre></td></tr></table></figure><p>Searches for supplied query in list of available templates from gitignore.io.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ignr -n python</span><br></pre></td></tr></table></figure><p>It will generate python’s project gitignore file in the currect directory.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;We use &lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Git&lt;/a&gt; a lot when working on projects, but not all of the files we n
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="https://shunyangli.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="https://shunyangli.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>COMP9311 Extension </title>
@@ -303,9 +329,9 @@
     
       <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
-    
       <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
+    
+      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
     
   </entry>
   
