@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/about/index.html</loc>
+    
+    <lastmod>2021-04-16T05:44:29.613Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2021/04/15/Bidirectional-BFS/</loc>
     
-    <lastmod>2021-04-15T14:04:05.253Z</lastmod>
+    <lastmod>2021-04-15T14:05:01.173Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://shunyangli.github.io/2021/04/15/Automatically-generate-gitignore/</loc>
     
     <lastmod>2021-04-15T11:39:56.261Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/about/index.html</loc>
-    
-    <lastmod>2021-04-15T09:38:18.779Z</lastmod>
     
   </url>
   
