@@ -1,6 +1,6 @@
 ! function(e, t, a) {
     function n() {
-        c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;}.heart:after,.heart:before{content: '🐶';width: inherit;height: inherit;background: inherit;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), o(), r()
+        c(".heart {content: '🐶';}"), o(), r()
     }
 
     function r() {
