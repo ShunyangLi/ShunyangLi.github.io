@@ -355,9 +355,9 @@
     
       <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
-    
       <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
+    
+      <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
     
   </entry>
   
@@ -421,11 +421,11 @@
       <category term="web" scheme="https://shunyangli.github.io/categories/Backend/Google-Login/JS/web/"/>
     
     
+      <category term="Backend" scheme="https://shunyangli.github.io/tags/Backend/"/>
+    
       <category term="Google Login" scheme="https://shunyangli.github.io/tags/Google-Login/"/>
     
       <category term="Frontend" scheme="https://shunyangli.github.io/tags/Frontend/"/>
-    
-      <category term="Backend" scheme="https://shunyangli.github.io/tags/Backend/"/>
     
   </entry>
   
