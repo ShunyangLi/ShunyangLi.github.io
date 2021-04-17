@@ -1,10 +1,10 @@
 ! function(e, t, a) {
     function n() {
-        c(".heart {content: '🐶';}"), o(), r()
+        c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;}.heart:after,.heart:before{content: '🐶';width: inherit;height: inherit;background: inherit;position: fixed;}"), o(), r()
     }
 
     function r() {
-        for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999");
+        for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";background:" + d[e].color + ";z-index:99999");
         requestAnimationFrame(r)
     }
 
