@@ -1,6 +1,6 @@
 ! function(e, t, a) {
     function n() {
-        c(".heart{width: 10px;height: 10px;position: fixed;background:  rgba(255,255,255,0.1);transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '🐶';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), o(), r()
+        c(".heart{width: 10px;height: 10px;position: fixed;background:  rgba(255,255,255,0.2);transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '🐶';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), o(), r()
     }
 
     function r() {

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shunyangli.github.io/"/>
-  <updated>2021-04-15T14:05:01.173Z</updated>
+  <updated>2021-04-19T01:51:58.276Z</updated>
   <id>https://shunyangli.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Academic Graph Drawing</title>
+    <link href="https://shunyangli.github.io/2021/04/19/Academic-Graph-Drawing/"/>
+    <id>https://shunyangli.github.io/2021/04/19/Academic-Graph-Drawing/</id>
+    <published>2021-04-19T01:39:15.000Z</published>
+    <updated>2021-04-19T01:51:58.276Z</updated>
+    
+    <content type="html"><![CDATA[<p>Academic diagramming often requires very clear expressions. Sometimes colored lines are difficult to show up after printing. So we need to add some different symbols to the line/bar, such as different shapes, circles, x’s, +’s, etc. The following code is written by Yuting Zhang.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">'savefig.dpi'</span>] = <span class="number">300</span> </span><br><span class="line">plt.rcParams[<span class="string">'figure.dpi'</span>] = <span class="number">300</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">path = os.getcwd() + <span class="string">'/figure'</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path):</span><br><span class="line">    os.mkdir(path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define plot line function</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_line</span><span class="params">(a, data,COLOR,LINESTYLE,MAKER,LABEL)</span>:</span></span><br><span class="line">    plt.plot(a,data,color=COLOR,linestyle=LINESTYLE, </span><br><span class="line">             markersize=<span class="number">15</span>, </span><br><span class="line">             markeredgewidth =<span class="number">1.5</span>,</span><br><span class="line">             markerfacecolor=<span class="string">'none'</span>,</span><br><span class="line">             marker=MAKER,label = LABEL)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#vary ab time</span></span><br><span class="line">plt.style.use(<span class="string">'default'</span>)</span><br><span class="line">plt.rcParams[<span class="string">'axes.linewidth'</span>] = <span class="number">1.5</span></span><br><span class="line">plt.rcParams[<span class="string">"legend.framealpha"</span>] = <span class="number">0</span></span><br><span class="line">plt.rcParams[<span class="string">"legend.handletextpad"</span>] = <span class="number">0.1</span></span><br><span class="line">plt.rcParams[<span class="string">"legend.columnspacing"</span>] = <span class="number">0.5</span></span><br><span class="line"><span class="comment">#book</span></span><br><span class="line">a = [<span class="number">0.12321</span>,<span class="number">0.324</span>,<span class="number">0.1231</span>,<span class="number">0.3242</span>,<span class="number">0.563445</span>]</span><br><span class="line">b = [<span class="number">0.42</span>,<span class="number">0.234</span>,<span class="number">0.254534</span>,<span class="number">0.131243</span>,<span class="number">0.64321</span>]</span><br><span class="line"></span><br><span class="line">index_x = [<span class="string">'0.1'</span>, <span class="string">'0.3'</span>, <span class="string">'0.5'</span>, <span class="string">'0.7'</span>,<span class="string">'0.9'</span>]</span><br><span class="line">plot_line(index_x, a, <span class="string">'black'</span>, <span class="string">'dashed'</span>, <span class="string">"o"</span>, <span class="string">"a"</span>)</span><br><span class="line">plot_line(index_x, b, <span class="string">'black'</span>, <span class="string">'dashed'</span>, <span class="string">"x"</span>, <span class="string">"b"</span>)</span><br><span class="line"></span><br><span class="line">font2 = &#123;<span class="string">'weight'</span>: <span class="string">'normal'</span>, <span class="string">'size'</span>: <span class="number">20</span>&#125;</span><br><span class="line">plt.yscale(<span class="string">'log'</span>)</span><br><span class="line">plt.ylim(<span class="number">0.01</span>,<span class="number">2</span>*pow(<span class="number">10</span>,<span class="number">0</span>))</span><br><span class="line">plt.ylabel(<span class="string">"Time(s)"</span>,fontsize = <span class="number">20</span>)</span><br><span class="line">plt.xlabel(<span class="string">'c'</span>,fontsize = <span class="number">20</span>)</span><br><span class="line">plt.yticks(size = <span class="number">20</span>)</span><br><span class="line">plt.xticks(size = <span class="number">20</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper center'</span>,ncol=<span class="number">2</span>, frameon=<span class="literal">False</span>, prop = font2) <span class="comment">#去掉图例边框</span></span><br><span class="line"><span class="comment"># plt.show()</span></span><br><span class="line">plt.savefig(path + <span class="string">"example.pdf"</span>, bbox_inches=<span class="string">'tight'</span>)</span><br></pre></td></tr></table></figure><p><img src="/2021/04/19/Academic-Graph-Drawing/1.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Academic diagramming often requires very clear expressions. Sometimes colored lines are difficult to show up after printing. So we need t
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Academic" scheme="https://shunyangli.github.io/tags/Academic/"/>
+    
+  </entry>
   
   <entry>
     <title>Bidirectional BFS</title>
@@ -355,9 +379,9 @@
     
       <category term="Flask" scheme="https://shunyangli.github.io/tags/Flask/"/>
     
-      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
-    
       <category term="Socket" scheme="https://shunyangli.github.io/tags/Socket/"/>
+    
+      <category term="JS" scheme="https://shunyangli.github.io/tags/JS/"/>
     
   </entry>
   
