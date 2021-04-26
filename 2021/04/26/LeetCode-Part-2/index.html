@@ -55,25 +55,25 @@
 
 
 
-  <meta name="keywords" content="Algorithm,">
+  <meta name="keywords" content="leetcode,algorithm,">
 
 
 
   <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
 
 
-<meta name="description" content="A* search algorithm is a heuristic search which works on path planning and graph traversal (weighted).It is an extension of Dijkstra algorithm. The formula of Dijkstra is $f(n)=g(n)$, and the formula">
-<meta name="keywords" content="Algorithm">
+<meta name="description" content="An extension of leetcode. Keep working on leetcode. Daily TemperaturesDaily Temperatures: Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many d">
+<meta name="keywords" content="leetcode,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A* Search Algorithm">
-<meta property="og:url" content="https://shunyangli.github.io/2021/04/21/A-Search-Algorithm/index.html">
+<meta property="og:title" content="LeetCode Part 2">
+<meta property="og:url" content="https://shunyangli.github.io/2021/04/26/LeetCode-Part-2/index.html">
 <meta property="og:site_name" content="Shunyang Li">
-<meta property="og:description" content="A* search algorithm is a heuristic search which works on path planning and graph traversal (weighted).It is an extension of Dijkstra algorithm. The formula of Dijkstra is $f(n)=g(n)$, and the formula">
+<meta property="og:description" content="An extension of leetcode. Keep working on leetcode. Daily TemperaturesDaily Temperatures: Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many d">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-21T04:33:06.436Z">
+<meta property="og:updated_time" content="2021-04-26T04:49:43.683Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A* Search Algorithm">
-<meta name="twitter:description" content="A* search algorithm is a heuristic search which works on path planning and graph traversal (weighted).It is an extension of Dijkstra algorithm. The formula of Dijkstra is $f(n)=g(n)$, and the formula">
+<meta name="twitter:title" content="LeetCode Part 2">
+<meta name="twitter:description" content="An extension of leetcode. Keep working on leetcode. Daily TemperaturesDaily Temperatures: Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many d">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -100,14 +100,14 @@
 </script>
 
 
-  <link rel="canonical" href="https://shunyangli.github.io/2021/04/21/A-Search-Algorithm/">
+  <link rel="canonical" href="https://shunyangli.github.io/2021/04/26/LeetCode-Part-2/">
 
 
 
 
   
   <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
-  <title>A* Search Algorithm | Shunyang Li</title>
+  <title>LeetCode Part 2 | Shunyang Li</title>
   
 
 
@@ -236,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/04/21/A-Search-Algorithm/">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/04/26/LeetCode-Part-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shunyang Li">
@@ -253,7 +253,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">A* Search Algorithm</h2>
+          <h2 class="post-title" itemprop="name headline">LeetCode Part 2</h2>
         
 
         <div class="post-meta">
@@ -265,8 +265,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-21T14:06:33+10:00">
-                2021-04-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-26T14:30:31+10:00">
+                2021-04-26
               </time>
             
 
@@ -288,8 +288,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -306,8 +306,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/21/A-Search-Algorithm/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2021/04/21/A-Search-Algorithm/" itemprop="commentCount"></span>
+                <a href="/2021/04/26/LeetCode-Part-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/04/26/LeetCode-Part-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -334,7 +334,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  113 words
+                  448 words
                 </span>
               
 
@@ -350,7 +350,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 minutes
+                  2 minutes
                 </span>
               
             </div>
@@ -371,8 +371,20 @@
       
 
       
-        <p>A* search algorithm is a heuristic search which works on path planning and graph traversal (weighted).<br>It is an extension of <a href="https://shunyangli.github.io/2020/05/03/Algorithm/">Dijkstra</a> algorithm. The formula of Dijkstra is $f(n)=g(n)$, and the formula of A* is $f(n)=g(n) + h(n)$, where $g(n)$ is the cost from start to current node and $h(n)$ is the estimated cost from source node to target node. Manhattan distance or Euclidean distance is usually used to estimate. A* algorithm is better than Dijkstra when $h(n)$ is admissible (never overstimates). The time complexity is $O(|E|log|V|)$ and space complexity is $O(|v|)$. The worst case is same with Dijkstra. </p>
-<h1 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode"></a>Pseudocode</h1>
+        <p>An extension of <a href="https://shunyangli.github.io/2020/05/26/leetcode/#more">leetcode</a>. Keep working on leetcode.</p>
+<h1 id="Daily-Temperatures"><a href="#Daily-Temperatures" class="headerlink" title="Daily Temperatures"></a>Daily Temperatures</h1><p><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank" rel="noopener">Daily Temperatures</a>: Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.</p>
+<p>For example, given the list of temperatures T = [73, 74, 75, 71, 69, 72, 76, 73], your output should be [1, 1, 4, 2, 1, 1, 0, 0].</p>
+<p>The naive approach is use loop to solve that:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        num = len(T) - <span class="number">1</span></span><br><span class="line">        data = [<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T) - <span class="number">2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> T[i] &gt;= T[num]:</span><br><span class="line">                data.insert(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">                num = i</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count = <span class="number">1</span></span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, num + <span class="number">1</span>):</span><br><span class="line">                    <span class="keyword">if</span> T[j] &lt;= T[i]:</span><br><span class="line">                        count += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">                data.insert(<span class="number">0</span>, count)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+
+<p>However, the worst time complexity is $O(N^2)$. The code can not pass one of the complex test case which is (Time Limit Exceeded).</p>
+<p>Stack can be used to improve the efficiency of this issue. We use stack to store a key-value temperature with decreasing order where key is the index of temperature, and value is the temperature. The time complexity of this approache is $O(N)$. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Temperature: [73, 74, 75, 71, 69, 72, 76, 73]</span><br><span class="line">stack = []</span><br><span class="line">res = [0, 0, 0, 0, 0, 0, 0, 0]</span><br><span class="line"></span><br><span class="line">1. index = 0</span><br><span class="line">stack = [(0, 73)]</span><br><span class="line"></span><br><span class="line">2. index = 1</span><br><span class="line">74 &gt; 73, pop (0, 73) and set res[0] = index - 0</span><br><span class="line">stack = [(1, 74)]</span><br><span class="line">res = [1, 0, 0, 0, 0, 0, 0, 0]</span><br><span class="line"></span><br><span class="line">3. index = 2</span><br><span class="line">75 &gt; 74, pop (1, 74) and set res[1] = index - 1</span><br><span class="line">stack = [(2, 75)]</span><br><span class="line">res = [1, 1, 0, 0, 0, 0, 0, 0]</span><br><span class="line"></span><br><span class="line">4. index = 3</span><br><span class="line">71 &lt; 75, add (3, 71) into stack</span><br><span class="line">stack = [(2, 75), (3, 71)]</span><br><span class="line"></span><br><span class="line">5. index = 4</span><br><span class="line">69 &lt; 71, add (3, 69) into stack</span><br><span class="line">stack = [(2, 75), (3, 71), (4, 69)]</span><br><span class="line"></span><br><span class="line">6. index = 5</span><br><span class="line">72 &lt; 69, pop (4, 69) and (3, 71), set res[4] = index - 4, and res[3] = index - 3</span><br><span class="line">stack = [(2, 75), (5, 72)]</span><br><span class="line">res = [1, 1, 0, 2, 1, 0, 0, 0]</span><br><span class="line"></span><br><span class="line">7. index = 6</span><br><span class="line">76 &gt; 72 pop (5, 72) and (2, 75), set res[5] = index - 5, and res[2] = index -2</span><br><span class="line">stack = []</span><br><span class="line">res = [1, 1, 4, 2, 1, 1, 0, 0]</span><br></pre></td></tr></table></figure>
+
+<p>And implementation is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        stack = []</span><br><span class="line">        res = [<span class="number">0</span>] * len(T)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(T)):</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> stack[<span class="number">-1</span>][<span class="number">1</span>] &lt; T[i]:</span><br><span class="line">                index, val = stack.pop()</span><br><span class="line">                res[index] = i - index</span><br><span class="line"></span><br><span class="line">            stack.append((i, T[i]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -394,7 +406,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Algorithm</a>
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> leetcode</a>
+          
+            <a href="/tags/algorithm/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> algorithm</a>
           
         </div>
       
@@ -407,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/04/19/Academic-Graph-Drawing/" rel="next" title="Academic Graph Drawing">
-                <i class="fa fa-chevron-left"></i> Academic Graph Drawing
+              <a href="/2021/04/25/Prime-Number/" rel="next" title="Prime Number">
+                <i class="fa fa-chevron-left"></i> Prime Number
               </a>
             
           </div>
@@ -416,10 +430,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/04/25/Prime-Number/" rel="prev" title="Prime Number">
-                Prime Number <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -613,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pseudocode"><span class="nav-number">1.</span> <span class="nav-text">Pseudocode</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Daily-Temperatures"><span class="nav-number">1.</span> <span class="nav-text">Daily Temperatures</span></a></li></ol></div>
             
 
           </div>
