@@ -62,18 +62,18 @@
   <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
 
 
-<meta name="description" content="COMP9311 extensionBackgroud information grieg means a server named grieg  Login CSE/GRIEGYou can log in to cse server by using the following command: 1ssh ZID@cse.unsw.edu.au  PS: Please replace ZID w">
+<meta name="description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
 <meta name="keywords" content="COMP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="COMP9311 Extension ">
 <meta property="og:url" content="https://shunyangli.github.io/2021/02/24/COMP9311-Extension/index.html">
 <meta property="og:site_name" content="Shunyang Li">
-<meta property="og:description" content="COMP9311 extensionBackgroud information grieg means a server named grieg  Login CSE/GRIEGYou can log in to cse server by using the following command: 1ssh ZID@cse.unsw.edu.au  PS: Please replace ZID w">
+<meta property="og:description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-03-12T02:19:31.320Z">
+<meta property="og:updated_time" content="2021-05-03T02:58:54.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP9311 Extension ">
-<meta name="twitter:description" content="COMP9311 extensionBackgroud information grieg means a server named grieg  Login CSE/GRIEGYou can log in to cse server by using the following command: 1ssh ZID@cse.unsw.edu.au  PS: Please replace ZID w">
+<meta name="twitter:description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -334,7 +334,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  607 words
+                  668 words
                 </span>
               
 
@@ -350,7 +350,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3 minutes
+                  4 minutes
                 </span>
               
             </div>
@@ -371,7 +371,14 @@
       
 
       
-        <h1 id="COMP9311-extension"><a href="#COMP9311-extension" class="headerlink" title="COMP9311 extension"></a>COMP9311 extension</h1><h2 id="Backgroud-information"><a href="#Backgroud-information" class="headerlink" title="Backgroud information"></a>Backgroud information</h2><ul>
+        <h1 id="COMP9311-extension"><a href="#COMP9311-extension" class="headerlink" title="COMP9311 extension"></a>COMP9311 extension</h1><p>This is an extension knowledge about COMP9311</p>
+<h2 id="Auto-deploy-PostgreSQL"><a href="#Auto-deploy-PostgreSQL" class="headerlink" title="Auto deploy PostgreSQL"></a>Auto deploy PostgreSQL</h2><p>You can find the shell script <a href="deploy.sh">here</a>. You can execute the following command in <code>grieg</code> server to deploy the SQL server.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod +x deploy.sh</span><br><span class="line"></span><br><span class="line">./deploy.sh</span><br></pre></td></tr></table></figure>
+
+<p>The code in <code>deploy.sh</code> is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">user=$(whoami)</span><br><span class="line"></span><br><span class="line">priv srvr</span><br><span class="line"></span><br><span class="line">~cs9311/bin/pginit</span><br><span class="line"></span><br><span class="line">echo "if [ \`hostname\` = \"grieg\" ]</span><br><span class="line">then</span><br><span class="line">    source /srvr/$user/env</span><br><span class="line">fi</span><br><span class="line">" &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<h2 id="Backgroud-information"><a href="#Backgroud-information" class="headerlink" title="Backgroud information"></a>Backgroud information</h2><ul>
 <li><code>grieg</code> means a server named grieg</li>
 </ul>
 <h2 id="Login-CSE-GRIEG"><a href="#Login-CSE-GRIEG" class="headerlink" title="Login CSE/GRIEG"></a>Login CSE/GRIEG</h2><p>You can log in to <code>cse</code> server by using the following command:</p>
@@ -453,15 +460,7 @@
 </ol>
 </li>
 </ol>
-<p>Regex online test:</p>
-<div>
-    <iframe src="https://regexr.com" height="500" width="100%" frameborder="0" allowfullscreen="allowfullscreen" allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe>
-</div>
-
-
-
-
-
+<p>Regex online test <a href="https://regexr.com" target="_blank" rel="noopener">regex</a></p>
 
       
     </div>
@@ -703,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#COMP9311-extension"><span class="nav-number">1.</span> <span class="nav-text">COMP9311 extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgroud-information"><span class="nav-number">1.1.</span> <span class="nav-text">Backgroud information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-CSE-GRIEG"><span class="nav-number">1.2.</span> <span class="nav-text">Login CSE/GRIEG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-in-to-cse-server-without-password"><span class="nav-number">1.3.</span> <span class="nav-text">Log in to cse server without password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash-profile-settings"><span class="nav-number">1.4.</span> <span class="nav-text">.bash_profile settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-display"><span class="nav-number">1.5.</span> <span class="nav-text">Terminal display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-files-to-cse-server"><span class="nav-number">1.6.</span> <span class="nav-text">Upload files to cse server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-config"><span class="nav-number">1.7.</span> <span class="nav-text">SSH config</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-02"><span class="nav-number">2.</span> <span class="nav-text">Lab 02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab03"><span class="nav-number">3.</span> <span class="nav-text">Lab03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-up"><span class="nav-number">3.1.</span> <span class="nav-text">Step up</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#COMP9311-extension"><span class="nav-number">1.</span> <span class="nav-text">COMP9311 extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Auto-deploy-PostgreSQL"><span class="nav-number">1.1.</span> <span class="nav-text">Auto deploy PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgroud-information"><span class="nav-number">1.2.</span> <span class="nav-text">Backgroud information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-CSE-GRIEG"><span class="nav-number">1.3.</span> <span class="nav-text">Login CSE/GRIEG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-in-to-cse-server-without-password"><span class="nav-number">1.4.</span> <span class="nav-text">Log in to cse server without password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash-profile-settings"><span class="nav-number">1.5.</span> <span class="nav-text">.bash_profile settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-display"><span class="nav-number">1.6.</span> <span class="nav-text">Terminal display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-files-to-cse-server"><span class="nav-number">1.7.</span> <span class="nav-text">Upload files to cse server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-config"><span class="nav-number">1.8.</span> <span class="nav-text">SSH config</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-02"><span class="nav-number">2.</span> <span class="nav-text">Lab 02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab03"><span class="nav-number">3.</span> <span class="nav-text">Lab03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-up"><span class="nav-number">3.1.</span> <span class="nav-text">Step up</span></a></li></ol></li></ol></div>
             
 
           </div>
