@@ -55,27 +55,25 @@
 
 
 
-  <meta name="keywords" content="Algorithm,">
+  <meta name="keywords" content="Data processing,">
 
 
 
   <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
 
 
-<meta name="description" content="In computer science, a disjoint-set data structure is a data structure used to handle the merging and querying of disjoint sets (a series of sets with no duplicate elements). StructureA non-intersecti">
-<meta name="keywords" content="Algorithm">
+<meta name="description" content="The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster.  12345678910111213141516171819">
+<meta name="keywords" content="Data processing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Union-Find Set">
-<meta property="og:url" content="https://shunyangli.github.io/2021/05/25/Union-Find-Set/index.html">
+<meta property="og:title" content="bipartite graph data pre-processing">
+<meta property="og:url" content="https://shunyangli.github.io/2021/07/28/bipartite-graph-data-pre-processing/index.html">
 <meta property="og:site_name" content="Shunyang Li">
-<meta property="og:description" content="In computer science, a disjoint-set data structure is a data structure used to handle the merging and querying of disjoint sets (a series of sets with no duplicate elements). StructureA non-intersecti">
+<meta property="og:description" content="The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster.  12345678910111213141516171819">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://shunyangli.github.io/2021/05/25/Union-Find-Set/1.png">
-<meta property="og:updated_time" content="2021-05-25T04:23:04.623Z">
+<meta property="og:updated_time" content="2021-07-28T10:22:46.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Union-Find Set">
-<meta name="twitter:description" content="In computer science, a disjoint-set data structure is a data structure used to handle the merging and querying of disjoint sets (a series of sets with no duplicate elements). StructureA non-intersecti">
-<meta name="twitter:image" content="https://shunyangli.github.io/2021/05/25/Union-Find-Set/1.png">
+<meta name="twitter:title" content="bipartite graph data pre-processing">
+<meta name="twitter:description" content="The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster.  12345678910111213141516171819">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -102,14 +100,14 @@
 </script>
 
 
-  <link rel="canonical" href="https://shunyangli.github.io/2021/05/25/Union-Find-Set/">
+  <link rel="canonical" href="https://shunyangli.github.io/2021/07/28/bipartite-graph-data-pre-processing/">
 
 
 
 
   
   <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
-  <title>Union-Find Set | Shunyang Li</title>
+  <title>bipartite graph data pre-processing | Shunyang Li</title>
   
 
 
@@ -238,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/05/25/Union-Find-Set/">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/07/28/bipartite-graph-data-pre-processing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shunyang Li">
@@ -255,7 +253,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Union-Find Set</h2>
+          <h2 class="post-title" itemprop="name headline">bipartite graph data pre-processing</h2>
         
 
         <div class="post-meta">
@@ -267,8 +265,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-05-25T13:45:50+10:00">
-                2021-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-07-28T20:16:59+10:00">
+                2021-07-28
               </time>
             
 
@@ -290,8 +288,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
+                  <a href="/categories/Data-processing/" itemprop="url" rel="index">
+                    <span itemprop="name">Data processing</span>
                   </a>
                 </span>
 
@@ -308,8 +306,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/05/25/Union-Find-Set/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2021/05/25/Union-Find-Set/" itemprop="commentCount"></span>
+                <a href="/2021/07/28/bipartite-graph-data-pre-processing/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/07/28/bipartite-graph-data-pre-processing/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,7 +334,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  441 words
+                  378 words
                 </span>
               
 
@@ -373,17 +371,14 @@
       
 
       
-        <p>In computer science, a disjoint-set data structure is a data structure used to handle the merging and querying of disjoint sets (a series of sets with no duplicate elements).</p>
-<h1 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h1><p>A non-intersecting forest represents each set as a tree (deepth with 1), where each node is an element. A node holds a reference to its parent node, and the root node of the tree holds an empty reference or a reference to itself or some other invalid value to indicate itself as the root node. This data structure was first proposed by Bernard A. Galler and Michael J. Fischer in 1964,but it took several years before a precise analysis was completed. As shown:<br><img src="/2021/05/25/Union-Find-Set/1.png" alt></p>
-<h1 id="New-Approach"><a href="#New-Approach" class="headerlink" title="New Approach"></a>New Approach</h1><p>There are many different types of variations of this data structure that we can change to suit different needs. I used two HashMap to store the roots and parent (<code>parent</code> and <code>roots</code>). For <code>parent</code>, it stores the roots of every element, for <code>roots</code>, it stores the root of all the elements.<br><code>parent</code> can be seen as <code>{node: root}</code>, <code>roots</code> can be seen as <code>{root: [node1, node2, ...]}</code>.</p>
-<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><p>In my method, I use Hashmap to store the tree. So, the search complexity is $O(n)$.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> parent[x]</span><br></pre></td></tr></table></figure>
+        <p>The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line">filepath = os.getcwd() + <span class="string">"/"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_files</span><span class="params">(filename: str, sep: str, skip: int)</span>:</span></span><br><span class="line">    data = []</span><br><span class="line">    filename = filepath + filename[<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> lines:</span><br><span class="line">        lines = list(lines)</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> lines[skip:]:</span><br><span class="line">            nodes = line.split(sep)</span><br><span class="line">            temp = [int(nodes[<span class="number">0</span>]), int(nodes[<span class="number">1</span>])]</span><br><span class="line">            <span class="keyword">for</span> val <span class="keyword">in</span> nodes[<span class="number">2</span>:]:</span><br><span class="line">                temp.append(val)</span><br><span class="line">            data.append(temp)</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_data</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    encoding the data</span></span><br><span class="line"><span class="string">    :param data:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    u_node = &#123;&#125;</span><br><span class="line">    u_id = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    v_node = &#123;&#125;</span><br><span class="line">    v_id = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> u_node:</span><br><span class="line">            u_node[line[<span class="number">0</span>]] = u_id</span><br><span class="line">            u_id += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">1</span>] <span class="keyword">not</span> <span class="keyword">in</span> v_node:</span><br><span class="line">            v_node[line[<span class="number">1</span>]] = v_id</span><br><span class="line">            v_id += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    nodes = <span class="string">""</span></span><br><span class="line">    edges = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> data:</span><br><span class="line">        nodes += <span class="string">"&#123;&#125; &#123;&#125;"</span>.format(u_node[line[<span class="number">0</span>]], v_node[line[<span class="number">1</span>]])</span><br><span class="line">        nodes += <span class="string">" "</span>.join(line[<span class="number">2</span>:])</span><br><span class="line">        nodes += <span class="string">"\n"</span></span><br><span class="line">        edges += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> u_id, v_id, edges, nodes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">store_file</span><span class="params">(filename, data)</span>:</span></span><br><span class="line">    meta = filepath + filename + <span class="string">'.meta'</span></span><br><span class="line">    edge = filepath + filename + <span class="string">'.e'</span></span><br><span class="line"></span><br><span class="line">    f = open(edge, <span class="string">'w'</span>)</span><br><span class="line">    f.write(data[<span class="number">3</span>])</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line">    lines = <span class="string">"&#123;&#125;\n&#123;&#125;\n&#123;&#125;\n"</span>.format(data[<span class="number">0</span>], data[<span class="number">1</span>], data[<span class="number">2</span>])</span><br><span class="line">    f = open(meta, <span class="string">'w'</span>)</span><br><span class="line">    f.write(lines)</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(args)</span>:</span></span><br><span class="line">    filename = args.filename</span><br><span class="line">    sep = args.sep</span><br><span class="line">    outfile = args.out</span><br><span class="line">    skip = args.skip</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> outfile <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        outfile = str(filename).split(<span class="string">'.'</span>)[<span class="number">1</span>][:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    data = read_files(filename, sep, int(skip))</span><br><span class="line">    parsed_data = parse_data(data)</span><br><span class="line">    store_file(outfile, parsed_data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">'Processing csv data'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--filename'</span>, help=<span class="string">'Please add file name'</span>, required=<span class="literal">True</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--sep'</span>, help=<span class="string">'Separator'</span>, default=<span class="string">' '</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--out'</span>, help=<span class="string">'output file name'</span>, default=<span class="literal">None</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--skip'</span>, help=<span class="string">'how many lines need to be skiped'</span>, default=<span class="number">1</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"Start processing: "</span>, args.filename)</span><br><span class="line">    execute(args)</span><br><span class="line">    print(<span class="string">"Finished"</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h2><p>For union, we need to set the root of such element to be a new root. And merge the childs of such root.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    rootX = parent[x]</span><br><span class="line">    rootY = parent[y]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rootX == rootY:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    parent[y] = rootX</span><br><span class="line">    roots[rootX] += roots[y]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> roots[y]:</span><br><span class="line">        parent[n] = rootX</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">del</span> roots[y]</span><br></pre></td></tr></table></figure>
+<h1 id="How-to-use-it"><a href="#How-to-use-it" class="headerlink" title="How to use it"></a>How to use it</h1><p>You can get help information by using <code>--help</code>.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">usage: data.py [-h] --filename FILENAME [--sep SEP] [--out OUT] [--skip SKIP]</span><br><span class="line"></span><br><span class="line">Processing csv data</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help           show this help message and exit</span><br><span class="line">  --filename FILENAME  Please add file name</span><br><span class="line">  --sep SEP            Separator</span><br><span class="line">  --out OUT            output file name</span><br><span class="line">  --skip SKIP          how many lines need to be skiped、</span><br></pre></td></tr></table></figure>
 
-<h1 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h1><p>It can be used for subgraph pattern matching decompistion, bipartite graph and commuity.</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UF</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param parent &#123;node: root&#125;</span></span><br><span class="line"><span class="string">        :param roots: &#123;root: [n1,n2..]&#125;</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.parent = &#123;&#125;</span><br><span class="line">        self.roots = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</span><br><span class="line">            self.parent[i] = i</span><br><span class="line">            self.roots[i] = [i]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(self, p, q)</span>:</span></span><br><span class="line">        rootP = self.parent[p]</span><br><span class="line">        rootQ = self.parent[q]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> rootP == rootQ:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        self.parent[q] = rootP</span><br><span class="line">        self.roots[rootP] += self.roots[q]</span><br><span class="line">        <span class="keyword">del</span> self.roots[q]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        to find x parent</span></span><br><span class="line"><span class="string">        :param x:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> x <span class="keyword">in</span> self.parent:</span><br><span class="line">            <span class="keyword">return</span> self.parent[x]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isConnect</span><span class="params">(self, p, q)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        check whether two val has same root</span></span><br><span class="line"><span class="string">        :param p:</span></span><br><span class="line"><span class="string">        :param q:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        rootP = self.find(p)</span><br><span class="line">        rootQ = self.find(q)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> rootP == rootQ</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRoots</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.roots.keys()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRecords</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.roots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    uf = UF()</span><br><span class="line">    uf.init(<span class="number">10</span>)</span><br><span class="line">    uf.union(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    uf.union(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    uf.union(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    uf.union(<span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">    uf.union(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">    x = uf.find(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+<p><code>--sep</code> default value is a space, <code>--skip</code> default value is 1.</p>
+
       
     </div>
     
@@ -405,7 +400,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Algorithm</a>
+            <a href="/tags/Data-processing/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Data processing</a>
           
         </div>
       
@@ -418,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/04/26/LeetCode-Part-2/" rel="next" title="LeetCode Part 2">
-                <i class="fa fa-chevron-left"></i> LeetCode Part 2
+              <a href="/2021/05/25/Union-Find-Set/" rel="next" title="Union-Find Set">
+                <i class="fa fa-chevron-left"></i> Union-Find Set
               </a>
             
           </div>
@@ -427,10 +422,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/07/28/bipartite-graph-data-pre-processing/" rel="prev" title="bipartite graph data pre-processing">
-                bipartite graph data pre-processing <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -624,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Structure"><span class="nav-number">1.</span> <span class="nav-text">Structure</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#New-Approach"><span class="nav-number">2.</span> <span class="nav-text">New Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Search"><span class="nav-number">2.1.</span> <span class="nav-text">Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Union"><span class="nav-number">2.2.</span> <span class="nav-text">Union</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Application"><span class="nav-number">3.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code"><span class="nav-number">4.</span> <span class="nav-text">Code</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-use-it"><span class="nav-number">1.</span> <span class="nav-text">How to use it</span></a></li></ol></div>
             
 
           </div>
