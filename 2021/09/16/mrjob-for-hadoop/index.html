@@ -62,26 +62,18 @@
   <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
 
 
-<meta name="description" content="HDFS的原理以及Hadoop的安装，MapReduce的运行流程，shuffle的运行机制。 hdfs 功能HDFS：分布式文件管理系统  Hadoop fs：使用面最广，可以操作任何文件系统。  hadoop dfs与hdfs dfs：只能操作HDFS文件系统相关（包括与Local FS间的操作），前者已经Deprecated，一般使用后者。  Hadoop/hdfs fs/dfs {args">
+<meta name="description" content="mrjob is the easiest way to write python programs that can run on hadoop. Its most prominent feature is that with the help of mrjob, there is no need to install hadoop or deploy any cluster, and we ca">
 <meta name="keywords" content="Distributed">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop Distributed System">
-<meta property="og:url" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/index.html">
+<meta property="og:title" content="mrjob for hadoop">
+<meta property="og:url" content="https://shunyangli.github.io/2021/09/16/mrjob-for-hadoop/index.html">
 <meta property="og:site_name" content="Shunyang Li">
-<meta property="og:description" content="HDFS的原理以及Hadoop的安装，MapReduce的运行流程，shuffle的运行机制。 hdfs 功能HDFS：分布式文件管理系统  Hadoop fs：使用面最广，可以操作任何文件系统。  hadoop dfs与hdfs dfs：只能操作HDFS文件系统相关（包括与Local FS间的操作），前者已经Deprecated，一般使用后者。  Hadoop/hdfs fs/dfs {args">
+<meta property="og:description" content="mrjob is the easiest way to write python programs that can run on hadoop. Its most prominent feature is that with the help of mrjob, there is no need to install hadoop or deploy any cluster, and we ca">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/1.png">
-<meta property="og:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/2.png">
-<meta property="og:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/3.png">
-<meta property="og:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/4.png">
-<meta property="og:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/5.png">
-<meta property="og:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/6.png">
-<meta property="og:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/7.png">
-<meta property="og:updated_time" content="2021-09-08T10:24:02.680Z">
+<meta property="og:updated_time" content="2021-09-16T12:43:19.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop Distributed System">
-<meta name="twitter:description" content="HDFS的原理以及Hadoop的安装，MapReduce的运行流程，shuffle的运行机制。 hdfs 功能HDFS：分布式文件管理系统  Hadoop fs：使用面最广，可以操作任何文件系统。  hadoop dfs与hdfs dfs：只能操作HDFS文件系统相关（包括与Local FS间的操作），前者已经Deprecated，一般使用后者。  Hadoop/hdfs fs/dfs {args">
-<meta name="twitter:image" content="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/1.png">
+<meta name="twitter:title" content="mrjob for hadoop">
+<meta name="twitter:description" content="mrjob is the easiest way to write python programs that can run on hadoop. Its most prominent feature is that with the help of mrjob, there is no need to install hadoop or deploy any cluster, and we ca">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -108,14 +100,14 @@
 </script>
 
 
-  <link rel="canonical" href="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/">
+  <link rel="canonical" href="https://shunyangli.github.io/2021/09/16/mrjob-for-hadoop/">
 
 
 
 
   
   <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
-  <title>Hadoop Distributed System | Shunyang Li</title>
+  <title>mrjob for hadoop | Shunyang Li</title>
   
 
 
@@ -244,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/09/16/mrjob-for-hadoop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shunyang Li">
@@ -261,7 +253,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hadoop Distributed System</h2>
+          <h2 class="post-title" itemprop="name headline">mrjob for hadoop</h2>
         
 
         <div class="post-meta">
@@ -273,8 +265,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-08T20:01:55+10:00">
-                2021-09-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-16T22:42:15+10:00">
+                2021-09-16
               </time>
             
 
@@ -292,8 +284,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/09/08/Hadoop-Distributed-System/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2021/09/08/Hadoop-Distributed-System/" itemprop="commentCount"></span>
+                <a href="/2021/09/16/mrjob-for-hadoop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/09/16/mrjob-for-hadoop/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -320,7 +312,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.2k words
+                  697 words
                 </span>
               
 
@@ -357,66 +349,43 @@
       
 
       
-        <p>HDFS的原理以及Hadoop的安装，MapReduce的运行流程，shuffle的运行机制。</p>
-<h1 id="hdfs-功能"><a href="#hdfs-功能" class="headerlink" title="hdfs 功能"></a>hdfs 功能</h1><p>HDFS：分布式文件管理系统 </p>
-<p>Hadoop fs：使用面最广，可以操作任何文件系统。 </p>
-<p>hadoop dfs与hdfs dfs：只能操作HDFS文件系统相关（包括与Local FS间的操作），前者已经Deprecated，一般使用后者。 </p>
-<p>Hadoop/hdfs fs/dfs {args} {args} </p>
-<h1 id="hdfs-实现原理"><a href="#hdfs-实现原理" class="headerlink" title="hdfs 实现原理"></a>hdfs 实现原理</h1><p>当在使用hdfs dfs -put命令的时候，文件会被切块（文件块的大小通过参数来决定，默认是128M）存放到不同的datanode server里面，具体分布到哪个datanode取决于namenode server。<br>namenode会记录并维护不同的文件块所存放的具体位置（存放在哪个datanode里面），这些信息被称作元数据。 </p>
-<pre><code class="shell">e.g.: 
-file被分割成3块，分别存放在datanode0, datanode1 and datanode 2。 
+        <p><a href="https://github.com/Yelp/mrjob" target="_blank" rel="noopener">mrjob</a> is the easiest way to write python programs that can run on hadoop. Its most prominent feature is that with the help of mrjob, there is no need to install hadoop or deploy any cluster, and we can run the code (for testing) on our local machine. Also, mrjob can easily run on Amazon Elastic MapReduce.</p>
+<p>Since Hadoop does not currently support the python API, we can only use the stream processing method to complete the mapredduce ren using python. mrjob is a good choice.</p>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>If you did not installed <a href="https://pip.pypa.io/en/stable/" target="_blank" rel="noopener">pip3</a> for Linux, then you can execute the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install python3-pip</span><br></pre></td></tr></table></figure>
 
-那么在namenode会记录: file: {block0: datanode0-server, block1: datanode1-server, block2: datanode2-server。 </code></pre>
-<p>当在使用hdfs dfs -get 的时候，系统会在namenode获取源数据，然后根据元数据记录的文件块存放的位置进行获取文件块，然后合并。<br><img src="/2021/09/08/Hadoop-Distributed-System/1.png" alt></p>
-<h2 id="hdfs副本"><a href="#hdfs副本" class="headerlink" title="hdfs副本"></a>hdfs副本</h2><p>为了防止datanode出现宕机情况，hdfs会对文件进行储存副本，副本的具体数量由用户设定。就是把同一文件块储存在不同的datanode上面。 </p>
-<h2 id="hdfs特点"><a href="#hdfs特点" class="headerlink" title="hdfs特点"></a>hdfs特点</h2><p>hdfs是适应一次写入，多次读的场景，不支持文件的修改。所以hdfs不适合做网盘应用，因为延迟高，开销大。<br>优点：可以线性扩展（不够存我直接再租几个服务器就够了），数据储存可靠性高，分布式运算处理方便。 </p>
-<h1 id="hdfs-读-写数据流程"><a href="#hdfs-读-写数据流程" class="headerlink" title="hdfs 读/写数据流程"></a>hdfs 读/写数据流程</h1><h2 id="hdfs读数据流程"><a href="#hdfs读数据流程" class="headerlink" title="hdfs读数据流程"></a>hdfs读数据流程</h2><ul>
-<li><p>和namenode通信查询元数据，根据元数据找到文件快所在的datanode server </p>
-</li>
-<li><p>挑选一个datanode server（就近原则，然后随机），建立socket 通信 </p>
-</li>
-<li><p>datanode开始发送数据（采用streaming），以packet为单位做校验 </p>
-</li>
-<li><p>client以packet为单位接受，在本地缓存，然后写入目标文件（获取所有的文件快后进行合并） </p>
-</li>
-</ul>
-<p><img src="/2021/09/08/Hadoop-Distributed-System/2.png" alt></p>
-<h2 id="hdfs写数据流程"><a href="#hdfs写数据流程" class="headerlink" title="hdfs写数据流程"></a>hdfs写数据流程</h2><ul>
-<li><p>client和namenode通信并请求上传文件，namenode检查文件是否存在 </p>
-</li>
-<li><p>namenode返回给client是否可以上传 </p>
-</li>
-<li><p>client请求第一个block该传输到哪些datanode（因为包含副本） </p>
-</li>
-<li><p>namenode返回所需要上传的datanode server（数量取决于副本的数量），假设返回A B C三台server </p>
-</li>
-<li><p>client和datanode A建立pipeline（本质是RPC调用），A收到请求后调用B建立pipeline，B收到请求后和C建立pipeline，然后逐级返回client </p>
-</li>
-<li><p>client开始给A上传文件块，以packet为单位，A收到之后传给B，B收到之后传给C </p>
-</li>
-<li><p>当一个文件块上传完成之后，client再次请求namenode上传下一个文件块 </p>
-</li>
-<li><p><img src="/2021/09/08/Hadoop-Distributed-System/3.png" alt></p>
-</li>
-</ul>
-<h1 id="hdfs-namenode-工作原理"><a href="#hdfs-namenode-工作原理" class="headerlink" title="hdfs namenode 工作原理"></a>hdfs namenode 工作原理</h1><p>namenode负责：响应client请求，维护路径树，管理元数据（查询，修改） </p>
-<h2 id="hdfs元数据管理机制"><a href="#hdfs元数据管理机制" class="headerlink" title="hdfs元数据管理机制"></a>hdfs元数据管理机制</h2><ul>
-<li><p>内存中有一份完整的元数据（特定的数据结构） </p>
-</li>
-<li><p>磁盘中有一个准完整的元数据的镜像文件 </p>
-</li>
-<li><p>当client对hdfs中的文件新增或者修改的时候，首先会在edits文件中记录操作日志，当client操作成功之后，相应的元数据会更新到内存中。每隔一段时间会有secondary namenode将namenode上积累的所有edits和一个最新的元数据镜像下载到本地，并加载到内存中进行合并（这个过程被称为checkpoint） </p>
-</li>
-</ul>
-<p><img src="/2021/09/08/Hadoop-Distributed-System/4.png" alt></p>
-<h1 id="MapReduce-原理"><a href="#MapReduce-原理" class="headerlink" title="MapReduce 原理"></a>MapReduce 原理</h1><p><img src="/2021/09/08/Hadoop-Distributed-System/5.png" alt></p>
-<p>在map的时候会对同一个文件进行处理，每一个mserver里面的map会访问不同的部分，然后对文本数据进行处理，且map过程输出的格式是key value的形式。<br>在map task执行完之后会把数据传到shuffle里面，然后shuffle传递给reduce task。reduce会拉取在map里面处理过的数据，对key value进行整合（类似db里面的group by操作）。 </p>
-<h1 id="shuffle原理"><a href="#shuffle原理" class="headerlink" title="shuffle原理"></a>shuffle原理</h1><p>shuffle是map和reduce中间的数据调度机制，主要包含缓存，分区，排序 </p>
-<p>在map task里面有一个缓冲区，把处理过的key-value数据放到缓存里面，但是由于缓存有限，所以当缓冲区使用达到一定限制后（80%），split thread（一个线程，归map task管）会把缓冲区的数据写入到磁盘，split在处理缓冲数据的时候会对数据进行排序和分区，默认是hash partition进行分区，根据key的值hash分区。每split一次会写入到磁盘的一个新的文件（sort and partition）。在map完所有的数据之后，对所有溢出文件进行合并和排序，在合并的时候对每个分区的数据进行合并。 </p>
-<p><img src="/2021/09/08/Hadoop-Distributed-System/6.png" alt></p>
-<p>在reduce阶段，拉取所有map tasks的最终结果，并对这些数据做排序。</p>
-<p><img src="/2021/09/08/Hadoop-Distributed-System/7.png" alt></p>
-<p>Reduce function会拿到根据key聚合数据，每个聚合组调用一次reduce方法。会有多个reduce task同时运行。 </p>
+<p>After that, you can install mrjob by using <code>pip3</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mrjob</span><br></pre></td></tr></table></figure>
+
+<p>To check if your installation is correct you can execute in the python3 terminal:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ &gt; python3</span><br><span class="line">Python 3.8.10 (default, Jun  2 2021, 10:49:15) </span><br><span class="line">[GCC 9.4.0] on linux</span><br><span class="line">Type "help", "copyright", "credits" or "license" for more information.</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; import mrjob</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>If there is no output from import, the installation is successful.</p>
+<h1 id="mrjob-example"><a href="#mrjob-example" class="headerlink" title="mrjob example"></a>mrjob example</h1><p>We use a generic word count example to demonstrate the use of mrjob.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mrjob.job <span class="keyword">import</span> MRJob</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WordCount</span><span class="params">(MRJob)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mapper</span><span class="params">(self, _, line)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> line.split():</span><br><span class="line">            <span class="keyword">yield</span> (word, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reducer</span><span class="params">(self, key, values)</span>:</span></span><br><span class="line">        <span class="keyword">yield</span> key, sum(values)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    WordCount.run()</span><br></pre></td></tr></table></figure>
+
+<p>Using yield, you can let the function generate a sequence, the function returns an object of type “generator”, through the object to call the next() method to return the sequence of values.</p>
+<p>Briefly understand: yield is return returns a value, and remember this return position, the next iteration will start from this position after (the next line).</p>
+<p>For example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ &gt; python3                         </span><br><span class="line">Python <span class="number">3.8</span><span class="number">.10</span> (default, Jun  <span class="number">2</span> <span class="number">2021</span>, <span class="number">10</span>:<span class="number">49</span>:<span class="number">15</span>) </span><br><span class="line">[GCC <span class="number">9.4</span><span class="number">.0</span>] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> <span class="keyword">or</span> <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">3</span>):</span><br><span class="line"><span class="meta">... </span>        <span class="keyword">yield</span> i</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>num = count()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>num</span><br><span class="line">&lt;generator object count at <span class="number">0x7f5786f7d900</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>num.__next__()</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>num.__next__()</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>num.__next__()</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>num.__next__()</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">StopIteration</span><br></pre></td></tr></table></figure>
+
+<p>By execute the <code>word_count.py</code> in local environment:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 word_count.py input.txt</span><br></pre></td></tr></table></figure>
+
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><p>mapreduce is a system for processing large amounts of data on distributed systems. It is based on the paper <a href="https://dl.acm.org/doi/pdf/10.1145/1327452.1327492" target="_blank" rel="noopener">MapReduce: Simplified Data Processing on Large Clusters</a>. mapreduce divides massive data into small data sets, performs the same task in parallel, and finally collates and merges all the sub-results into the final result. The step of splitting the data for the same is called mapper, and the step of merging and organizing later is called reducer. combiner can be seen as an optimizer, but it is not necessary.</p>
+<p>When we are calling the Hadoop framework with mrjob, we first need to configure Hadoop. <strong>You must make sure that yarn is started at the time of mrjob.</strong> </p>
+<p>Configuration of <code>mapred-site.xml</code> :</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.app.mapreduce.am.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=$HADOOP_MAPRED_HOME<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.map.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=$HADOOP_MAPRED_HOME<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.reduce.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=$HADOOP_MAPRED_HOME<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Configuration of <code>yarn-site.xml</code>:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Execute-hadoop-on-mrjob"><a href="#Execute-hadoop-on-mrjob" class="headerlink" title="Execute hadoop on mrjob"></a>Execute hadoop on mrjob</h1><p>Use the same word count code, then we can execute the file by using:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 word_count.py -r hadoop input.txt</span><br></pre></td></tr></table></figure>
+
+<p>mrjob can also call the file above the hdfs:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 word_count.py -r hadoop hdfs:///input/input.txt</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -452,8 +421,8 @@ file被分割成3块，分别存放在datanode0, datanode1 and datanode 2。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/07/28/bipartite-graph-data-pre-processing/" rel="next" title="bipartite graph data pre-processing">
-                <i class="fa fa-chevron-left"></i> bipartite graph data pre-processing
+              <a href="/2021/09/08/Hadoop-Distributed-System/" rel="next" title="Hadoop Distributed System">
+                <i class="fa fa-chevron-left"></i> Hadoop Distributed System
               </a>
             
           </div>
@@ -461,10 +430,6 @@ file被分割成3块，分别存放在datanode0, datanode1 and datanode 2。
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/09/16/mrjob-for-hadoop/" rel="prev" title="mrjob for hadoop">
-                mrjob for hadoop <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -658,7 +623,7 @@ file被分割成3块，分别存放在datanode0, datanode1 and datanode 2。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hdfs-功能"><span class="nav-number">1.</span> <span class="nav-text">hdfs 功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hdfs-实现原理"><span class="nav-number">2.</span> <span class="nav-text">hdfs 实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hdfs副本"><span class="nav-number">2.1.</span> <span class="nav-text">hdfs副本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hdfs特点"><span class="nav-number">2.2.</span> <span class="nav-text">hdfs特点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hdfs-读-写数据流程"><span class="nav-number">3.</span> <span class="nav-text">hdfs 读/写数据流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hdfs读数据流程"><span class="nav-number">3.1.</span> <span class="nav-text">hdfs读数据流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hdfs写数据流程"><span class="nav-number">3.2.</span> <span class="nav-text">hdfs写数据流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hdfs-namenode-工作原理"><span class="nav-number">4.</span> <span class="nav-text">hdfs namenode 工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hdfs元数据管理机制"><span class="nav-number">4.1.</span> <span class="nav-text">hdfs元数据管理机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MapReduce-原理"><span class="nav-number">5.</span> <span class="nav-text">MapReduce 原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shuffle原理"><span class="nav-number">6.</span> <span class="nav-text">shuffle原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mrjob-example"><span class="nav-number">2.</span> <span class="nav-text">mrjob example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MapReduce"><span class="nav-number">3.</span> <span class="nav-text">MapReduce</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Execute-hadoop-on-mrjob"><span class="nav-number">4.</span> <span class="nav-text">Execute hadoop on mrjob</span></a></li></ol></div>
             
 
           </div>
