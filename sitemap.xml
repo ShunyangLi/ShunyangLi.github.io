@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/2021/10/14/Hadoop-Partition/</loc>
+    
+    <lastmod>2021-10-13T13:13:58.625Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2021/09/16/mrjob-for-hadoop/</loc>
     
     <lastmod>2021-09-17T14:06:10.357Z</lastmod>

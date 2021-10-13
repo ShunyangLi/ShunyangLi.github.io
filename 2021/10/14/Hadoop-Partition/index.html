@@ -55,25 +55,27 @@
 
 
 
-  <meta name="keywords" content="Data processing,">
+  <meta name="keywords" content="Distributed,">
 
 
 
   <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
 
 
-<meta name="description" content="The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster.  12345678910111213141516171819">
-<meta name="keywords" content="Data processing">
+<meta name="description" content="Hadoop Partition And Secondary SortThis article will describe an implementation and process of Hadoop partitioning and secondary sorting. First we need to briefly understand the workflow of Hadoop map">
+<meta name="keywords" content="Distributed">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bipartite graph data pre-processing">
-<meta property="og:url" content="https://shunyangli.github.io/2021/07/28/bipartite-graph-data-pre-processing/index.html">
+<meta property="og:title" content="Hadoop Partition">
+<meta property="og:url" content="https://shunyangli.github.io/2021/10/14/Hadoop-Partition/index.html">
 <meta property="og:site_name" content="Shunyang Li">
-<meta property="og:description" content="The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster.  12345678910111213141516171819">
+<meta property="og:description" content="Hadoop Partition And Secondary SortThis article will describe an implementation and process of Hadoop partitioning and secondary sorting. First we need to briefly understand the workflow of Hadoop map">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-07-28T10:22:46.810Z">
+<meta property="og:image" content="https://shunyangli.github.io/2021/10/14/Hadoop-Partition/1.png">
+<meta property="og:updated_time" content="2021-10-13T13:13:58.625Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bipartite graph data pre-processing">
-<meta name="twitter:description" content="The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster.  12345678910111213141516171819">
+<meta name="twitter:title" content="Hadoop Partition">
+<meta name="twitter:description" content="Hadoop Partition And Secondary SortThis article will describe an implementation and process of Hadoop partitioning and secondary sorting. First we need to briefly understand the workflow of Hadoop map">
+<meta name="twitter:image" content="https://shunyangli.github.io/2021/10/14/Hadoop-Partition/1.png">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -100,14 +102,14 @@
 </script>
 
 
-  <link rel="canonical" href="https://shunyangli.github.io/2021/07/28/bipartite-graph-data-pre-processing/">
+  <link rel="canonical" href="https://shunyangli.github.io/2021/10/14/Hadoop-Partition/">
 
 
 
 
   
   <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
-  <title>bipartite graph data pre-processing | Shunyang Li</title>
+  <title>Hadoop Partition | Shunyang Li</title>
   
 
 
@@ -236,7 +238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/07/28/bipartite-graph-data-pre-processing/">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2021/10/14/Hadoop-Partition/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shunyang Li">
@@ -253,7 +255,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">bipartite graph data pre-processing</h2>
+          <h2 class="post-title" itemprop="name headline">Hadoop Partition</h2>
         
 
         <div class="post-meta">
@@ -265,8 +267,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-07-28T20:16:59+10:00">
-                2021-07-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-14T00:11:54+11:00">
+                2021-10-14
               </time>
             
 
@@ -276,28 +278,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-processing/" itemprop="url" rel="index">
-                    <span itemprop="name">Data processing</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -306,8 +286,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/07/28/bipartite-graph-data-pre-processing/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2021/07/28/bipartite-graph-data-pre-processing/" itemprop="commentCount"></span>
+                <a href="/2021/10/14/Hadoop-Partition/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/10/14/Hadoop-Partition/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -334,7 +314,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  378 words
+                  890 words
                 </span>
               
 
@@ -350,7 +330,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2 minutes
+                  5 minutes
                 </span>
               
             </div>
@@ -371,13 +351,44 @@
       
 
       
-        <p>The initialized downloaded data is messy and the graph id is not continuous, so a data preprocessing method is written to allow the data to be loaded into memory faster. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line">filepath = os.getcwd() + <span class="string">"/"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_files</span><span class="params">(filename: str, sep: str, skip: int)</span>:</span></span><br><span class="line">    data = []</span><br><span class="line">    filename = filepath + filename[<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> lines:</span><br><span class="line">        lines = list(lines)</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> lines[skip:]:</span><br><span class="line">            nodes = line.split(sep)</span><br><span class="line">            temp = [int(nodes[<span class="number">0</span>]), int(nodes[<span class="number">1</span>])]</span><br><span class="line">            <span class="keyword">for</span> val <span class="keyword">in</span> nodes[<span class="number">2</span>:]:</span><br><span class="line">                temp.append(val)</span><br><span class="line">            data.append(temp)</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_data</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    encoding the data</span></span><br><span class="line"><span class="string">    :param data:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    u_node = &#123;&#125;</span><br><span class="line">    u_id = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    v_node = &#123;&#125;</span><br><span class="line">    v_id = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> u_node:</span><br><span class="line">            u_node[line[<span class="number">0</span>]] = u_id</span><br><span class="line">            u_id += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">1</span>] <span class="keyword">not</span> <span class="keyword">in</span> v_node:</span><br><span class="line">            v_node[line[<span class="number">1</span>]] = v_id</span><br><span class="line">            v_id += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    nodes = <span class="string">""</span></span><br><span class="line">    edges = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> data:</span><br><span class="line">        nodes += <span class="string">"&#123;&#125; &#123;&#125;"</span>.format(u_node[line[<span class="number">0</span>]], v_node[line[<span class="number">1</span>]])</span><br><span class="line">        nodes += <span class="string">" "</span>.join(line[<span class="number">2</span>:])</span><br><span class="line">        nodes += <span class="string">"\n"</span></span><br><span class="line">        edges += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> u_id, v_id, edges, nodes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">store_file</span><span class="params">(filename, data)</span>:</span></span><br><span class="line">    meta = filepath + filename + <span class="string">'.meta'</span></span><br><span class="line">    edge = filepath + filename + <span class="string">'.e'</span></span><br><span class="line"></span><br><span class="line">    f = open(edge, <span class="string">'w'</span>)</span><br><span class="line">    f.write(data[<span class="number">3</span>])</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line">    lines = <span class="string">"&#123;&#125;\n&#123;&#125;\n&#123;&#125;\n"</span>.format(data[<span class="number">0</span>], data[<span class="number">1</span>], data[<span class="number">2</span>])</span><br><span class="line">    f = open(meta, <span class="string">'w'</span>)</span><br><span class="line">    f.write(lines)</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(args)</span>:</span></span><br><span class="line">    filename = args.filename</span><br><span class="line">    sep = args.sep</span><br><span class="line">    outfile = args.out</span><br><span class="line">    skip = args.skip</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> outfile <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        outfile = str(filename).split(<span class="string">'.'</span>)[<span class="number">1</span>][:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    data = read_files(filename, sep, int(skip))</span><br><span class="line">    parsed_data = parse_data(data)</span><br><span class="line">    store_file(outfile, parsed_data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">'Processing csv data'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--filename'</span>, help=<span class="string">'Please add file name'</span>, required=<span class="literal">True</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--sep'</span>, help=<span class="string">'Separator'</span>, default=<span class="string">' '</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--out'</span>, help=<span class="string">'output file name'</span>, default=<span class="literal">None</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'--skip'</span>, help=<span class="string">'how many lines need to be skiped'</span>, default=<span class="number">1</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"Start processing: "</span>, args.filename)</span><br><span class="line">    execute(args)</span><br><span class="line">    print(<span class="string">"Finished"</span>)</span><br></pre></td></tr></table></figure>
+        <h1 id="Hadoop-Partition-And-Secondary-Sort"><a href="#Hadoop-Partition-And-Secondary-Sort" class="headerlink" title="Hadoop Partition And Secondary Sort"></a>Hadoop Partition And Secondary Sort</h1><p>This article will describe an implementation and process of Hadoop partitioning and secondary sorting. First we need to briefly understand the workflow of Hadoop map-reduce task. In the <a href="https://shunyangli.github.io/2021/09/08/Hadoop-Distributed-System/#more">previous article</a>, we briefly explained the operation mechanism of Hadoop. The mapper task will read the file and process the data, after processing the mapper task will pass the result to the shuffle. shuffle will sort and partition all the map task results, and then will pass the partitioned and sorted data to the reducer, the key-value pairs with the same key will be passed to the same reducer. </p>
+<p><img src="/2021/10/14/Hadoop-Partition/1.png" alt></p>
+<p> The default distribution method used by hadoop is based on the hash value, but in practice, this is not very efficient or performs the task as we require. For example, after partitioning, one node’s reducer is assigned 20 records while the other is assigned 10 million records, so imagine how inefficient this is. Or, we want to process the output file according to a certain rule, assuming there are two reducers, we want the final result to store the results of records starting with “a” in part-00000, and other results in part-00001, the default partitioner is unable to do. So we need to customize our own partition to choose the reducer of records according to our own requirements.</p>
+<h1 id="Why-partition"><a href="#Why-partition" class="headerlink" title="Why partition"></a>Why partition</h1><p>We want to use Hadoop to get a ordered file by using a partition (because it will be sorted before partitioning).  However if the input is huge (e.g. 10 GB), the performance of reducer is pretty inefficient which completely losing the advantage of the parallel architecture provided by MapReduce. We can use a partitioner to sort the data, so that when the reducer processes the data, it can be guaranteed that the data is already sorted. One partition corresponds to one reducer, so all the output of the reducer is ordered, we just need to merge all the output files, then the total file must be ordered.</p>
+<h1 id="Hadoop-Streaming-Partition"><a href="#Hadoop-Streaming-Partition" class="headerlink" title="Hadoop Streaming Partition"></a>Hadoop Streaming Partition</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mapred streaming \</span><br><span class="line"> -D mapreduce.job.output.key.comparator.class=org.apache.hadoop.mapreduce.lib.partition.KeyFieldBasedComparator \</span><br><span class="line"> -D stream.map.output.field.separator=, \</span><br><span class="line"> -D stream.num.map.output.key.fields=2 \</span><br><span class="line"> -D mapreduce.map.output.key.field.separator=,\</span><br><span class="line"> -D mapreduce.partition.keycomparator.options=-k2,2nr \</span><br><span class="line"> -D mapreduce.job.reduces=2\</span><br><span class="line"> -input input</span><br><span class="line"> -output output \</span><br><span class="line"> -mapper /bin/cat \</span><br><span class="line"> -reducer /bin/cat \</span><br><span class="line"> -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner</span><br></pre></td></tr></table></figure>
 
-<h1 id="How-to-use-it"><a href="#How-to-use-it" class="headerlink" title="How to use it"></a>How to use it</h1><p>You can get help information by using <code>--help</code>.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">usage: data.py [-h] --filename FILENAME [--sep SEP] [--out OUT] [--skip SKIP]</span><br><span class="line"></span><br><span class="line">Processing csv data</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help           show this help message and exit</span><br><span class="line">  --filename FILENAME  Please add file name</span><br><span class="line">  --sep SEP            Separator</span><br><span class="line">  --out OUT            output file name</span><br><span class="line">  --skip SKIP          how many lines need to be skiped、</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-D map.output.key.field.separator=, means the separator for the key is “,”</span><br><span class="line">-D stream.num.map.output.key.fields=2 means the prefix up to the second “,” in a line will be the key and the rest of the line (excluding the second “,”) will be the value.</span><br><span class="line"></span><br><span class="line">e.g.:</span><br><span class="line">1,2,3 then &apos;map.output.key.field.separator&apos; split the input by , and &apos;stream.num.map.output.key.fields=2&apos; will set (1,2) is the key and 3 is the value</span><br><span class="line"></span><br><span class="line">-D map.output.key.field.separator=, means the separator for the key is also “,”</span><br><span class="line"></span><br><span class="line">-D mapreduce.partition.keypartitioner.options=-k1,2” means</span><br><span class="line">MapReduce will partition the map outputs by the first two fields of the keys</span><br></pre></td></tr></table></figure>
 
-<p><code>--sep</code> default value is a space, <code>--skip</code> default value is 1.</p>
+<p>For example, the input files is like this, name (input.txt)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">muse,curious,1</span><br><span class="line">muse,days,2</span><br><span class="line">muse,do,3</span><br><span class="line">muse,growing,4</span><br><span class="line">muse,grown,5</span><br><span class="line">muse,in,1</span><br><span class="line">cat,invent,2</span><br><span class="line">muse,more,3</span><br><span class="line">muse,please,4</span><br><span class="line">cat,subject,5</span><br><span class="line">cat,ten,2</span><br><span class="line">muse,these,3</span><br><span class="line">muse,this,2</span><br><span class="line">muse,times,5</span><br><span class="line">muse,to,6</span><br><span class="line">cat,want,8</span><br><span class="line">muse,with,9</span><br><span class="line">muse,worth,0</span><br><span class="line">muse,*,10</span><br><span class="line">muse,age,12</span><br></pre></td></tr></table></figure>
+
+<p>Put this file into hdfs:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -put input.txt input</span><br></pre></td></tr></table></figure>
+
+<p>We partition by two different ranges of keys (mapreduce.partition.keypartitioner.options) (e.g.: key is (muse, curious) value is 1), and we get two different results.</p>
+<p>The first command is partition based the first filed in the key.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \</span><br><span class="line">-D stream.map.output.field.separator=, \</span><br><span class="line">-D stream.num.map.output.key.fields=2 \</span><br><span class="line">-D map.output.key.field.separator=, \</span><br><span class="line">-D mapreduce.partition.keypartitioner.options=-k1,1 \</span><br><span class="line">-D mapreduce.job.reduces=3 \</span><br><span class="line">-input input/test.txt \</span><br><span class="line">-output ou2 \</span><br><span class="line">-mapper /bin/cat \</span><br><span class="line">-reducer /bin/cat \</span><br><span class="line">-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner</span><br></pre></td></tr></table></figure>
+
+<p>The first reducer gets:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat,invent	2</span><br><span class="line">cat,subject	5</span><br><span class="line">cat,ten	2</span><br><span class="line">cat,want	8</span><br></pre></td></tr></table></figure>
+
+<p>The second reducer gets:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">muse,*	10</span><br><span class="line">muse,age	12</span><br><span class="line">muse,curious	1</span><br><span class="line">muse,days	2</span><br><span class="line">muse,do	3</span><br><span class="line">muse,growing	4</span><br><span class="line">muse,grown	5</span><br><span class="line">muse,in	1</span><br><span class="line">muse,more	3</span><br><span class="line">muse,please	4</span><br><span class="line">muse,these	3</span><br><span class="line">muse,this	2</span><br><span class="line">muse,times	5</span><br><span class="line">muse,to	6</span><br><span class="line">muse,with	9</span><br><span class="line">muse,worth	0</span><br></pre></td></tr></table></figure>
+
+<p>The last reducer is empty. With the result of the reducer we get the desired partition.</p>
+<p>The first command is partition based the second filed in the key.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \</span><br><span class="line">-D stream.map.output.field.separator=, \</span><br><span class="line">-D stream.num.map.output.key.fields=2 \</span><br><span class="line">-D map.output.key.field.separator=, \</span><br><span class="line">-D mapreduce.partition.keypartitioner.options=-k2,2 \</span><br><span class="line">-D mapreduce.job.reduces=3 \</span><br><span class="line">-input input/test.txt \</span><br><span class="line">-output ou1 \</span><br><span class="line">-mapper /bin/cat \</span><br><span class="line">-reducer /bin/cat \</span><br><span class="line">-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner</span><br></pre></td></tr></table></figure>
+
+<p>Reducer 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat,subject	5</span><br><span class="line">cat,ten	2</span><br><span class="line">muse,*	10</span><br><span class="line">muse,more	3</span><br><span class="line">muse,these	3</span><br><span class="line">muse,times	5</span><br><span class="line">muse,with	9</span><br><span class="line">muse,worth	0</span><br></pre></td></tr></table></figure>
+
+<p>Reducer 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat,invent	2</span><br><span class="line">cat,want	8</span><br><span class="line">muse,age	12</span><br><span class="line">muse,curious	1</span><br><span class="line">muse,days	2</span><br><span class="line">muse,do	3</span><br></pre></td></tr></table></figure>
+
+<p>Reducer 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">muse,growing	4</span><br><span class="line">muse,grown	5</span><br><span class="line">muse,in	1</span><br><span class="line">muse,please	4</span><br><span class="line">muse,this	2</span><br><span class="line">muse,to	6</span><br></pre></td></tr></table></figure>
+
+<p>Comparing the two output results we can see that different partition ranges lead to completely different partition results.</p>
 
       
     </div>
@@ -400,7 +411,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Data-processing/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Data processing</a>
+            <a href="/tags/Distributed/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Distributed</a>
           
         </div>
       
@@ -413,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/05/25/Union-Find-Set/" rel="next" title="Union-Find Set">
-                <i class="fa fa-chevron-left"></i> Union-Find Set
+              <a href="/2021/09/16/mrjob-for-hadoop/" rel="next" title="mrjob for hadoop">
+                <i class="fa fa-chevron-left"></i> mrjob for hadoop
               </a>
             
           </div>
@@ -422,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/09/08/Hadoop-Distributed-System/" rel="prev" title="Hadoop Distributed System">
-                Hadoop Distributed System <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -619,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-use-it"><span class="nav-number">1.</span> <span class="nav-text">How to use it</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hadoop-Partition-And-Secondary-Sort"><span class="nav-number">1.</span> <span class="nav-text">Hadoop Partition And Secondary Sort</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-partition"><span class="nav-number">2.</span> <span class="nav-text">Why partition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hadoop-Streaming-Partition"><span class="nav-number">3.</span> <span class="nav-text">Hadoop Streaming Partition</span></a></li></ol></div>
             
 
           </div>
