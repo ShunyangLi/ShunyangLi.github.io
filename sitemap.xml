@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/about/index.html</loc>
+    
+    <lastmod>2021-10-17T11:05:06.164Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/2021/10/14/Hadoop-Partition/</loc>
     
     <lastmod>2021-10-15T14:05:34.254Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://shunyangli.github.io/2021/04/15/Bidirectional-BFS/</loc>
     
     <lastmod>2021-06-11T03:46:11.323Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/about/index.html</loc>
-    
-    <lastmod>2021-05-30T23:48:29.117Z</lastmod>
     
   </url>
   
