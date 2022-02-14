@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/2022/02/15/COMP9311-Extension/</loc>
+    
+    <lastmod>2022-02-14T13:09:50.574Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/about/index.html</loc>
     
     <lastmod>2022-02-11T02:59:13.676Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>https://shunyangli.github.io/2021/05/25/Union-Find-Set/</loc>
     
     <lastmod>2021-05-25T04:23:04.623Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/2021/02/24/COMP9311-Extension/</loc>
-    
-    <lastmod>2021-05-03T02:58:54.097Z</lastmod>
     
   </url>
   
