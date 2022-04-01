@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shunyangli.github.io/about/index.html</loc>
+    
+    <lastmod>2022-04-01T02:54:42.914Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shunyangli.github.io/categories/index.html</loc>
     
     <lastmod>2022-03-30T09:28:00.807Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://shunyangli.github.io/tags/index.html</loc>
     
     <lastmod>2022-03-30T09:28:00.773Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shunyangli.github.io/about/index.html</loc>
-    
-    <lastmod>2022-03-30T09:28:00.740Z</lastmod>
     
   </url>
   
