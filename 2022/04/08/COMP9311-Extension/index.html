@@ -66,11 +66,11 @@
 <meta name="keywords" content="COMP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="COMP9311 Extension">
-<meta property="og:url" content="https://shunyangli.github.io/2022/02/15/COMP9311-Extension/index.html">
+<meta property="og:url" content="https://shunyangli.github.io/2022/04/08/COMP9311-Extension/index.html">
 <meta property="og:site_name" content="Shunyang Li">
 <meta property="og:description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2022-03-30T09:27:54.141Z">
+<meta property="og:updated_time" content="2022-04-08T13:13:25.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMP9311 Extension">
 <meta name="twitter:description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
@@ -100,7 +100,7 @@
 </script>
 
 
-  <link rel="canonical" href="https://shunyangli.github.io/2022/02/15/COMP9311-Extension/">
+  <link rel="canonical" href="https://shunyangli.github.io/2022/04/08/COMP9311-Extension/">
 
 
 
@@ -236,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2022/02/15/COMP9311-Extension/">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2022/04/08/COMP9311-Extension/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shunyang Li">
@@ -265,8 +265,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-02-15T09:52:21+11:00">
-                2022-02-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-04-08T09:52:21+10:00">
+                2022-04-08
               </time>
             
 
@@ -306,8 +306,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/02/15/COMP9311-Extension/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2022/02/15/COMP9311-Extension/" itemprop="commentCount"></span>
+                <a href="/2022/04/08/COMP9311-Extension/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2022/04/08/COMP9311-Extension/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -334,7 +334,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  668 words
+                  809 words
                 </span>
               
 
@@ -350,7 +350,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4 minutes
+                  5 minutes
                 </span>
               
             </div>
@@ -461,6 +461,9 @@
 </li>
 </ol>
 <p>Regex online test <a href="https://regexr.com" target="_blank" rel="noopener">regex</a></p>
+<h1 id="K-Core-decomposition"><a href="#K-Core-decomposition" class="headerlink" title="K-Core decomposition"></a>K-Core decomposition</h1><p>Given a graph G, the k-core of G can be computed by recursively deleting every node and its adjacent edges if its degree is less than <code>k</code>.<br>The python code of k-core as shown in the following part.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line">edges = &#123;</span><br><span class="line">    <span class="string">'a'</span>: [<span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>],</span><br><span class="line">    <span class="string">'b'</span>: [<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>],</span><br><span class="line">    <span class="string">'c'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>],</span><br><span class="line">    <span class="string">'d'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_k_core</span><span class="params">(k, edges)</span>:</span></span><br><span class="line">    deleted_nodes = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> edges:</span><br><span class="line">            <span class="keyword">if</span> len(edges[node]) &lt; k:</span><br><span class="line">                deleted_nodes.append(node)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len(deleted_nodes) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> u <span class="keyword">in</span> deleted_nodes:</span><br><span class="line">            <span class="keyword">if</span> u <span class="keyword">not</span> <span class="keyword">in</span> edges:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> edges[u]:</span><br><span class="line">                edges[v].remove(u)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">del</span> edges[u]</span><br><span class="line">        deleted_nodes.clear()</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">", "</span>.join(edges.keys()))</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> edges:</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> edges[u]:</span><br><span class="line">            print(<span class="string">"&#123;&#125;, &#123;&#125;"</span>.format(u,v))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    compute_k_core(<span class="number">2</span>, edges=copy.deepcopy(edges))</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -496,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/02/08/Nano-Editor/" rel="next" title="Nano Editor">
-                <i class="fa fa-chevron-left"></i> Nano Editor
+              <a href="/2022/02/26/LeetCode-Part-2/" rel="next" title="LeetCode Part 2">
+                <i class="fa fa-chevron-left"></i> LeetCode Part 2
               </a>
             
           </div>
@@ -505,10 +508,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/02/26/LeetCode-Part-2/" rel="prev" title="LeetCode Part 2">
-                LeetCode Part 2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -702,7 +701,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#COMP9311-extension"><span class="nav-number">1.</span> <span class="nav-text">COMP9311 extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Auto-deploy-PostgreSQL"><span class="nav-number">1.1.</span> <span class="nav-text">Auto deploy PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgroud-information"><span class="nav-number">1.2.</span> <span class="nav-text">Backgroud information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-CSE-GRIEG"><span class="nav-number">1.3.</span> <span class="nav-text">Login CSE/GRIEG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-in-to-cse-server-without-password"><span class="nav-number">1.4.</span> <span class="nav-text">Log in to cse server without password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash-profile-settings"><span class="nav-number">1.5.</span> <span class="nav-text">.bash_profile settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-display"><span class="nav-number">1.6.</span> <span class="nav-text">Terminal display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-files-to-cse-server"><span class="nav-number">1.7.</span> <span class="nav-text">Upload files to cse server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-config"><span class="nav-number">1.8.</span> <span class="nav-text">SSH config</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-02"><span class="nav-number">2.</span> <span class="nav-text">Lab 02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab03"><span class="nav-number">3.</span> <span class="nav-text">Lab03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-up"><span class="nav-number">3.1.</span> <span class="nav-text">Step up</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#COMP9311-extension"><span class="nav-number">1.</span> <span class="nav-text">COMP9311 extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Auto-deploy-PostgreSQL"><span class="nav-number">1.1.</span> <span class="nav-text">Auto deploy PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgroud-information"><span class="nav-number">1.2.</span> <span class="nav-text">Backgroud information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-CSE-GRIEG"><span class="nav-number">1.3.</span> <span class="nav-text">Login CSE/GRIEG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-in-to-cse-server-without-password"><span class="nav-number">1.4.</span> <span class="nav-text">Log in to cse server without password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash-profile-settings"><span class="nav-number">1.5.</span> <span class="nav-text">.bash_profile settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-display"><span class="nav-number">1.6.</span> <span class="nav-text">Terminal display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-files-to-cse-server"><span class="nav-number">1.7.</span> <span class="nav-text">Upload files to cse server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-config"><span class="nav-number">1.8.</span> <span class="nav-text">SSH config</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-02"><span class="nav-number">2.</span> <span class="nav-text">Lab 02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab03"><span class="nav-number">3.</span> <span class="nav-text">Lab03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-up"><span class="nav-number">3.1.</span> <span class="nav-text">Step up</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#K-Core-decomposition"><span class="nav-number">4.</span> <span class="nav-text">K-Core decomposition</span></a></li></ol></div>
             
 
           </div>
