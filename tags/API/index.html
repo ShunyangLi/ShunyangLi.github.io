@@ -687,10 +687,11 @@
   <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 </body>
 </html>
+t>
 
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
- MathJax.Hub.getAllJax(), i;
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
@@ -709,6 +710,3 @@
   <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 </body>
 </html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
