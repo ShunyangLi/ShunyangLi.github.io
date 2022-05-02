@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="google-site-verification" content="IOATCl5WoBxLBupME1kt4CHNSMNPlQtjHsNC-UXFvUQ">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="Flask,API,Upload file,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
+
+
+<meta name="description" content="Flask upload files这个note是关于怎么用flask上传文件。包含了两种不同的上传文件的方式。第一种是通过HTML &amp;lt;form&amp;gt;&amp;lt;/form&amp;gt;直接上传。另一种通过API的办法上传。两种方法都会详细解释。等学会了怎么使用之后，大家可以自己做一个自己的file server。当然现成的file server有很多，比如NextCloud这一类的，都是非常成熟的">
+<meta name="keywords" content="Flask,API,Upload file">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask upload files">
+<meta property="og:url" content="https://shunyangli.github.io/2019/10/11/Flask-upload-files/index.html">
+<meta property="og:site_name" content="Shunyang Li">
+<meta property="og:description" content="Flask upload files这个note是关于怎么用flask上传文件。包含了两种不同的上传文件的方式。第一种是通过HTML &amp;lt;form&amp;gt;&amp;lt;/form&amp;gt;直接上传。另一种通过API的办法上传。两种方法都会详细解释。等学会了怎么使用之后，大家可以自己做一个自己的file server。当然现成的file server有很多，比如NextCloud这一类的，都是非常成熟的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://shunyangli.github.io/2019/10/11/Flask-upload-files/upload.png">
+<meta property="og:image" content="https://shunyangli.github.io/2019/10/11/Flask-upload-files/tree.png">
+<meta property="og:image" content="https://shunyangli.github.io/2019/10/11/Flask-upload-files/Aupload.png">
+<meta property="og:image" content="https://shunyangli.github.io/2019/10/11/Flask-upload-files/Atree.png">
+<meta property="og:updated_time" content="2022-03-30T09:27:54.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flask upload files">
+<meta name="twitter:description" content="Flask upload files这个note是关于怎么用flask上传文件。包含了两种不同的上传文件的方式。第一种是通过HTML &amp;lt;form&amp;gt;&amp;lt;/form&amp;gt;直接上传。另一种通过API的办法上传。两种方法都会详细解释。等学会了怎么使用之后，大家可以自己做一个自己的file server。当然现成的file server有很多，比如NextCloud这一类的，都是非常成熟的">
+<meta name="twitter:image" content="https://shunyangli.github.io/2019/10/11/Flask-upload-files/upload.png">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="https://shunyangli.github.io/2019/10/11/Flask-upload-files/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>Flask upload files | Shunyang Li</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shunyang Li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2019/10/11/Flask-upload-files/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shunyang Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shunyang Li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Flask upload files</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-11T19:07:31+11:00">
+                2019-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/" itemprop="url" rel="index">
+                    <span itemprop="name">Backend</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/API/" itemprop="url" rel="index">
+                    <span itemprop="name">API</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Backend/API/JQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/11/Flask-upload-files/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/11/Flask-upload-files/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> Total number of readers of this article
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>times
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.7k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8 minutes
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Flask-upload-files"><a href="#Flask-upload-files" class="headerlink" title="Flask upload files"></a>Flask upload files</h1><p>这个note是关于怎么用flask上传文件。包含了两种不同的上传文件的方式。第一种是通过HTML <code>&lt;form&gt;&lt;/form&gt;</code>直接上传。另一种通过<code>API</code>的办法上传。两种方法都会详细解释。等学会了怎么使用之后，大家可以自己做一个自己的file server。当然现成的file server有很多，比如<code>NextCloud</code>这一类的，都是非常成熟的框架，大家如果不想造轮子可以直接用现成的框架来搭建。</p>
+<h2 id="通过Flask-HTML直接上传"><a href="#通过Flask-HTML直接上传" class="headerlink" title="通过Flask HTML直接上传"></a>通过Flask HTML直接上传</h2><p>上传文件一般只需要三步：</p>
+<ol>
+<li><p>第一步就是定义HTML的文件：</p>
+<p>需要说几点：</p>
+<ul>
+<li>因为是上传文件，所以在form里面必须定义<code>enctype=&quot;multipart/form-data&quot;</code>不然没办法上传文件</li>
+<li>然后是<code>&lt;input&gt;</code>, input 的type一定要是<em>file</em> 才可以选中文件，不然没办法使用。然后是如果想上传多个file的话需要申明<code>multiple</code>才可以选中多个文件同时长传。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>  <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"submitI"</span> &gt;</span>Upload Image<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当<strong>Upload Image</strong> 按钮被点击后，通过request对象上的files获取文件。和以前用request获取表单值一样，使用input字段的name值获取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当input 不是multiple时候可以使用这个，这个表示只上传一个file</span></span><br><span class="line">file = request.files[<span class="string">'file'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当input是multiple的时候表示有多个文件上传</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> request.files.getlist(<span class="string">"file"</span>):</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>file.save()</code>保存文件，指定保存的地址及文件名：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file.save(str(path + filename))</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>详细HTML代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>  <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"submitI"</span> &gt;</span>Upload Image<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>详细Python代码，给大家说一下为什么要用<code>static</code>的文件夹存文件：因为如果flask是在服务器上运行的话，需要访问服务器的资源的时候只有<code>static</code>可以被外部访问，所有一般把照片，js这些文件都存在<code>static</code>的文件夹下，以方便外部调用。：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, render_template, request</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有两种方法来获取路径</span></span><br><span class="line"><span class="comment"># TODO 第一种是绝对路径</span></span><br><span class="line"><span class="comment"># 得到当前路径</span></span><br><span class="line"><span class="comment"># basedir = os.getcwd()</span></span><br><span class="line"><span class="comment"># target = os.path.join(basedir, 'static/files')</span></span><br><span class="line"><span class="comment"># if not os.path.isdir(target):</span></span><br><span class="line"><span class="comment">#	os.mkdir(target)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># TODO 第二种是相对路径</span></span><br><span class="line">target = <span class="string">'static/files'</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(target):</span><br><span class="line">    os.mkdir(target)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许上传的类型</span></span><br><span class="line">ALLOWED_EXTENSIONS = &#123;<span class="string">'txt'</span>, <span class="string">'pdf'</span>, <span class="string">'png'</span>, <span class="string">'jpg'</span>, <span class="string">'jpeg'</span>, <span class="string">'gif'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否符合上传文件类型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">allowed_file</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'.'</span> <span class="keyword">in</span> filename <span class="keyword">and</span> \</span><br><span class="line">            filename.rsplit(<span class="string">'.'</span>, <span class="number">1</span>)[<span class="number">1</span>].lower() <span class="keyword">in</span> ALLOWED_EXTENSIONS</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/', methods=["POST", "GET"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果&lt;input&gt;设置的是单个文件的话，可以使用下面这行代码直接得到file</span></span><br><span class="line">    <span class="comment"># 可以直接用这行代码替换for语句</span></span><br><span class="line">    <span class="comment"># file = request.files.get('file')</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> request.files.getlist(<span class="string">"file"</span>):</span><br><span class="line">        <span class="comment"># 检查是否符合上传类型</span></span><br><span class="line">        <span class="keyword">if</span> file <span class="keyword">and</span> allowed_file(file.filename):</span><br><span class="line">            filename = file.filename</span><br><span class="line">            <span class="comment"># 把路径和文件名链接起来</span></span><br><span class="line">            filepath = <span class="string">"/"</span>.join([target,filename])</span><br><span class="line">            file.save(filepath)</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">"upload.html"</span>)</span><br><span class="line"></span><br><span class="line">app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>因为之前测试的时候已经上传了一个文件，所有在<code>static/files下面有三个文件</code></p>
+<p><img src="/2019/10/11/Flask-upload-files/upload.png" alt></p>
+<p><img src="/2019/10/11/Flask-upload-files/tree.png" alt></p>
+<h2 id="怎么通过Flask下载文件"><a href="#怎么通过Flask下载文件" class="headerlink" title="怎么通过Flask下载文件"></a>怎么通过Flask下载文件</h2><p>可以直接通过<code>send_file</code>来直接下载文件，这个不好截图，直接上代码吧，亲测可以执行，绝对能用。具体代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> send_from_directory</span><br><span class="line"><span class="meta">@app.route('/download/&lt;filename&gt;', methods=["GET", "POST"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(filename)</span>:</span></span><br><span class="line">    filepath = <span class="string">"static/files/"</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># as_attachment=True 一定要写，不然会变成打开，而不是下载</span></span><br><span class="line">        <span class="comment"># 这个是根据文件夹来send file的， 所以你要下载什么文件就要使用什么路径</span></span><br><span class="line">        <span class="comment"># 比如我们使用的是 "static/files/"</span></span><br><span class="line">        <span class="keyword">return</span> send_from_directory(filepath, filename,  as_attachment=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'index'</span>))</span><br></pre></td></tr></table></figure>
+
+<h1 id="Flask-API-upload-files"><a href="#Flask-API-upload-files" class="headerlink" title="Flask API upload files"></a>Flask API upload files</h1><p>通过API的方式开上传文件。在使用API上传文件的时候需要在前端用到<code>FormData</code>。<code>FormData</code>的作用就是异步传输二进制文件。<code>FormData</code>的使用场景就是表单提交。</p>
+<p>怎么使用<code>FormData</code>：</p>
+<ol>
+<li><p>首先创建一下<code>FormData</code>对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把HTML表单用来初始化<code>FormData</code>，以及<code>FormData</code>的一些常见用法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">id</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(<span class="built_in">document</span>.getElementById(<span class="string">"form"</span>));</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 这样formData就储存了username和password</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 可以通过get的方式得到value</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> username = formData.get(<span class="string">"username"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> password = formData.get(<span class="string">"password"</span>)</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 也可以使用append的方式添加value</span></span></span><br><span class="line"><span class="javascript">    formData.append(<span class="string">"token"</span>, <span class="string">"12334"</span>)</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 可以通过set修改value</span></span></span><br><span class="line"><span class="javascript">    formData.set(<span class="string">"token"</span>, <span class="string">"1"</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 可以通过delete删除元素</span></span></span><br><span class="line"><span class="javascript">    formData.delete(<span class="string">"token"</span>)</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Flask-RESTful-API"><a href="#Flask-RESTful-API" class="headerlink" title="Flask-RESTful API"></a>Flask-RESTful API</h2><p>后端Flask我们依然是通过<code>reqparse.RequestParser()</code>的方式获取上传的文件。前端则是通过<code>FormData</code>的方式来上传文件。</p>
+<p>详细代码：</p>
+<ul>
+<li>如果想上传多个文件在<code>add_argument</code>的时候需要声明<code>action=&#39;append&#39;</code>才能获取到多个文件否则只能获取一个文件</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, jsonify, make_response, request</span><br><span class="line"><span class="keyword">from</span> flask_restplus <span class="keyword">import</span> Api, reqparse, abort, Resource</span><br><span class="line"><span class="keyword">from</span> werkzeug.datastructures <span class="keyword">import</span> FileStorage</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">api = Api(app)</span><br><span class="line">app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'WHATEVER'</span></span><br><span class="line"></span><br><span class="line">basedir = os.getcwd()</span><br><span class="line"></span><br><span class="line">upload = api.namespace(<span class="string">'upload'</span>, description=<span class="string">"Upload files API"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@upload.route("/", strict_slashes=False)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Upload</span><span class="params">(Resource)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self)</span>:</span></span><br><span class="line">        parser = reqparse.RequestParser()</span><br><span class="line">        parser.add_argument(<span class="string">'file'</span>, location=<span class="string">'files'</span>,type=FileStorage, required=<span class="literal">True</span>, action=<span class="string">'append'</span>)</span><br><span class="line"></span><br><span class="line">        args = parser.parse_args()</span><br><span class="line">        uploaded_file = args.get(<span class="string">'file'</span>)</span><br><span class="line"></span><br><span class="line">        target = os.path.join(basedir, <span class="string">'static/files'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(target):</span><br><span class="line">            os.mkdir(target)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> uploaded_file:</span><br><span class="line">            filepath = <span class="string">"/"</span>.join([target,file.filename])</span><br><span class="line">            file.save(filepath)</span><br><span class="line"></span><br><span class="line">app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="JQuery-upload-files"><a href="#JQuery-upload-files" class="headerlink" title="JQuery upload files"></a>JQuery upload files</h3><p>前端则使用了<code>JQuery</code>来上传文件。使用的是<code>FormData</code>的格式来上传文件。详细代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"formContent"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>  <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">multiple</span> <span class="attr">required</span> <span class="attr">id</span>=<span class="string">"upload"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"submitI"</span> &gt;</span>Upload Image<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">    $(<span class="string">"#formContent"</span>).submit(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span></span><br><span class="line">        e.preventDefault();</span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData(<span class="keyword">this</span>);</span></span><br><span class="line"><span class="javascript">        $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">            url: <span class="string">"http://127.0.0.1:5000/upload/"</span>,</span></span><br><span class="line"><span class="javascript">            type: <span class="string">"POST"</span>,</span></span><br><span class="line">            data: formdata,</span><br><span class="line"><span class="javascript">            mimeTypes:<span class="string">"multipart/form-data"</span>,</span></span><br><span class="line"><span class="javascript">            contentType: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            cache: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            processData: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(data);</span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            error: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(data);</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/10/11/Flask-upload-files/Aupload.png" alt></p>
+<p><img src="/2019/10/11/Flask-upload-files/Atree.png" alt></p>
+<h3 id="Flask-API-download-files"><a href="#Flask-API-download-files" class="headerlink" title="Flask API download files"></a>Flask API download files</h3><p>关于通过flask api下载文件的方式和前面讲的基本上差不多，就是改成了API的写法。详细代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, jsonify, make_response, request</span><br><span class="line"><span class="keyword">from</span> flask_restplus <span class="keyword">import</span> Api, reqparse, abort, Resource</span><br><span class="line"><span class="keyword">from</span> werkzeug.datastructures <span class="keyword">import</span> FileStorage</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">api = Api(app)</span><br><span class="line">app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'WHATEVER'</span></span><br><span class="line"></span><br><span class="line">basedir = os.getcwd()</span><br><span class="line"></span><br><span class="line">upload = api.namespace(<span class="string">'upload'</span>, description=<span class="string">"Upload files API"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@upload.route("/", strict_slashes=False)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Upload</span><span class="params">(Resource)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self)</span>:</span></span><br><span class="line">        parser = reqparse.RequestParser()</span><br><span class="line">        parser.add_argument(<span class="string">'file'</span>, location=<span class="string">'files'</span>,type=FileStorage, required=<span class="literal">True</span>, action=<span class="string">'append'</span>)</span><br><span class="line"></span><br><span class="line">        args = parser.parse_args()</span><br><span class="line">        uploaded_file = args.get(<span class="string">'file'</span>)</span><br><span class="line"></span><br><span class="line">        target = os.path.join(basedir, <span class="string">'static/files'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(target):</span><br><span class="line">            os.mkdir(target)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> uploaded_file:</span><br><span class="line">            filepath = <span class="string">"/"</span>.join([target,file.filename])</span><br><span class="line">            file.save(filepath)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></span><br><span class="line">        parser = reqparse.RequestParser()</span><br><span class="line">        parser.add_argument(<span class="string">'filename'</span>, type=str)</span><br><span class="line">        args = parser.parse_args()</span><br><span class="line">        filename = args.get(<span class="string">"filename"</span>)</span><br><span class="line"></span><br><span class="line">        filepath = <span class="string">"static/files/"</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># as_attachment=True 一定要写，不然会变成打开，而不是下载</span></span><br><span class="line">            <span class="comment"># 这个是根据文件夹来send file的， 所以你要下载什么文件就要使用什么路径</span></span><br><span class="line">            <span class="comment"># 比如我们使用的是 "static/files/"</span></span><br><span class="line">            <span class="keyword">return</span> send_from_directory(filepath, filename,  as_attachment=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            <span class="keyword">return</span> make_response(<span class="string">"Error"</span>, <span class="number">403</span>)</span><br><span class="line"></span><br><span class="line">app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器内输入以下命令就可以开始下载文件:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:5000/upload?filename=sqlmap.pdf</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">----- End <i class="fa fa-paw"></i> Thanks for reading-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flask/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Flask</a>
+          
+            <a href="/tags/API/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> API</a>
+          
+            <a href="/tags/Upload-file/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Upload file</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/09/Flask-API/" rel="next" title="Flask API">
+                <i class="fa fa-chevron-left"></i> Flask API
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/16/Google-login-and-calender/" rel="prev" title="Google login and calender">
+                Google login and calender <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Shunyang Li</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/li.shunyang.9" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度搜索" target="_blank">百度搜索</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flask-upload-files"><span class="nav-number">1.</span> <span class="nav-text">Flask upload files</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过Flask-HTML直接上传"><span class="nav-number">1.1.</span> <span class="nav-text">通过Flask HTML直接上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么通过Flask下载文件"><span class="nav-number">1.2.</span> <span class="nav-text">怎么通过Flask下载文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flask-API-upload-files"><span class="nav-number">2.</span> <span class="nav-text">Flask API upload files</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-RESTful-API"><span class="nav-number">2.1.</span> <span class="nav-text">Flask-RESTful API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JQuery-upload-files"><span class="nav-number">2.1.1.</span> <span class="nav-text">JQuery upload files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flask-API-download-files"><span class="nav-number">2.1.2.</span> <span class="nav-text">Flask API download files</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <script src="https://efreecode.com/js.js" id="eXF-shunyang-0" async defer></script>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shunyang Li</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      times
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Total number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      times
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'f6AtjL4EGvNH0x9nC1llJvX0-gzGzoHsz',
+        appKey: '7pMECSFW5y4TvPDdAoYB2OHz',
+        placeholder: '请在此输入您的留言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

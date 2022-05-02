@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="google-site-verification" content="IOATCl5WoBxLBupME1kt4CHNSMNPlQtjHsNC-UXFvUQ">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="COMP,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
+
+
+<meta name="description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
+<meta name="keywords" content="COMP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="COMP9311 Extension">
+<meta property="og:url" content="https://shunyangli.github.io/2022/04/08/COMP9311-Extension/index.html">
+<meta property="og:site_name" content="Shunyang Li">
+<meta property="og:description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2022-04-08T13:13:25.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="COMP9311 Extension">
+<meta name="twitter:description" content="COMP9311 extensionThis is an extension knowledge about COMP9311 Auto deploy PostgreSQLYou can find the shell script here. You can execute the following command in grieg server to deploy the SQL server">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="https://shunyangli.github.io/2022/04/08/COMP9311-Extension/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>COMP9311 Extension | Shunyang Li</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shunyang Li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/2022/04/08/COMP9311-Extension/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shunyang Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shunyang Li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">COMP9311 Extension</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-04-08T09:52:21+10:00">
+                2022-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/COMP/" itemprop="url" rel="index">
+                    <span itemprop="name">COMP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/04/08/COMP9311-Extension/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2022/04/08/COMP9311-Extension/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> Total number of readers of this article
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>times
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  809 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  5 minutes
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="COMP9311-extension"><a href="#COMP9311-extension" class="headerlink" title="COMP9311 extension"></a>COMP9311 extension</h1><p>This is an extension knowledge about COMP9311</p>
+<h2 id="Auto-deploy-PostgreSQL"><a href="#Auto-deploy-PostgreSQL" class="headerlink" title="Auto deploy PostgreSQL"></a>Auto deploy PostgreSQL</h2><p>You can find the shell script <a href="deploy.sh">here</a>. You can execute the following command in <code>grieg</code> server to deploy the SQL server.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod +x deploy.sh</span><br><span class="line"></span><br><span class="line">./deploy.sh</span><br></pre></td></tr></table></figure>
+
+<p>The code in <code>deploy.sh</code> is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">user=$(whoami)</span><br><span class="line"></span><br><span class="line">priv srvr</span><br><span class="line"></span><br><span class="line">~cs9311/bin/pginit</span><br><span class="line"></span><br><span class="line">echo "if [ \`hostname\` = \"grieg\" ]</span><br><span class="line">then</span><br><span class="line">    source /srvr/$user/env</span><br><span class="line">fi</span><br><span class="line">" &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<h2 id="Backgroud-information"><a href="#Backgroud-information" class="headerlink" title="Backgroud information"></a>Backgroud information</h2><ul>
+<li><code>grieg</code> means a server named grieg</li>
+</ul>
+<h2 id="Login-CSE-GRIEG"><a href="#Login-CSE-GRIEG" class="headerlink" title="Login CSE/GRIEG"></a>Login CSE/GRIEG</h2><p>You can log in to <code>cse</code> server by using the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh ZID@cse.unsw.edu.au</span><br></pre></td></tr></table></figure>
+
+<p>PS: Please replace <code>ZID</code> with your zid, and the password is same as your zid passowrd (typing the password in terminal is <strong>unvisitable</strong>).</p>
+<p>After log in to the <code>cse</code> server, then you can log in to <code>grieg</code> server by using the following command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh grieg</span><br></pre></td></tr></table></figure>
+
+<p>Also, you can log in to <code>grieg</code> directly by using the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh ZID@grieg.cse.unsw.edu.au</span><br></pre></td></tr></table></figure>
+
+<p>PS: Please replace <code>ZID</code> with your zid, and the password is same as your zid passowrd (typing the password in terminal is <strong>unvisitable</strong>).</p>
+<h2 id="Log-in-to-cse-server-without-password"><a href="#Log-in-to-cse-server-without-password" class="headerlink" title="Log in to cse server without password"></a>Log in to <code>cse</code> server without password</h2><p>You can log in to <code>cse</code> server without password by uploading <code>ssh-key</code> into the server. If you did not have a <code>ssh-key</code>, you can generate a <code>ssh-key</code> by using the following command (please execute these commands in personal computer) :</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>Then you can use <code>ssh-copy-id</code> to copy your key to server:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id ZID@cse.unsw.edu.au</span><br></pre></td></tr></table></figure>
+
+<p>PS: Please replace <code>ZID</code> with your zid.</p>
+<p>You can find more details <a href="https://www.ssh.com/ssh/copy-id" target="_blank" rel="noopener">here</a></p>
+<h2 id="bash-profile-settings"><a href="#bash-profile-settings" class="headerlink" title=".bash_profile settings"></a>.bash_profile settings</h2><p>When you logging in to <code>cse</code> server, you may can not find these files (.bash_profile, .bashrc or .profile). You can use <code>touch</code> command to create a empty file in home directory.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~  // switch the directory into home directory</span><br><span class="line">touch .bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>Then you can find the <code>.bash_profile</code> file by using:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+
+<p>Then you can add the following config code into <code>.bash_profile</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if [ `hostname` = "grieg" ]</span><br><span class="line">then</span><br><span class="line">    source /srvr/ZID/env</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>PS: Please replace <code>ZID</code> with your zid.</p>
+<h2 id="Terminal-display"><a href="#Terminal-display" class="headerlink" title="Terminal display"></a>Terminal display</h2><p>Several students asked how to modify the Linux terminal display. After logging in to <code>grieg</code> server, on the left hand side it looks like:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grieg %</span><br></pre></td></tr></table></figure>
+
+<p>It only shows the hostname which is very inconvenient when we want to know which folder we are in. The following commands can help you to solve the issue:</p>
+<ol>
+<li>Log in to <code>grieg</code> server</li>
+<li>Add this line <code>export PS1=&quot;\u@\h \w $ &quot;</code> into the <code>.bash_profile</code> file</li>
+<li>Execute <code>source ~/.bash_profile</code></li>
+</ol>
+<p>Then the terminal display should like:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZID@grieg ~ $</span><br></pre></td></tr></table></figure>
+
+<p>Where <code>~</code> means home directory.</p>
+<p>You can find more details <a href="https://www.thegeekstuff.com/2008/09/bash-shell-ps1-10-examples-to-make-your-linux-prompt-like-angelina-jolie/" target="_blank" rel="noopener">here</a></p>
+<h2 id="Upload-files-to-cse-server"><a href="#Upload-files-to-cse-server" class="headerlink" title="Upload files to cse server"></a>Upload files to <code>cse</code> server</h2><p>Use <code>scp</code> (srcure copy) command can upload files/directory from local (Linux or Mac system) to remote <code>cse</code> server:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp [source file] [username]@[destination server]:/path/</span><br></pre></td></tr></table></figure>
+
+<p>For example:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp schema.sql ZID@cse.unsw.edu.au:~</span><br></pre></td></tr></table></figure>
+
+<p>Which means upload the <code>schema.sql</code> file into your <code>cse</code> server home directory.</p>
+<p>If you want to upload a directory you can use:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r [source directory] [username]@[destination server]:/path/</span><br></pre></td></tr></table></figure>
+
+<p>If you are using windows system, you can have a look <code>winscp</code>. And UNSW gives a <a href="https://taggi.cse.unsw.edu.au/FAQ/Accessing_Your_Files/" target="_blank" rel="noopener">guideline</a> about that</p>
+<h2 id="SSH-config"><a href="#SSH-config" class="headerlink" title="SSH config"></a>SSH config</h2><p>After finished configuration of <em>log in without password. (section 1.3)</em>. You can config the ssh config file like:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host cse</span><br><span class="line">    HostName cse.unsw.edu.au</span><br><span class="line">    Port 22</span><br><span class="line">    User ZID</span><br></pre></td></tr></table></figure>
+
+<p>Where <code>ZID</code> is your zid. Now, you can use <code>ssh cse</code> instead of <code>ssh zid@cse.unsw.edu.au</code>.</p>
+<h1 id="Lab-02"><a href="#Lab-02" class="headerlink" title="Lab 02"></a>Lab 02</h1><p>The lab 02 slides is available <a href="https://docs.google.com/presentation/d/1nRCQGahTeVD0qvVuNeTMYEBgLvrqs-rvqKCjTJjMUOc/edit?usp=sharing" target="_blank" rel="noopener">here</a>, if you have any issues, please email me.</p>
+<h1 id="Lab03"><a href="#Lab03" class="headerlink" title="Lab03"></a>Lab03</h1><h2 id="Step-up"><a href="#Step-up" class="headerlink" title="Step up"></a>Step up</h2><ol>
+<li><p>Download the <a href="https://www.cse.unsw.edu.au/~cs9311/21T1/lab/04/weblog.zip" target="_blank" rel="noopener">weblog.zip</a> by using <code>wget</code> command in the terminal: <code>wget https://www.cse.unsw.edu.au/~cs9311/21T1/lab/04/weblog.zip</code></p>
+</li>
+<li><p>Unzip the weblog.zip files: <code>unzip weblog.zip</code></p>
+</li>
+<li><p>Create a database for this lab: <code>createdb weblog</code></p>
+</li>
+<li><p>Load SQL file</p>
+<ol>
+<li><p>switch to the weblog directory: <code>cd weblog</code></p>
+</li>
+<li><p>load schema: <code>psql weblog -f schema.sql</code></p>
+</li>
+<li><p>load data sql file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">psql weblog -f Hosts.sql</span><br><span class="line">psql weblog -f Sessions.sql</span><br><span class="line">psql weblog -f Accesses.sql</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<p>Regex online test <a href="https://regexr.com" target="_blank" rel="noopener">regex</a></p>
+<h1 id="K-Core-decomposition"><a href="#K-Core-decomposition" class="headerlink" title="K-Core decomposition"></a>K-Core decomposition</h1><p>Given a graph G, the k-core of G can be computed by recursively deleting every node and its adjacent edges if its degree is less than <code>k</code>.<br>The python code of k-core as shown in the following part.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line">edges = &#123;</span><br><span class="line">    <span class="string">'a'</span>: [<span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>],</span><br><span class="line">    <span class="string">'b'</span>: [<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>],</span><br><span class="line">    <span class="string">'c'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>],</span><br><span class="line">    <span class="string">'d'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_k_core</span><span class="params">(k, edges)</span>:</span></span><br><span class="line">    deleted_nodes = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> edges:</span><br><span class="line">            <span class="keyword">if</span> len(edges[node]) &lt; k:</span><br><span class="line">                deleted_nodes.append(node)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> len(deleted_nodes) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> u <span class="keyword">in</span> deleted_nodes:</span><br><span class="line">            <span class="keyword">if</span> u <span class="keyword">not</span> <span class="keyword">in</span> edges:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> edges[u]:</span><br><span class="line">                edges[v].remove(u)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">del</span> edges[u]</span><br><span class="line">        deleted_nodes.clear()</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">", "</span>.join(edges.keys()))</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> edges:</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> edges[u]:</span><br><span class="line">            print(<span class="string">"&#123;&#125;, &#123;&#125;"</span>.format(u,v))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    compute_k_core(<span class="number">2</span>, edges=copy.deepcopy(edges))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">----- End <i class="fa fa-paw"></i> Thanks for reading-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/COMP/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> COMP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/26/LeetCode-Part-2/" rel="next" title="LeetCode Part 2">
+                <i class="fa fa-chevron-left"></i> LeetCode Part 2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/05/01/Upload-Large-File/" rel="prev" title="Upload Large File">
+                Upload Large File <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Shunyang Li</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/li.shunyang.9" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度搜索" target="_blank">百度搜索</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#COMP9311-extension"><span class="nav-number">1.</span> <span class="nav-text">COMP9311 extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Auto-deploy-PostgreSQL"><span class="nav-number">1.1.</span> <span class="nav-text">Auto deploy PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgroud-information"><span class="nav-number">1.2.</span> <span class="nav-text">Backgroud information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-CSE-GRIEG"><span class="nav-number">1.3.</span> <span class="nav-text">Login CSE/GRIEG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log-in-to-cse-server-without-password"><span class="nav-number">1.4.</span> <span class="nav-text">Log in to cse server without password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash-profile-settings"><span class="nav-number">1.5.</span> <span class="nav-text">.bash_profile settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-display"><span class="nav-number">1.6.</span> <span class="nav-text">Terminal display</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-files-to-cse-server"><span class="nav-number">1.7.</span> <span class="nav-text">Upload files to cse server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-config"><span class="nav-number">1.8.</span> <span class="nav-text">SSH config</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab-02"><span class="nav-number">2.</span> <span class="nav-text">Lab 02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lab03"><span class="nav-number">3.</span> <span class="nav-text">Lab03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-up"><span class="nav-number">3.1.</span> <span class="nav-text">Step up</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#K-Core-decomposition"><span class="nav-number">4.</span> <span class="nav-text">K-Core decomposition</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <script src="https://efreecode.com/js.js" id="eXF-shunyang-0" async defer></script>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shunyang Li</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      times
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Total number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      times
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'f6AtjL4EGvNH0x9nC1llJvX0-gzGzoHsz',
+        appKey: '7pMECSFW5y4TvPDdAoYB2OHz',
+        placeholder: '请在此输入您的留言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
