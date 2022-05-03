@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="google-site-verification" content="IOATCl5WoBxLBupME1kt4CHNSMNPlQtjHsNC-UXFvUQ">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="network,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
+
+
+<meta name="description" content="OSI 七层模型 物理层 主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。   数据链路层 定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）   网络层 使用无连接的网际协议IP和许多种路由选择协议。分组传输，路由选择。   运输层 向两个主机进程之间的通信提供服务。一个主机可以有多个进程，">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Network">
+<meta property="og:url" content="https://shunyangli.github.io/post/1c59/index.html">
+<meta property="og:site_name" content="Shunyang Li">
+<meta property="og:description" content="OSI 七层模型 物理层 主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。   数据链路层 定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）   网络层 使用无连接的网际协议IP和许多种路由选择协议。分组传输，路由选择。   运输层 向两个主机进程之间的通信提供服务。一个主机可以有多个进程，">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://shunyangli.github.io/post/1c59/tcp.png">
+<meta property="og:image" content="https://shunyangli.github.io/post/1c59/1.png">
+<meta property="og:image" content="https://shunyangli.github.io/post/1c59/2.png">
+<meta property="og:image" content="https://shunyangli.github.io/post/1c59/3.png">
+<meta property="og:updated_time" content="2022-03-30T09:27:53.509Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Network">
+<meta name="twitter:description" content="OSI 七层模型 物理层 主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。   数据链路层 定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）   网络层 使用无连接的网际协议IP和许多种路由选择协议。分组传输，路由选择。   运输层 向两个主机进程之间的通信提供服务。一个主机可以有多个进程，">
+<meta name="twitter:image" content="https://shunyangli.github.io/post/1c59/tcp.png">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="https://shunyangli.github.io/post/1c59/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>Network | Shunyang Li</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shunyang Li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/post/1c59/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shunyang Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shunyang Li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Network</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-12T15:08:40+10:00">
+                2020-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/1c59/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/post/1c59/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> Total number of readers of this article
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>times
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  6.3k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  22 minutes
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="OSI-七层模型"><a href="#OSI-七层模型" class="headerlink" title="OSI 七层模型"></a>OSI 七层模型</h1><ol>
+<li>物理层<ul>
+<li>主要作用就是传输比特流（1，0转化成电流强弱来进行传输），通过电缆，光缆等传输。</li>
+</ul>
+</li>
+<li>数据链路层<ul>
+<li>定义了如何让格式化数据以进行传输。而且还会提供错误检测和纠正，以确保数据的可靠传输。（如需要改正错误，由运输层的TCP完成）</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>使用无连接的网际协议IP和许多种路由选择协议。<strong>分组传输，路由选择。</strong></li>
+</ul>
+</li>
+<li>运输层<ul>
+<li>向两个主机进程之间的通信提供服务。一个主机可以有多个进程，所以运输层有<strong>复用和分用的功能</strong>。<strong>复用就是多个应用层进程可以同时使用下面运输层的服务。分用则是运输层把收到的信息分别交付给上面的应用层中相对应的进程。</strong> 运输层的主要两种协议：<strong>TCP, UDP</strong></li>
+</ul>
+</li>
+<li>会话层<ul>
+<li>通过传输层建立数据传输的通路。主要是在系统之间发起会话或者接受会话请求。（设备之间要相互认知可以是IP或者MAC地址等）。</li>
+</ul>
+</li>
+<li>表示层<ul>
+<li>可确保一个系统的应用层所发送的信息可以被另一个系统的应用层读取。</li>
+</ul>
+</li>
+<li>应用层<ul>
+<li>直接为用户的应用场景提供服务，比如HTTP协议，FTP协议等。</li>
+</ul>
+</li>
+</ol>
+<h1 id="TCP-IP-四层协议"><a href="#TCP-IP-四层协议" class="headerlink" title="TCP/IP 四层协议"></a>TCP/IP 四层协议</h1><p><img src="/post/1c59/tcp.png" alt></p>
+<ol>
+<li>网络接口层</li>
+<li>网际IP层</li>
+<li>运输层</li>
+<li>应用层</li>
+</ol>
+<h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><p>Domain name service（域名系统）。可以将域名和IP地址相互映射的一个分布式数据库。主要是将域名翻译成电脑理解的IP地址，整个过程叫DNS域名解析。</p>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>URL由以下内容组成：<code>protocol://hostname:port/path/[parameters]#fragment</code>。</p>
+<p>分别是：协议，域名，端口，路径，参数，分页。</p>
+<p>有关HTTP的经典题目。</p>
+<p>HTTP支持的方法：<code>GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE, CONNECT</code></p>
+<p><strong>经典面试题：</strong></p>
+<ol>
+<li>浏览器输入URL到返回页面的全过程？<ol>
+<li>根据域名进行DNS解析，得到IP地址</li>
+<li>根据IP地址建立TCP连接</li>
+<li>发送HTTP请求</li>
+<li>服务器处理请求</li>
+<li>返回响应结果</li>
+<li>关闭TCP连接</li>
+<li>浏览器解析HTML</li>
+<li>浏览器渲染</li>
+</ol>
+</li>
+<li>一个浏览器和在与服务器建立一个TCP连接后是否会在一个HTTP请求完成后断开？<ul>
+<li>在HTTP1.0 的时代在HTTP响应之后会断开TCP链接。但是每次重新建立和断开TCP代价过大（时间，CPU）。某些服务器对Connection: keep-alive 的header进行了支持。就是在完成HTTP请求之后TCP不会断开连接，这样可以重复使用。避免了SSL的开销</li>
+<li>所以在HTTP1.1的时候就把connection header写进标准里面，并默认开启持久连接，除非请求中说明connection: close，否则浏览器和服务器直接会维持一段时间的TCP连接。</li>
+</ul>
+</li>
+<li>一个TCP连接可以对应几个HTTP请求？<ul>
+<li>当TCP是持久连接的时候可以发送多个HTTP请求。</li>
+</ul>
+</li>
+<li>一个TCP连接中HTTP请求可以一起发送么（比如一起发三个请求，然后三个响应一起接受）？<ul>
+<li>在HTTP1.1中，单个TCP连接在同一时刻只能处理一个请求。也就是说两个请求的生命周期不能重叠，任意两个HTTP请求从开始到结束的时间在同一个TCP连接里不能重叠。比如在请求<code>GET /index?q=x1</code> and <code>GET /index?q=x2</code>，服务器返回两个结果，但是浏览器没办法判断响应对应的请求</li>
+<li>HTTP1.0试图使用Pipelining解决这个问题（按照顺序来响应请求），但是会出现一些问题：<ul>
+<li>服务器不能正常处理HTTP pipelining</li>
+<li>正确的流水线实现是复杂的</li>
+<li><strong>Head-of-line Blocking连接头阻塞</strong>：假设服务器可以连续处理几个请求，<strong>按照标准服务器应该按照顺序来返回请求</strong>，假如某个请求会消耗大量时间，那么后面所有的请求都需要等着该请求处理完才可以响应</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>为什么有的时候刷新页面不需要重新建立SSL？<ul>
+<li>因为TCP连接会维持一段时间，所以SSL可以复用</li>
+</ul>
+</li>
+<li>浏览器对同一个Host建立TCP连接数量有没有限制？<ul>
+<li>有，比如chrome最多允许6个TCP连接</li>
+<li>如果收到HTML包含很多的图片标签，这些照片该怎么处理？<ul>
+<li>如果图片都在HTTPS的连接并且在同一域名下，那么在SSL握手之后会和服务器协商使用HTTP2.0， 请求使用<strong>Multiplexing（多路复用）</strong>功能在这个连接上进行多路传输。（<strong>多路复用允许同时通过但一的HTTP2.0连接发起多重请求-响应</strong>）</li>
+<li>如果不能使用HTTP2.0，那只能建立多个TCP连接了。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GET和POST的区别？<ul>
+<li>首先GET和POST方法没有实质区别。只是报文格式不同。POST的报文：<code>POST /uri HTTP/1.1 \r\n</code>，GET的报文：<code>GET /uri HTTP/1.1 \r\n</code>。</li>
+<li>GET的参数是在URL或者Cookie传参，POST则是在body，但是这个只是默认的通用的格式，并不是协议的限制。POST也可以使用URL传参，GET也可以用body传参。只是一个用法约定而一</li>
+<li><strong>GET的数据长度会有一定限制</strong>，因为GET的参数普遍在URL中，浏览器会对URL的长度有一定限制，所以参数长度有一定限制。POST没有限制</li>
+<li>GET的请求更适用于请求一些普遍可见的信息，不适合传输密码这些重要的隐私信息。当传输隐私信息可以使用POST来请求，不可见相对安全</li>
+<li><strong>POST会发送两个TCP数据包</strong>，因为POST是把header和body分开，先发送header，当服务端返回100状态码之后再发送body</li>
+</ul>
+</li>
+</ol>
+<h1 id="TCP-amp-UDP"><a href="#TCP-amp-UDP" class="headerlink" title="TCP &amp; UDP"></a>TCP &amp; UDP</h1><p>首先是传输层里面的：</p>
+<p><strong>UDP协议：</strong></p>
+<ul>
+<li>无连接协议</li>
+<li>不能保证可靠的信息交付数据</li>
+<li>没有报文传输，不做处理</li>
+<li>没有拥塞控制，头部开销很小</li>
+</ul>
+<p><strong>TCP协议：</strong></p>
+<ul>
+<li>面向连接的协议</li>
+<li>有两端，点对点通信</li>
+<li>安全可靠</li>
+<li>两端可以同时发送接收数据的通信</li>
+<li>是面向字节流的协议</li>
+</ul>
+<p><strong>如果确认号是N，则代表N-1序号的数据都已经收到</strong></p>
+<ol>
+<li>TCP的可靠传输</li>
+</ol>
+<p>主要了解两个协议：<strong>停止等待协议，连续ARQ协议</strong></p>
+<ul>
+<li>停止等待协议：就是每发送完一个分组就停止发送，等待对方的确认。在收到确认后再发送下一组数据。</li>
+<li>连续ARQ协议：如果在传输过程中出现意外，比如B没收到A发送的报文，这时候A就会有一个超时计时器，当超时计时器到期没有收到B的确认报文，A就会重新发送</li>
+</ul>
+<ol start="2">
+<li>TCP的流量控制</li>
+</ol>
+<p>避免发送方的发送速率太快。<strong>利用滑动窗口实现的。</strong></p>
+<p>滑动窗口协议既保证了分组无差错，有序接收，也实现了流量控制。主要是的方式就是接收方返回的ACk中会包含自己的接收窗口的大小，并且利用大小来控制发送方的数据发送。</p>
+<p><strong>当窗口为0后，会启动持续定时器，避免死锁：</strong></p>
+<ul>
+<li>每当发送者收到一个零窗口的应答后就启动该计时器。时间一到便主动发送报文询问接收者的窗口大小。若接收者仍然返回零窗口，则重置该计时器继续等待；若窗口不为0，则表示应答报文丢失了，此时重置发送窗口后开始发送，这样就避免了死锁的产生。</li>
+</ul>
+<ol start="3">
+<li>TCP的拥塞控制</li>
+</ol>
+<p>为了防止过多的数据注入到网络中，避免出现网络负载过大的情况。常用的方法就是：</p>
+<ul>
+<li>慢开始，拥塞避免</li>
+<li>快重传，快回复</li>
+</ul>
+<p><strong>TCP报文头：</strong></p>
+<p><img src="/post/1c59/1.png" alt></p>
+<p><strong>1、源端口（Source Port）/ 目的端口（Destination Port）</strong>：他们各占2个字节，标示该段报文来自哪里（源端口）以及要传给哪个上层协议或应用程序（目的端口）。进行tcp通信时，一般client是通过系统自动选择的临时端口号，而服务器一般是使用知名服务端口号或者自己指定的端口号<code>（比如DNS协议对应端口53，HTTP协议对应80）</code></p>
+<p><strong>2、序号（Sequence Number）</strong>：占据四个字节，TCP是面向字节流的，TCP连接中传送的字节流中的每个字节都按顺序编号，例如如一段报文的序号字段值是<code>107</code>，而携带的数据共有<code>100个字段</code>，如果有下一个报文过来，那么序号就从<code>207（100+107）</code>开始，整个要传送的字节流的起始序号必须要在连接建立时设置。首部中的序号字段值指的是本报文段所发送的数据的第一个字节的序号</p>
+<p><strong>3、确认序号（Acknowledgment Number）</strong>：4个字节，是期望收到对方下一个报文段的第一个数据字节的序号，若确认号=N，则表明：到序号N-1为止的所有数据都已正确收到，例如：B收到A发送过来的报文，其序列号字段是<code>301</code>，而数据长度是<code>200字节</code>，这表明了B正确的收到了A到序号<code>500（301+200-1）</code>为止的数据，因此B希望收到A的下一个数据序号是<code>501</code>，于是B在发送给A的确认报文段中，会把ACK确认号设置为<code>501</code></p>
+<p><strong>4、数据偏移（Offset）</strong>：4个字节。指出TCP报文段的数据起始处距离报文段的起始处有多远，这个字段实际上是指出TCP报文段的首部长度。由于首部中还有长度不确定的选项字段，因此数据偏移字段是必要的。单位是32位字，也就是4字节，4位二进制最大表示15，所以数据偏移也就是TCP首部最大60字节</p>
+<p><strong>5、保留（Reserved）</strong>：6个字节。保留域</p>
+<p><strong>6、TCP Flags</strong>：控制位，由八个标志位组成，每个标志位表示控制的功能，我们主要来介绍TCP Flags中常用的六个，</p>
+<ul>
+<li><strong>URG（紧急指针标志）</strong>：当<code>URG=1</code>时，表明紧急指针字段有效。它告诉系统此报文段中有紧急数据，应尽快传送（相当于高优先级的数据），而不要按原来的排队顺序来传送。例如，已经发送了很长的一个程序在主机上运行。但后来发现了一些问题，需要取消该程序的运行。因此用户从键盘发出中断命令。如果不使用紧急数据，那么这两个字符将存储在接收TCP的缓存末尾。只有在所有的数据被处理完毕后这两个字符才被交付接收方的应用进程。这样做就浪费了许多时间</li>
+<li><strong>ACK（确认序号标志）</strong>：当<code>ACK=1</code>时确认号字段有效。当<code>ACK=0</code>时，确认号无效。TCP规定，在连接建立后所有的传送的报文段都必须把ACK置1</li>
+<li><strong>PSH（push标志）</strong>：当两个应用进程进行交互式的通信时，有时在一端的应用进程希望在键入一个命令后立即就能收到对方的响应。在这种情况下，TCP就可以使用推送操作。这时，发送方TCP把PSH置1，并立即创建一个报文段发送出去。接收方TCP收到PSH=1的报文段，就尽快地交付接收应用进程，而不再等到整个缓存都填满了后向上交付</li>
+<li><strong>RST（重置连接标志）</strong>：TCP连接中出现严重差错（如由于主机崩溃或其他原因），必须释放连接，然后再重新建立运输连接，可以用来拒绝一个非法的报文段或拒绝打开一个连接</li>
+<li><strong>SYN（同步序号，用于建立连接过程）</strong>：在连接建立时用来同步序号。当<code>SYN=1而ACK=0</code>时，表明这是一个连接请求报文段。对方若同意建立连接，则应在相应的报文段中使用<code>SYN=1和ACK=1</code>。因此，SYN置为1就表示这是一个连接请求或连接接受保温。</li>
+<li><strong>FIN（finish标志，用于释放连接）</strong>：当<code>FIN=1</code>时，表明此报文段的发送方的数据已发送完毕，并要求释放运输连接</li>
+</ul>
+<p><strong>7、窗口（Window）</strong>：<code>是TCP流量控制的一个手段</code>。这里说的窗口，指的是接收通告窗口（Receiver Window，RWND）。它告诉对方本端的TCP接收缓冲区还能容纳多少字节的数据，这样就可以控制发送数据的速度</p>
+<p><strong>8、检验和（Checksum）</strong>：检验范围包括首部和数据两部分，由发送端填充，接收端对TCP报文段执行CRC算法以检验TCP报文段在传输过程中是否损坏。这也是TCP可靠传输的一个重要保障</p>
+<p><strong>9、紧急指针（Urgent Pointer）</strong>：紧急指针仅在URG=1时才有意义，它指出本报文段中的紧急数据的字节数（紧急数据结束后就是普通数据）。因此，紧急指针指出了紧急数据的末尾在报文段中的位置。当所有紧急数据都处理完时，TCP就告诉应用程序恢复到正常操作。值得注意的是，即使窗口为零时也可发送紧急数据。</p>
+<p><strong>10、TCP可选项（TCP Options）</strong>：长度可变，最长可达40字节。当没有使用“选项”时，TCP的首部长度是20字节。</p>
+<p><strong>TCP三次握手：</strong></p>
+<p><img src="/post/1c59/2.png" alt></p>
+<p><strong>第一次握手：</strong>建立连接时，客户端发送SYN（SYN=j）到服务器，并进入SYN_SEND状态，等待服务器确认（SYN：同步序列编号）</p>
+<p><strong>第二次握手：</strong>服务器接受到SYN的包，必须确认客户端的SYN（ack=j+1），同时自己也发送一个SYN包（SYN=k）即SYN+ACK包，此时服务器进入SYN_RECV状态。</p>
+<p><strong>第三次握手：</strong>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK（ACK=k+1），该包发送完之后客户端和服务器进入TCP链接成功。完成三次握手。</p>
+<p><strong>为什么需要三次握手才能建立连接？</strong></p>
+<ul>
+<li>为了初始化SEQ的初始值，实现可靠数据传输，TCP协议的通信双方都必须维护一个序列号，以标识发送出去的数据包中哪些是已经被对方收到的。</li>
+<li>如果只有两次握手，最多只有客户端的SEQ能被确认（只能一方发送数据）</li>
+</ul>
+<p><strong>TCP的四次挥手：</strong></p>
+<p><img src="/post/1c59/3.png" alt></p>
+<p><strong>第一次握手：</strong>客户端发送一个FIN，用来关闭客户端到服务端的数据传送，客户端进入FIN_WAIT_1状态</p>
+<p><strong>第二次握手：</strong>服务端接受到FIN之后，发送一个ACK给客户端，确认序号为收到的序号+1（ack = seq+1）</p>
+<p><strong>第三次握手：</strong>服务端发送一个FIN，用来关闭服务端到客户端的数据传送，服务端进入LAST ACK状态</p>
+<p><strong>第四次握手：</strong>客户端在收到FIN后，<strong>客户端进入TIME_WAIT状态</strong>，接着发送一个ACK给服务端，ack=seq+q，服务端进入CLOSED状态。</p>
+<p>可以简单理解为：</p>
+<ol>
+<li>client发送FIN到Server请求关闭</li>
+<li>server发送ACK，SEQ给client表示收到了关闭的请求</li>
+<li>server关闭和client的通道并发送一个FIN的标识</li>
+<li>client收到server发送的FIN并发挥一个ACK表示确认收到，并关闭</li>
+</ol>
+<p><strong>为什么会有TIME_WAIT：</strong></p>
+<ul>
+<li>在client收到server的结束报文的时候不会立马关闭，会进入到TIME_WAIT状态。在这个状态client等待2MSL，主要原因：<ul>
+<li>确保对方有最够的时间收到ACK报文</li>
+<li>避免新旧连接混淆</li>
+</ul>
+</li>
+</ul>
+<p><strong>出现大量的CLOSE_WAIT状态的原因：</strong></p>
+<ul>
+<li>由于对方关闭socket链接，我方忙于读/写，没能及时关闭。</li>
+</ul>
+<h1 id="Web-前端知识"><a href="#Web-前端知识" class="headerlink" title="Web 前端知识"></a>Web 前端知识</h1><p>304：如果客户端发送了一个带条件的GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个304状态码。（就是为什么数据不会被更新降低请求量：合并资源，减少HTTP 请求数，minify / gzip 压缩，webP，lazyLoad。</p>
+<p><strong>加快请求速度：</strong>预解析DNS，减少域名数，并行加载，CDN 分发。</p>
+<p><strong>缓存</strong>：HTTP 协议缓存请求，离线缓存 manifest，离线数据缓存localStorage。</p>
+<p><strong>渲染</strong>：JS/CSS优化，加载顺序，服务端渲染，pipeline。</p>
+<p><strong>301和302的区别：</strong></p>
+<p>301 Moved Permanently 被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个URI之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。</p>
+<p>302 Found 请求的资源现在临时从不同的URI响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</p>
+<p>字面上的区别就是301是永久重定向，而302是临时重定向。</p>
+<p>301比较常用的场景是使用域名跳转。302用来做临时跳转 比如未登陆的用户访问用户中心重定向到登录页面</p>
+<p><strong>缓存（304和200的区别）：</strong></p>
+<p>状态码200：请求已成功，请求所希望的响应头或数据体将随此响应返回。即返回的数据为全量的数据，如果文件不通过GZIP压缩的话，文件是多大，则要有多大传输量。</p>
+<p>状态码304：如果客户端发送了一个带条件的 GET 请求且该请求已被允许，<strong>而文档的内容（自上次访问以来或者根据请求的条件）并没有改变</strong>，则服务器应当返回这个状态码。即客户端和服务器端只需要传输很少的数据量来做文件的校验，如果文件没有修改过，则不需要返回全量的数据。（<strong>可以通过在请求的时候封装一个时间戳来解决</strong>）</p>
+<h2 id="Cookie和Session的区别"><a href="#Cookie和Session的区别" class="headerlink" title="Cookie和Session的区别"></a>Cookie和Session的区别</h2><ol>
+<li>Cookie是存放在浏览器端的数据，每次都随请求发送给 Server。存储<code>cookie</code>是浏览器提供的功能。<code>cookie</code> 其实是存储在浏览器中的纯文本，浏览器的安装目录下会专门有一个 cookie 文件夹来存放各个域下设置的<code>cookie</code>。只有4K左右的大小。</li>
+<li>而Session是存放在服务器端的内存中，其 Session ID 是通过 Cookie 发送给客户端的，这个Session ID每次都随请求发送给 Server。</li>
+</ol>
+<h2 id="Cookie-和-LocalStorage-的区别"><a href="#Cookie-和-LocalStorage-的区别" class="headerlink" title="Cookie 和 LocalStorage 的区别"></a>Cookie 和 LocalStorage 的区别</h2><ol>
+<li><code>Set-Cookie</code>之后，用户的每次访问服务器，请求里面都会带着<code>Cookie</code>到服务器上，与HTTP有关，而<code>LocalStorage</code>不用发到服务器端，它是存储在浏览器里面的，与HTTP无关，是浏览器的属性，<code>window.localStorage</code>。</li>
+<li><code>Cookie</code>一般比较小，大约4k左右，而<code>LocalStorage</code>大约能用5M</li>
+<li><code>Cookie</code>默认会在用户关闭页面后失效，不过后端可以设置保存时间，而<code>LocalStorage</code>永久有效，除非用户手动清理。</li>
+</ol>
+<h2 id="LocalStorage-和-SessionStorage-的区别"><a href="#LocalStorage-和-SessionStorage-的区别" class="headerlink" title="LocalStorage 和 SessionStorage 的区别"></a>LocalStorage 和 SessionStorage 的区别</h2><ol>
+<li><code>LocalStorage</code>永久有效，除非用户手动清理<code>localStorage.clear()</code>。不会自动过期</li>
+<li>但是SessionStorage在会话结束后就会失效，也就是用户关闭了页面，就失效了。会自动过期</li>
+<li><strong>Localstorage和sessionstorage：可以保存5M的信息</strong></li>
+</ol>
+<h2 id="csrf和xss的网络攻击及防范"><a href="#csrf和xss的网络攻击及防范" class="headerlink" title="csrf和xss的网络攻击及防范"></a>csrf和xss的网络攻击及防范</h2><h3 id="参考回答："><a href="#参考回答：" class="headerlink" title="参考回答："></a>参考回答：</h3><p>CSRF：跨站请求伪造，可以理解为攻击者盗用了用户的身份，以用户的名义发送了恶意请求，比如用户登录了一个网站后，立刻在另一个tab页面访问量攻击者用来制造攻击的网站，这个网站要求访问刚刚登陆的网站，并发送了一个恶意请求，这时候CSRF就产生了，比如这个制造攻击的网站使用一张图片，但是这种图片的链接却是可以修改数据库的，这时候攻击者就可以以用户的名义操作这个数据库，防御方式的话：使用验证码，检查https头部的refer，<strong>使用token</strong></p>
+<p>XSS：跨站脚本攻击，是说攻击者通过注入恶意的脚本，在用户浏览网页的时候进行攻击，比如获取cookie，或者其他用户身份信息，可以分为存储型和反射型，存储型是攻击者输入一些数据并且存储到了数据库中，其他浏览者看到的时候进行攻击，反射型的话不存储在数据库中，往往表现为将攻击代码放在url地址的请求参数中，防御的话为<strong>cookie设置httpOnly属性</strong>，对用户的输入进行检查，进行特殊字符过滤</p>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><h4 id="https的原理及其局限性"><a href="#https的原理及其局限性" class="headerlink" title="https的原理及其局限性"></a><strong>https的原理及其局限性</strong></h4><p><strong>一、原理：</strong></p>
+<p>（1）客户使用https的URL访问Web服务器，要求与Web服务器建立SSL连接。</p>
+<p>（2）Web服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传送一份给客户端。</p>
+<p>（3）客户端的浏览器与Web服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</p>
+<p>（4）客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</p>
+<p>（5）Web服务器利用自己的私钥解密出会话密钥。</p>
+<p>（6）Web服务器利用会话密钥加密与客户端之间的通信。</p>
+<p><strong>二、HTTPS的优点</strong></p>
+<p>尽管HTTPS并非绝对安全，掌握根证书的机构、掌握加密算法的组织同样可以进行中间人形式的攻击，但HTTPS仍是现行架构下最安全的解决方案，主要有以下几个好处：</p>
+<p>（1）使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器；</p>
+<p>（2）HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性。</p>
+<p>（3）HTTPS是现行架构下最安全的解决方案，虽然不是绝对安全，但它大幅增加了中间人攻击的成本。</p>
+<p>（4）谷歌曾在2014年8月份调整搜索引擎算法，并称“比起同等HTTP网站，采用HTTPS加密的网站在搜索结果中的排名将会更高”。</p>
+<p><strong>三、HTTPS的缺点</strong></p>
+<p>虽然说HTTPS有很大的优势，但其相对来说，还是存在不足之处的：</p>
+<p>（1）HTTPS协议握手阶段比较费时，会使页面的加载时间延长近50%，增加10%到20%的耗电；</p>
+<p>（2）HTTPS连接缓存不如HTTP高效，会增加数据开销和功耗，甚至已有的安全措施也会因此而受到影响；</p>
+<p>（3）SSL证书需要钱，功能越强大的证书费用越高，个人网站、小网站没有必要一般不会用。</p>
+<p>（4）SSL证书通常需要绑定IP，不能在同一IP上绑定多个域名，IPv4资源不可能支撑这个消耗。</p>
+<p>（5）HTTPS协议的加密范围也比较有限，在黑客攻击、拒绝服务攻击、服务器劫持等方面几乎起不到什么作用。最关键的，SSL证书的信用链体系并不安全，特别是在某些国家可以控制CA根证书的情况下，中间人攻击一样可行。</p>
+<p><strong>Socket协议：基于TCP建立的链接</strong></p>
+<h1 id="Nginx的原理"><a href="#Nginx的原理" class="headerlink" title="Nginx的原理"></a>Nginx的原理</h1><ul>
+<li>Nginx接收用户请求是异步的，即先将用户请求全部接收下来，再一次性发送到后端Web服务器，极大减轻后端Web服务器的压力。 </li>
+<li>发送响应报文时，是边接收来自后端Web服务器的数据，边发送给客户端。 </li>
+<li><strong>多进程机制</strong><ul>
+<li>服务器每当收到一个客户端时，就有 服务器主进程 （ master process ）生成一个 子进程（ worker process ）出来和客户端建立连接进行交互，直到连接断开，该子进程就结束了。</li>
+</ul>
+</li>
+<li><strong>异步非阻塞机制</strong><ul>
+<li>每个工作进程 使用异步非阻塞方式 ，可以处理 多个客户端请求 。</li>
+</ul>
+</li>
+<li><strong>什么是反向代理</strong><ul>
+<li>反向代理服务器可以隐藏源服务器的存在和特征。它充当互联网云和web服务器之间的中间层。这对于安全方面来说是很好的，特别是当您使用web托管服务时。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">----- End <i class="fa fa-paw"></i> Thanks for reading-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/network/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/17ae/" rel="next" title="Algorithm">
+                <i class="fa fa-chevron-left"></i> Algorithm
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/374e/" rel="prev" title="leetcode">
+                leetcode <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Shunyang Li</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/li.shunyang.9" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度搜索" target="_blank">百度搜索</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-四层协议"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP 四层协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">3.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">4.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-amp-UDP"><span class="nav-number">5.</span> <span class="nav-text">TCP &amp; UDP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-前端知识"><span class="nav-number">6.</span> <span class="nav-text">Web 前端知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session的区别"><span class="nav-number">6.1.</span> <span class="nav-text">Cookie和Session的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-和-LocalStorage-的区别"><span class="nav-number">6.2.</span> <span class="nav-text">Cookie 和 LocalStorage 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocalStorage-和-SessionStorage-的区别"><span class="nav-number">6.3.</span> <span class="nav-text">LocalStorage 和 SessionStorage 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#csrf和xss的网络攻击及防范"><span class="nav-number">6.4.</span> <span class="nav-text">csrf和xss的网络攻击及防范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考回答："><span class="nav-number">6.4.1.</span> <span class="nav-text">参考回答：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS"><span class="nav-number">7.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#https的原理及其局限性"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">https的原理及其局限性</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx的原理"><span class="nav-number">8.</span> <span class="nav-text">Nginx的原理</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <script src="https://efreecode.com/js.js" id="eXF-shunyang-0" async defer></script>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shunyang Li</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      times
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Total number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      times
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'f6AtjL4EGvNH0x9nC1llJvX0-gzGzoHsz',
+        appKey: '7pMECSFW5y4TvPDdAoYB2OHz',
+        placeholder: '请在此输入您的留言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
