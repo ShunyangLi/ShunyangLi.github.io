@@ -62,18 +62,18 @@
   <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
 
 
-<meta name="description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
+<meta name="description" content="包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持，并且提供了行级">
 <meta name="keywords" content="db">
 <meta property="og:type" content="article">
 <meta property="og:title" content="database">
 <meta property="og:url" content="https://shunyangli.github.io/post/1c6b/index.html">
 <meta property="og:site_name" content="Shunyang Li">
-<meta property="og:description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
+<meta property="og:description" content="包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持，并且提供了行级">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2022-06-14T06:41:24.388Z">
+<meta property="og:updated_time" content="2022-07-06T11:18:52.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="database">
-<meta name="twitter:description" content="Database包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持">
+<meta name="twitter:description" content="包含一些database常见的问题，MySQL的索引，怎么使用索引等等。 数据库的三大范式第一范式：每个列都不能再拆分 第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分 第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。 引擎MySQL里面储存引擎MyISAM与InnoDB的区别： InnoDB引擎：提供了对数据库ACID的支持，并且提供了行级">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -312,7 +312,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.2k words
+                  2.7k words
                 </span>
               
 
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4 minutes
+                  9 minutes
                 </span>
               
             </div>
@@ -349,7 +349,7 @@
       
 
       
-        <h1 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h1><p>包含一些database常见的问题，MySQL的索引，怎么使用索引等等。</p>
+        <p>包含一些database常见的问题，MySQL的索引，怎么使用索引等等。</p>
 <h1 id="数据库的三大范式"><a href="#数据库的三大范式" class="headerlink" title="数据库的三大范式"></a>数据库的三大范式</h1><p>第一范式：每个列都不能再拆分</p>
 <p>第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分</p>
 <p>第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。</p>
@@ -392,6 +392,22 @@
 </ol>
 <p>InnoDB使用<strong><code>redo log</code>是实现持久性</strong>的关键，Mysql是先把磁盘上的数据加载到内存中，在内存中对数据进行修改，同时会在<code>redo log</code>里面记录该操作，当宕机重启之后，会将<code>redo log</code>中的内容回复到数据库里面。</p>
 <p><strong>MySQL使用的是锁和MVCC机制保证隔离性。</strong></p>
+<h1 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h1><p>数据库事务中的四大特性：ACID</p>
+<h2 id="Atomicity"><a href="#Atomicity" class="headerlink" title="Atomicity"></a>Atomicity</h2><p>A：原子性（Atomicity），一个事务（transcation）中的所有操作，要么全部完成，要么全部不完成，不会出现完成一半的情况。事务在执行过程中发生错误会被回滚（rollbac）到事务开始前的状态。</p>
+<p>原子性和一致性通过Undo log来实现。Undo log的原理很简单，为了满足事务的原子性，在操作任何数据之前，首先将数据备份到一个地方（这个存储数据备份的地方称为Undo log）。然后进行数据的修改。如果出现了错误或者用户执行了ROLLBACK语句，系统可以利用Undo log中的备份将数据恢复到事务开始之前的状态。</p>
+<h2 id="Consistency"><a href="#Consistency" class="headerlink" title="Consistency"></a>Consistency</h2><p>C：一致性（Consistency），事务的一致性指的是在一个事务执行之前和执行之后数据库都必须处于一致性状态。如果事务成功地完成，那么系统中所有变化将正确地应用，系统处于有效状态。如果在事务中出现错误，那么系统中的所有变化将自动地回滚，系统返回到原始状态。(参考分布式数据库的一致性)。</p>
+<p>数据一致性可以参考Raft算法和Paxos算法。</p>
+<h2 id="Isolation"><a href="#Isolation" class="headerlink" title="Isolation"></a>Isolation</h2><p>I：隔离性（Isolation），指的是在并发环境中，当不同的事务同时操纵相同的数据时，每个事务都有各自的完整数据空间。由并发事务所做的修改必须与任何其他并发事务所做的修改隔离。事务查看数据更新时，数据所处的状态要么是另一事务修改它之前的状态，要么是另一事务修改它之后的状态，事务不会查看到中间状态的数据。 打个比方，你买东西这个事情，是不影响其他人的。</p>
+<p>如果要实现数据库事务最高隔离性，也就是最安全的隔离。最简单的解决方法就是当一个事务执行的时候，其他事务都阻塞，等当前事务执行完之后再执行。但是对于现在的多核CPU是非常浪费资源的。所以为了充分利用计算资源，可以使用多版本并发控制（MVCC）来解决该问题。</p>
+<h3 id="Read-amp-Write-Lock"><a href="#Read-amp-Write-Lock" class="headerlink" title="Read &amp; Write Lock"></a>Read &amp; Write Lock</h3><p>读写锁还是比较容易理解的。当在读取数据的时候，应该对读取的数据先加锁后读取，读取完之后的某个时间再进行解开读锁。读锁只能读取数据不能写入。因为如果加了读锁，说明某个事务准备读取数据，如果被别的事务修改了数据，那么数据就不准确了。<strong>但是多个事务可以同时对同一个数据进行读锁，因为所有事务都是只读不写。</strong></p>
+<p>写锁具有排他性（exclusive lock）。当一个事务准备对一个数据进行写操作的时候，先要对数据加写锁，然后才可以修改数据。这个时候其他事务就无法对这个数据进行解锁，除非这个写锁释放。写锁是为了必然多个事务同时修改同一个数据。</p>
+<h3 id="One-Phase-Lock"><a href="#One-Phase-Lock" class="headerlink" title="One Phase Lock"></a>One Phase Lock</h3><p>一段锁即事务开始的时候，一次性申请全部的锁，以后不会申请任何锁。如果期中某个锁不可用，则整个申请就不成功，事务就不会执行，在事务尾端则一次性释放所有锁。一段锁不会造成死锁，但是事务的并发度不高。</p>
+<h3 id="Two-Phase-Lock"><a href="#Two-Phase-Lock" class="headerlink" title="Two Phase Lock"></a>Two Phase Lock</h3><p>两段锁，整个事务分成两个阶段，前一个阶段为加锁，后一个阶段为解锁。在加锁阶段，事务只能加锁，也能操作数据，但不能解锁。直到事务释放第一个锁，就进入解锁阶段，此过程当中事务只能解锁，也能操作数据，不能再加锁。两段锁协议使得事务具备较高的并发。由于在加锁阶段没有顺序要求，所以会存在死锁的情况。如果两个事务分别申请了A，B锁，接着又申请对方的锁，此时进入到死锁状态。</p>
+<h3 id="Multiversion-Concurrency-Control"><a href="#Multiversion-Concurrency-Control" class="headerlink" title="Multiversion Concurrency Control"></a>Multiversion Concurrency Control</h3><p>加锁的方式处理事务一个比较大的问题就是会造成死锁（dead lock）,原因就是一个事务加锁的数据并不止只有一行。事务A对行C加写锁，事务B对行D加写锁，接着事务希望获取行D的锁，事务B希望获取行C的锁，这样很容就死锁了。</p>
+<p>MVCC提供的只是一种思路，具体的实现比较多样化。大体的思路是每一行保存冗余数据，读写的时间戳，也可以称为版本号，<strong>在对某一行数据继续update或者delete的时候，并不直接操作，而是复制多一份副本进行操作，这个就是所谓多版本（multiversion）</strong></p>
+<p>相当于利用时间戳对数据进行维护保持数据的隔离性。</p>
+<h2 id="Durability"><a href="#Durability" class="headerlink" title="Durability"></a>Durability</h2><p>D：持久性（Durability），指的是只要事务成功结束，它对数据库所做的更新就必须永久保存下来。即使发生系统崩溃，重新启动数据库系统后，数据库还能恢复到事务成功结束时的状态。打个比方，你买东西的时候需要拿收据，即使老板忘记了那也有据可查。</p>
+<p>重做日志（Redo Log）用来实现事务的持久性。Redo log记录的是新数据的备份。在事务提交前，只要将Redo log持久化即可，不需要将数据持久化。当系统崩溃时，虽然数据没有持久化，但是Redo log已经持久化。系统可以根据Redo log的内容，将所有数据恢复到最新的状态。</p>
 
       
     </div>
@@ -633,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Database"><span class="nav-number">1.</span> <span class="nav-text">Database</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的三大范式"><span class="nav-number">2.</span> <span class="nav-text">数据库的三大范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引擎"><span class="nav-number">3.</span> <span class="nav-text">引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL的ACID原理"><span class="nav-number">4.</span> <span class="nav-text">MySQL的ACID原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL怎么实现ACID的"><span class="nav-number">4.1.</span> <span class="nav-text">MySQL怎么实现ACID的</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的三大范式"><span class="nav-number">1.</span> <span class="nav-text">数据库的三大范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引擎"><span class="nav-number">2.</span> <span class="nav-text">引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL的ACID原理"><span class="nav-number">3.</span> <span class="nav-text">MySQL的ACID原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL怎么实现ACID的"><span class="nav-number">3.1.</span> <span class="nav-text">MySQL怎么实现ACID的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ACID"><span class="nav-number">4.</span> <span class="nav-text">ACID</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Atomicity"><span class="nav-number">4.1.</span> <span class="nav-text">Atomicity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Consistency"><span class="nav-number">4.2.</span> <span class="nav-text">Consistency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Isolation"><span class="nav-number">4.3.</span> <span class="nav-text">Isolation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-amp-Write-Lock"><span class="nav-number">4.3.1.</span> <span class="nav-text">Read &amp; Write Lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-Phase-Lock"><span class="nav-number">4.3.2.</span> <span class="nav-text">One Phase Lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-Phase-Lock"><span class="nav-number">4.3.3.</span> <span class="nav-text">Two Phase Lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiversion-Concurrency-Control"><span class="nav-number">4.3.4.</span> <span class="nav-text">Multiversion Concurrency Control</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Durability"><span class="nav-number">4.4.</span> <span class="nav-text">Durability</span></a></li></ol></li></ol></div>
             
 
           </div>
