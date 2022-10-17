@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shunyangli.github.io/"/>
-  <updated>2022-10-15T16:04:03.193Z</updated>
+  <updated>2022-10-17T12:55:48.649Z</updated>
   <id>https://shunyangli.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://shunyangli.github.io/post/246a/"/>
     <id>https://shunyangli.github.io/post/246a/</id>
     <published>2022-10-15T16:01:42.000Z</published>
-    <updated>2022-10-15T16:04:03.193Z</updated>
+    <updated>2022-10-17T12:55:48.649Z</updated>
     
-    <content type="html"><![CDATA[<p>Field-programmable gate arrays (FPGAs) have significant advantages on parallelism and energy efficiency over CPUs and GPUs, and are widely deployed by many enterprises and cloud server providers nowadays. In this paper, we demonstrate FGAQ, the first FPGA-based system for accelerating graph queries on massive graph. FGAQ supports the two most fundamental types of graph queries, namely subgraph and path queries, and features 1) a CPU-FPGA co-designed framework, 2) a fully pipelined FPGA execution, and 3) reduced data transfer from FPGA’s external memory. FGAQ provides user-friendly interface and significantly improved performance.</p><iframe width="807" height="605" src="https://www.youtube.com/embed/BESCUqeHWkQ" title="FGAQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    <content type="html"><![CDATA[<p>Field-programmable gate arrays (FPGAs) have significant advantages on parallelism and energy efficiency over CPUs and GPUs, and are widely deployed by many enterprises and cloud server providers nowadays. In this paper, we demonstrate FGAQ, the first FPGA-based system for accelerating graph queries on massive graph. FGAQ supports the two most fundamental types of graph queries, namely subgraph and path queries, and features 1) a CPU-FPGA co-designed framework, 2) a fully pipelined FPGA execution, and 3) reduced data transfer from FPGA’s external memory. FGAQ provides user-friendly interface and significantly improved performance.</p><iframe width="807" height="605" src="https://www.youtube.com/embed/meOHu3XfShc" title="FGAQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
     
     <summary type="html">
     
