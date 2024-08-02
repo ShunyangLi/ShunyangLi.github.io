@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="google-site-verification" content="IOATCl5WoBxLBupME1kt4CHNSMNPlQtjHsNC-UXFvUQ">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="Algorithm,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shunyang Li" type="application/atom+xml">
+
+
+<meta name="description" content="BackgroundCUDA (Compute Unified Device Architecture) is a parallel computing platform and programming model developed by NVIDIA. It enables developers to utilize the powerful computing capabilities of">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA Programming">
+<meta property="og:url" content="https://shunyangli.github.io/post/dd87/index.html">
+<meta property="og:site_name" content="Shunyang Li">
+<meta property="og:description" content="BackgroundCUDA (Compute Unified Device Architecture) is a parallel computing platform and programming model developed by NVIDIA. It enables developers to utilize the powerful computing capabilities of">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2024-08-02T05:25:31.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CUDA Programming">
+<meta name="twitter:description" content="BackgroundCUDA (Compute Unified Device Architecture) is a parallel computing platform and programming model developed by NVIDIA. It enables developers to utilize the powerful computing capabilities of">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="https://shunyangli.github.io/post/dd87/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>CUDA Programming | Shunyang Li</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shunyang Li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/post/dd87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shunyang Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shunyang Li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CUDA Programming</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-08-02T15:24:27+10:00">
+                2024-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/dd87/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/post/dd87/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> Total number of readers of this article
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>times
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.6k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  16 minutes
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h1><p>CUDA (Compute Unified Device Architecture) is a parallel computing platform and programming model developed by NVIDIA. It enables developers to utilize the powerful computing capabilities of NVIDIA GPUs (Graphics Processing Units) for general-purpose computing, not limited to graphics processing. Here are some key features and components of CUDA:</p>
+<ol>
+<li><strong>Parallel Computing Model</strong>: CUDA provides a programming model based on parallel computing, allowing computation tasks to be executed in parallel on hundreds or even thousands of GPU cores. It supports large-scale parallel data processing and computation.</li>
+<li><strong>Programming Language</strong>: The CUDA programming model extends programming languages such as C, C++, and Fortran. Developers can write CUDA kernels (functions that run on GPUs) using these languages.</li>
+<li><strong>Memory Management</strong>: CUDA offers various memory management methods, including global memory, shared memory, constant memory, and texture memory. Shared memory is a very fast memory type that can share data between threads within the same thread block.</li>
+<li><strong>Thread Organization</strong>: CUDA organizes parallel computing tasks into grids, with each grid containing multiple thread blocks, and each thread block containing multiple threads. This hierarchical structure of grids and thread blocks allows CUDA to efficiently handle large-scale parallel computations.</li>
+<li><strong>Development Tools</strong>: NVIDIA provides a complete set of development tools, including the CUDA compiler (nvcc), CUDA libraries (such as cuBLAS, cuFFT, etc.), and debugging and performance analysis tools (such as NVIDIA Nsight).</li>
+<li><strong>Application Areas</strong>: CUDA is widely used in scientific computing, machine learning, image processing, financial modeling, computer vision, and many other fields. It is particularly suitable for tasks requiring large-scale parallel computation.</li>
+</ol>
+<h1 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h1><p>The GPU (Graphics Processing Unit) architecture differs from traditional CPU architecture and is specifically designed for large-scale parallel computing tasks. Here’s a detailed introduction to the main components from Grid to Thread, including shared memory:</p>
+<p><strong>1. Grid</strong></p>
+<p>A Grid is the highest-level organizational unit in a CUDA program. It consists of multiple thread blocks (Blocks), all of which execute the same kernel function in parallel. The dimensions of a Grid can be one-dimensional, two-dimensional, or three-dimensional, depending on the requirements of the computational task. Blocks within a Grid are independent of each other and cannot communicate directly.</p>
+<p><strong>2. Block</strong></p>
+<p>Each Grid is composed of multiple thread blocks. A thread block is the basic unit of GPU execution scheduling, and all threads within a block can share data and coordinate through synchronization primitives. The size and number of thread blocks affect parallelism and performance, as they are distributed to different multiprocessors for execution.</p>
+<p><strong>3. Thread</strong></p>
+<p>A thread is the smallest execution unit of a GPU. Each Block consists of multiple threads, which share the same memory space (shared memory) within the Block and can collaborate. CUDA allows developers to define the layout of threads within each Block (e.g., one-dimensional, two-dimensional, or three-dimensional) to better adapt to the geometric structure of the problem.</p>
+<p><strong>4. SM (Streaming Multiprocessor)</strong></p>
+<p>A GPU is composed of multiple SMs, each capable of processing multiple thread blocks simultaneously. An SM is responsible for executing the thread blocks assigned to it and running threads in parallel on its multiple cores. Each SM has its own registers, shared memory, and other resources, which limit the number of thread blocks that can be executed simultaneously.</p>
+<p><strong>5. Registers</strong></p>
+<p>Registers are the storage closest to the processing cores and are very fast. Each thread has its own set of registers used to store temporary variables. The number of registers is limited, and if too many are used, it will cause register spilling to global memory, reducing performance.</p>
+<p><strong>6. Shared Memory</strong></p>
+<p>Shared memory is a memory area accessible by all threads within a thread block. It is a high-speed cache located between registers and global memory, allowing efficient collaboration and data sharing among threads within a block. Shared memory access is much faster than global memory, but its capacity is limited, so it needs to be managed carefully.</p>
+<p><strong>7. Global Memory</strong></p>
+<p>Global memory is the largest but relatively slow memory on the GPU. All threads can access global memory, but due to its slower access speed, it is typically used to store infrequently accessed data or data that needs to be shared between multiple Blocks.</p>
+<p><strong>8. Constant Memory and Texture Memory</strong></p>
+<p>Constant memory is a read-only memory area, typically used to store data that will not change during kernel execution, such as constant values. Texture memory is a specialized memory for image processing, capable of spatial localization and filtering of multidimensional data.</p>
+<p><strong>9. Synchronization and Atomic Operations</strong></p>
+<p>In CUDA, threads within a thread block can ensure synchronized execution through synchronization primitives (such as <code>__syncthreads()</code>). Additionally, CUDA provides some atomic operations that allow threads to safely modify shared data.</p>
+<h1 id="Computational-schemes"><a href="#Computational-schemes" class="headerlink" title="Computational schemes"></a>Computational schemes</h1><p>CUDA computational schemes mainly consist of three types: thread-centric, block-centric, and warp-centric. These schemes define how tasks are allocated and the granularity of computation. Here’s a detailed description of these three schemes:</p>
+<p><strong>1. Thread-Centric</strong></p>
+<p>In the thread-centric computational scheme, each thread is responsible for processing an independent task. In this scheme, the granularity of tasks is very fine, fully utilizing the large number of GPU cores for parallel computation. Each thread independently executes its part of the task, which is very effective for processing a large number of independent computational tasks, such as element-wise calculations in matrix operations.</p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Maximizes parallelism as each thread works independently.</li>
+<li>Suitable for situations that require processing a large number of small independent tasks.</li>
+</ul>
+<p><strong>Challenges</strong>:</p>
+<ul>
+<li>Requires careful design to ensure uniform load distribution, otherwise some threads may finish faster than others, leading to resource waste.</li>
+</ul>
+<p><strong>2. Block-Centric</strong></p>
+<p>In the block-centric computational scheme, each thread block is responsible for processing one task. All threads within the block collaborate to complete this task, utilizing shared memory and thread synchronization to achieve efficient computation. In this scheme, the granularity of tasks is larger, suitable for computational tasks that require a large amount of data sharing and collaboration between threads, such as certain graphics algorithms or operations requiring aggregated computations.</p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Utilizes the shared memory and synchronization mechanisms of thread blocks to effectively collaborate on complex computational tasks.</li>
+<li>Suitable for handling tasks that require extensive data sharing and coordination.</li>
+</ul>
+<p><strong>Challenges</strong>:</p>
+<ul>
+<li>Load imbalance within thread blocks can lead to waste of computational resources.</li>
+<li>Requires higher design requirements for task division, ensuring that the workload between thread blocks is roughly equal.</li>
+</ul>
+<p><strong>3. Warp-Centric</strong></p>
+<p>In the warp-centric computational scheme, each warp is responsible for processing one task. A warp typically consists of 32 threads that execute the same instruction set synchronously. In this scheme, the granularity of tasks is between thread-centric and block-centric. Since threads within a warp execute in complete synchronization, task design needs to consider the SIMD (Single Instruction, Multiple Data) characteristics of warps, ensuring that all threads within the same warp execute the same path as much as possible to avoid performance loss due to warp divergence.</p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Threads within a warp are completely synchronized, making them easy to manage and optimize.</li>
+<li>Suitable for tasks requiring SIMD-style computation, such as convolution operations in image processing.</li>
+</ul>
+<p><strong>Challenges</strong>:</p>
+<ul>
+<li>Warp divergence can severely impact performance, as the GPU needs to execute different paths separately when different threads execute different paths, causing some threads to be idle.</li>
+<li>Task design needs to consider the characteristics of warps to ensure maximum utilization.</li>
+</ul>
+<h1 id="Example-of-computational-scheme"><a href="#Example-of-computational-scheme" class="headerlink" title="Example of computational scheme"></a>Example of computational scheme</h1><h2 id="Thread-Centric"><a href="#Thread-Centric" class="headerlink" title="Thread-Centric"></a><strong>Thread-Centric</strong></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cuda_runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">addArrays</span><span class="params">(<span class="keyword">float</span>* a, <span class="keyword">float</span>* b, <span class="keyword">float</span>* c, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index = threadIdx.x + blockIdx.x * blockDim.x;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; n) &#123;</span><br><span class="line">        c[index] = a[index] + b[index];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> arraySize = <span class="number">10000</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> arrayBytes = arraySize * <span class="keyword">sizeof</span>(<span class="keyword">float</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span>* h_a = (<span class="keyword">float</span>*)<span class="built_in">malloc</span>(arrayBytes);</span><br><span class="line">    <span class="keyword">float</span>* h_b = (<span class="keyword">float</span>*)<span class="built_in">malloc</span>(arrayBytes);</span><br><span class="line">    <span class="keyword">float</span>* h_c = (<span class="keyword">float</span>*)<span class="built_in">malloc</span>(arrayBytes);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arraySize; ++i) &#123;</span><br><span class="line">        h_a[i] = i;</span><br><span class="line">        h_b[i] = i * <span class="number">2.0f</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span> *d_a, *d_b, *d_c;</span><br><span class="line">    cudaMalloc((<span class="keyword">void</span>**)&amp;d_a, arrayBytes);</span><br><span class="line">    cudaMalloc((<span class="keyword">void</span>**)&amp;d_b, arrayBytes);</span><br><span class="line">    cudaMalloc((<span class="keyword">void</span>**)&amp;d_c, arrayBytes);</span><br><span class="line"></span><br><span class="line">    cudaMemcpy(d_a, h_a, arrayBytes, cudaMemcpyHostToDevice);</span><br><span class="line">    cudaMemcpy(d_b, h_b, arrayBytes, cudaMemcpyHostToDevice);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> blockSize = <span class="number">256</span>;</span><br><span class="line">    <span class="keyword">int</span> numBlocks = (arraySize + blockSize - <span class="number">1</span>) / blockSize;</span><br><span class="line"></span><br><span class="line">    addArrays&lt;&lt;&lt;numBlocks, blockSize&gt;&gt;&gt;(d_a, d_b, d_c, arraySize);</span><br><span class="line"></span><br><span class="line">    cudaMemcpy(h_c, d_c, arrayBytes, cudaMemcpyDeviceToHost);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"h_c["</span> &lt;&lt; i &lt;&lt; <span class="string">"] = "</span> &lt;&lt; h_c[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Free device and host memory</span></span><br><span class="line">    cudaFree(d_a);</span><br><span class="line">    cudaFree(d_b);</span><br><span class="line">    cudaFree(d_c);</span><br><span class="line">    <span class="built_in">free</span>(h_a);</span><br><span class="line">    <span class="built_in">free</span>(h_b);</span><br><span class="line">    <span class="built_in">free</span>(h_c);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>blockSize</code> refers to the number of threads in each block. Since we have 10000 data points to compute, we need <code>(arraySize + blockSize - 1) / blockSize</code> blocks.</p>
+<p><code>__global__ void xxx</code> is used to declare that the function runs on the GPU. The <code>threadIdx.x + blockIdx.x * blockDim.x</code> corresponds to the index of the 10000 data.</p>
+<p>The calculation of <code>threadIdx.x + blockIdx.x * blockDim.x</code> can be better explained through the following illustration:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Grid</span><br><span class="line">+------------------------------------------------------+</span><br><span class="line">| Block 0                  | Block 1                  | </span><br><span class="line">| +--------------------+   | +--------------------+   |</span><br><span class="line">| | Thread 0           |   | | Thread 0           |   |</span><br><span class="line">| | Thread 1           |   | | Thread 1           |   |</span><br><span class="line">| | ...                |   | | ...                |   |</span><br><span class="line">| | Thread blockDim.x-1|   | | Thread blockDim.x-1|   |</span><br><span class="line">| +--------------------+   | +--------------------+   |</span><br><span class="line">|                                                    |</span><br><span class="line">| ...                                                |</span><br><span class="line">|                                                    |</span><br><span class="line">| Block numBlocks-1                                  |</span><br><span class="line">| +--------------------+                             |</span><br><span class="line">| | Thread 0           |                             |</span><br><span class="line">| | Thread 1           |                             |</span><br><span class="line">| | ...                |                             |</span><br><span class="line">| | Thread blockDim.x-1|                             |</span><br><span class="line">| +--------------------+                             |</span><br><span class="line">+------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p><strong>Calculating the global thread index</strong></p>
+<p>The formula <code>threadIdx.x + blockIdx.x * blockDim.x</code> is used to calculate the global index of a thread in the thread grid:</p>
+<ul>
+<li><code>threadIdx.x</code>: The index of the current thread within its block.</li>
+<li><code>blockIdx.x</code>: The index of the current block in the grid.</li>
+<li><code>blockDim.x</code>: The number of threads in each block (block dimension).</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Assume:</p>
+<ul>
+<li><code>blockDim.x = 4</code> (4 threads per block)</li>
+<li><code>blockIdx.x = 1</code> (this is the second block, index starts from 0)</li>
+<li><code>threadIdx.x = 2</code> (this is the third thread in the block, index starts from 0)</li>
+</ul>
+<p>Then, the steps to calculate the global thread index are:</p>
+<ol>
+<li><strong>Calculate the starting position of the block</strong>: <code>blockIdx.x * blockDim.x</code> = <code>1 * 4</code> = <code>4</code></li>
+<li><strong>Add the thread offset within the block</strong>: <code>4 + threadIdx.x</code> = <code>4 + 2</code> = <code>6</code></li>
+</ol>
+<p>Finally, the global index is <code>6</code>, which means this thread is the 7th thread in the entire grid (index starts from 0).</p>
+<h2 id="warp-centric"><a href="#warp-centric" class="headerlink" title="warp-centric"></a>warp-centric</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cuda_runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WARP_SIZE 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// CUDA kernel function: each warp calculates the sum of squares of an array segment</span></span><br><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">warpSumSquares</span><span class="params">(<span class="keyword">float</span>* input, <span class="keyword">float</span>* output, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> warpId = threadIdx.x / WARP_SIZE;</span><br><span class="line">    <span class="keyword">int</span> lane = threadIdx.x % WARP_SIZE;</span><br><span class="line"></span><br><span class="line">    __shared__ <span class="keyword">float</span> sharedMemory[WARP_SIZE];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> start = warpId * WARP_SIZE * gridDim.x + blockIdx.x * WARP_SIZE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span> sum = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start + lane; i &lt; start + WARP_SIZE &amp;&amp; i &lt; n; i += WARP_SIZE) &#123;</span><br><span class="line">        sum += input[i] * input[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Use shared memory and warp shuffle reduction</span></span><br><span class="line">    sharedMemory[lane] = sum;</span><br><span class="line">    __syncthreads();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lane == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">float</span> warpSum = <span class="number">0.0f</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; WARP_SIZE; ++i) &#123;</span><br><span class="line">            warpSum += sharedMemory[i];</span><br><span class="line">        &#125;</span><br><span class="line">        output[warpId * gridDim.x + blockIdx.x] = warpSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> arraySize = <span class="number">1024</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> arrayBytes = arraySize * <span class="keyword">sizeof</span>(<span class="keyword">float</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> outputSize = arraySize / WARP_SIZE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Allocate memory on the host (CPU)</span></span><br><span class="line">    <span class="keyword">float</span>* h_input = (<span class="keyword">float</span>*)<span class="built_in">malloc</span>(arrayBytes);</span><br><span class="line">    <span class="keyword">float</span>* h_output = (<span class="keyword">float</span>*)<span class="built_in">malloc</span>(outputSize * <span class="keyword">sizeof</span>(<span class="keyword">float</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize the array</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arraySize; ++i) &#123;</span><br><span class="line">        h_input[i] = i * <span class="number">1.0f</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Allocate memory on the device (GPU)</span></span><br><span class="line">    <span class="keyword">float</span> *d_input, *d_output;</span><br><span class="line">    cudaMalloc((<span class="keyword">void</span>**)&amp;d_input, arrayBytes);</span><br><span class="line">    cudaMalloc((<span class="keyword">void</span>**)&amp;d_output, outputSize * <span class="keyword">sizeof</span>(<span class="keyword">float</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Copy data from host to device</span></span><br><span class="line">    cudaMemcpy(d_input, h_input, arrayBytes, cudaMemcpyHostToDevice);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Launch CUDA kernel function</span></span><br><span class="line">    <span class="keyword">int</span> blockSize = <span class="number">64</span>;  <span class="comment">// Each block contains two warps</span></span><br><span class="line">    <span class="keyword">int</span> numBlocks = (outputSize + blockSize - <span class="number">1</span>) / blockSize;</span><br><span class="line">    warpSumSquares&lt;&lt;&lt;numBlocks, blockSize&gt;&gt;&gt;(d_input, d_output, arraySize);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Copy results from device to host</span></span><br><span class="line">    cudaMemcpy(h_output, d_output, outputSize * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), cudaMemcpyDeviceToHost);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Print results for verification</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; outputSize; ++i) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Output["</span> &lt;&lt; i &lt;&lt; <span class="string">"] = "</span> &lt;&lt; h_output[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Free device and host memory</span></span><br><span class="line">    cudaFree(d_input);</span><br><span class="line">    cudaFree(d_output);</span><br><span class="line">    <span class="built_in">free</span>(h_input);</span><br><span class="line">    <span class="built_in">free</span>(h_output);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="block-centric"><a href="#block-centric" class="headerlink" title="block-centric"></a>block-centric</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cuda_runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLOCK_SIZE 1024  <span class="comment">// Number of threads per block</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// CUDA kernel function: each block calculates the sum of squares for a portion of the data</span></span><br><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">blockSumSquares</span><span class="params">(<span class="keyword">float</span>* input, <span class="keyword">float</span>* partialSum, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    __shared__ <span class="keyword">float</span> sharedMemory[BLOCK_SIZE];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> tid = threadIdx.x + blockIdx.x * blockDim.x;</span><br><span class="line">    <span class="keyword">int</span> threadId = threadIdx.x;</span><br><span class="line">    <span class="keyword">int</span> blockSize = blockDim.x;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Each thread calculates its own data</span></span><br><span class="line">    <span class="keyword">float</span> sum = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">if</span> (tid &lt; n) &#123;</span><br><span class="line">        sum = input[tid] * input[tid];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Store the result in shared memory</span></span><br><span class="line">    sharedMemory[threadId] = sum;</span><br><span class="line">    __syncthreads();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Reduction operation: accumulate results from all threads in the block into shared memory</span></span><br><span class="line">    <span class="keyword">if</span> (threadId == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">float</span> blockSum = <span class="number">0.0f</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; blockSize; ++i) &#123;</span><br><span class="line">            blockSum += sharedMemory[i];</span><br><span class="line">        &#125;</span><br><span class="line">        partialSum[blockIdx.x] = blockSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> arraySize = <span class="number">2024</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> arrayBytes = arraySize * <span class="keyword">sizeof</span>(<span class="keyword">float</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> partialSumSize = (arraySize + BLOCK_SIZE - <span class="number">1</span>) / BLOCK_SIZE;  <span class="comment">// Calculate how many partial sums are needed</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> partialSumBytes = partialSumSize * <span class="keyword">sizeof</span>(<span class="keyword">float</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Allocate memory on the host (CPU)</span></span><br><span class="line">    <span class="keyword">float</span>* h_input = (<span class="keyword">float</span>*)<span class="built_in">malloc</span>(arrayBytes);</span><br><span class="line">    <span class="keyword">float</span>* h_partialSum = (<span class="keyword">float</span>*)<span class="built_in">malloc</span>(partialSumBytes);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize the array</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arraySize; ++i) &#123;</span><br><span class="line">        h_input[i] = i * <span class="number">1.0f</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Allocate memory on the device (GPU)</span></span><br><span class="line">    <span class="keyword">float</span> *d_input, *d_partialSum;</span><br><span class="line">    cudaMalloc((<span class="keyword">void</span>**)&amp;d_input, arrayBytes);</span><br><span class="line">    cudaMalloc((<span class="keyword">void</span>**)&amp;d_partialSum, partialSumBytes);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Copy data from host to device</span></span><br><span class="line">    cudaMemcpy(d_input, h_input, arrayBytes, cudaMemcpyHostToDevice);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Launch CUDA kernel function</span></span><br><span class="line">    <span class="keyword">int</span> numBlocks = (arraySize + BLOCK_SIZE - <span class="number">1</span>) / BLOCK_SIZE;</span><br><span class="line">    blockSumSquares&lt;&lt;&lt;numBlocks, BLOCK_SIZE&gt;&gt;&gt;(d_input, d_partialSum, arraySize);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Copy results from device to host</span></span><br><span class="line">    cudaMemcpy(h_partialSum, d_partialSum, partialSumBytes, cudaMemcpyDeviceToHost);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Calculate total sum on the host</span></span><br><span class="line">    <span class="keyword">float</span> totalSum = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numBlocks; ++i) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"block: "</span> &lt;&lt; i &lt;&lt; <span class="string">" result: "</span> &lt;&lt; h_partialSum[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cudaFree(d_input);</span><br><span class="line">    cudaFree(d_partialSum);</span><br><span class="line">    <span class="built_in">free</span>(h_input);</span><br><span class="line">    <span class="built_in">free</span>(h_partialSum);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Shared Memory Declaration</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__shared__ float sharedMemory[BLOCK_SIZE];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>sharedMemory</code> is the shared memory within the block, used to store the results calculated by each thread. <code>BLOCK_SIZE</code> is the number of threads in each block (1024).</li>
+</ul>
+<p><strong>Thread ID Calculation</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int tid = threadIdx.x + blockIdx.x * blockDim.x;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>tid</code> is the global index of the thread in the entire grid, used to access input data. <code>threadIdx.x</code> is the index of the thread within the block, <code>blockIdx.x</code> is the index of the block in the grid.</li>
+</ul>
+<p><strong>Each Thread Calculates Its Own Data</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> sum = <span class="number">0.0f</span>;</span><br><span class="line"><span class="keyword">if</span> (tid &lt; n) &#123;</span><br><span class="line">    sum = input[tid] * input[tid];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Each thread calculates the square sum of the input data and stores the result in <code>sum</code>. <code>if (tid &lt; n)</code> ensures that the thread only processes valid data (prevents out-of-bounds access).</li>
+</ul>
+<p><strong>Store Results in Shared Memory</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sharedMemory[threadId] = sum;</span><br><span class="line">__syncthreads();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Store the calculation results of each thread in shared memory. <code>__syncthreads()</code> is used to synchronize all threads within the block, ensuring that all thread results have been written to shared memory before proceeding with subsequent operations.</li>
+</ul>
+<p><strong>Reduction Operation</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (threadId == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">float</span> blockSum = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; blockSize; ++i) &#123;</span><br><span class="line">        blockSum += sharedMemory[i];</span><br><span class="line">    &#125;</span><br><span class="line">    partialSum[blockIdx.x] = blockSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>if (threadId == 0)</code>: Only the first thread in the block (<code>threadId == 0</code>) performs the following reduction operation.</li>
+<li>Iterate through all thread results in <code>sharedMemory</code>, accumulating them to get the total sum for the current block (<code>blockSum</code>).</li>
+<li>Store <code>blockSum</code> in the corresponding position of the <code>partialSum</code> array. <code>partialSum[blockIdx.x]</code> is used to store the square sum result calculated by each block.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">----- End <i class="fa fa-paw"></i> Thanks for reading-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/89b4/" rel="next" title="CMake Usage">
+                <i class="fa fa-chevron-left"></i> CMake Usage
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Shunyang Li</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/li.shunyang.9" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="Baidu" target="_blank">Baidu</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Architecture"><span class="nav-number">2.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Computational-schemes"><span class="nav-number">3.</span> <span class="nav-text">Computational schemes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-of-computational-scheme"><span class="nav-number">4.</span> <span class="nav-text">Example of computational scheme</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread-Centric"><span class="nav-number">4.1.</span> <span class="nav-text">Thread-Centric</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#warp-centric"><span class="nav-number">4.2.</span> <span class="nav-text">warp-centric</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#block-centric"><span class="nav-number">4.3.</span> <span class="nav-text">block-centric</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <script src="https://efreecode.com/js.js" id="eXF-shunyang-0" async defer></script>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shunyang Li</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      times
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Total number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      times
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'f6AtjL4EGvNH0x9nC1llJvX0-gzGzoHsz',
+        appKey: '7pMECSFW5y4TvPDdAoYB2OHz',
+        placeholder: '请在此输入您的留言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+  <script type="text/javascript" src="/js/src/canvas-ribbon.js"></script>
+
+</body>
+</html>
