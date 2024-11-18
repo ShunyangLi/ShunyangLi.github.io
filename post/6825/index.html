@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="google-site-verification" content="IOATCl5WoBxLBupME1kt4CHNSMNPlQtjHsNC-UXFvUQ">
+<meta name="theme-color" content="#222">
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+  <meta name="keywords" content="Algorithm,Cuda,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Charles" type="application/atom+xml">
+
+
+<meta name="description" content="Triangle countingIn graph theory, a triangle is a cycle consisting of exactly three vertices that are mutually connected by three edges. Triangle counting aims to count the number of triangles in a gr">
+<meta name="keywords" content="Algorithm,Cuda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Triangle Counting">
+<meta property="og:url" content="https://shunyangli.github.io/post/6825/index.html">
+<meta property="og:site_name" content="Charles">
+<meta property="og:description" content="Triangle countingIn graph theory, a triangle is a cycle consisting of exactly three vertices that are mutually connected by three edges. Triangle counting aims to count the number of triangles in a gr">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2024-11-18T11:11:20.630Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Triangle Counting">
+<meta name="twitter:description" content="Triangle countingIn graph theory, a triangle is a cycle consisting of exactly three vertices that are mutually connected by three edges. Triangle counting aims to count the number of triangles in a gr">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  <link rel="canonical" href="https://shunyangli.github.io/post/6825/">
+
+
+
+
+  
+  <link href="//fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+  <title>Triangle Counting | Charles</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charles</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shunyangli.github.io/post/6825/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charles">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charles">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Triangle Counting</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-11-18T22:10:43+11:00">
+                2024-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/6825/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/post/6825/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> Total number of readers of this article
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>times
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  971 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6 minutes
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Triangle-counting"><a href="#Triangle-counting" class="headerlink" title="Triangle counting"></a>Triangle counting</h1><p>In graph theory, a <strong>triangle</strong> is a cycle consisting of exactly three vertices that are mutually connected by three edges. Triangle counting aims to count the number of triangles in a graph.</p>
+<h2 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation:"></a>Explanation:</h2><ul>
+<li>If the vertices are AAA, BBB, and CCC, then the edges would be (A,B)(A, B)(A,B), (B,C)(B, C)(B,C), and (C,A)(C, A)(C,A), forming a closed loop.</li>
+<li>Triangles are a specific type of <strong>3-clique</strong>, where all three vertices are directly connected to each other.</li>
+</ul>
+<h2 id="Example："><a href="#Example：" class="headerlink" title="Example："></a>Example：</h2><p>In a graph with vertices <code>{0, 1, 2}</code> and edges <code>{(0, 1), (0, 2), (1, 2)}</code>：</p>
+<ul>
+<li><code>{0, 1, 2}</code> forms a triangle.</li>
+</ul>
+<p><svg width="617.5999999999999px" height="617.5999999999999px"><g><g><g data="[object Object]"><path d="M 314.232473621618 229.84436706801188 L 237.70562983292092 343.5711056719079" fill="none" stroke-width="2" stroke="black"/><path d="M 314.232473621618 229.84436706801188 L 237.70562983292092 343.5711056719079" opacity="0" fill="none" stroke-width="30" stroke="black"/></g><g data="[object Object]"><path d="M 237.70562983292092 343.5711056719079 L 374.45929644779585 352.98192716241493" fill="none" stroke-width="2" stroke="black"/><path d="M 237.70562983292092 343.5711056719079 L 374.45929644779585 352.98192716241493" opacity="0" fill="none" stroke-width="30" stroke="black"/></g><g data="[object Object]"><path d="M 314.232473621618 229.84436706801188 L 374.45929644779585 352.98192716241493" fill="none" stroke-width="2" stroke="black"/><path d="M 314.232473621618 229.84436706801188 L 374.45929644779585 352.98192716241493" opacity="0" fill="none" stroke-width="30" stroke="black"/></g></g><g><g fixed="false" data="[object Object]" style="cursor: pointer;"><circle stroke-width="2" fill="white" stroke="black" r="19" cx="314.232473621618" cy="229.84436706801188"/><text font-size="14" dy=".35em" text-anchor="middle" stroke-width="1" fill="black" stroke="black" x="314.232473621618" y="229.84436706801188" style="user-select: none;">0</text></g><g fixed="false" data="[object Object]" style="cursor: pointer;"><circle stroke-width="2" fill="white" stroke="black" r="19" cx="237.70562983292092" cy="343.5711056719079"/><text font-size="14" dy=".35em" text-anchor="middle" stroke-width="1" fill="black" stroke="black" x="237.70562983292092" y="343.5711056719079" style="user-select: none;">1</text></g><g fixed="false" data="[object Object]" style="cursor: pointer;"><circle stroke-width="2" fill="white" stroke="black" r="19" cx="374.45929644779585" cy="352.98192716241493"/><text font-size="14" dy=".35em" text-anchor="middle" stroke-width="1" fill="black" stroke="black" x="374.45929644779585" y="352.98192716241493" style="user-select: none;">2</text></g></g></g></svg></p>
+<h2 id="Triangle-counting-with-binary-search"><a href="#Triangle-counting-with-binary-search" class="headerlink" title="Triangle counting with binary search"></a>Triangle counting with binary search</h2><p>Triangle counting using the <strong>binary search list method</strong> involves finding triangles in a graph by leveraging adjacency lists and binary search. Here’s how you can implement this approach for a <strong>single-threaded execution</strong>:</p>
+<h3 id="Key-Idea"><a href="#Key-Idea" class="headerlink" title="Key Idea:"></a><strong>Key Idea:</strong></h3><p>For each edge <code>(u, v)</code>, find the common neighbors of <code>u</code>and <code>v</code>, as these common neighbors form triangles with <code>(u, v)</code>. </p>
+<h3 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm:"></a><strong>Algorithm:</strong></h3><ol>
+<li><strong>Graph Representation:</strong> Represent the graph as an adjacency list where the neighbors of each vertex are sorted. This allows efficient binary search.</li>
+<li><strong>Iterate Over Edges:</strong> For each edge <code>(u, v)</code>, ensure <code>u &lt; v</code> (to avoid counting the same triangle multiple times).</li>
+<li><strong>Find Common Neighbors:</strong> Use the sorted adjacency lists of <code>u</code> and <code>v</code>. Perform a <strong>binary search</strong> to find common neighbors efficiently.</li>
+<li><strong>Count Triangles:</strong> The number of common neighbors for an edge <code>(u, v)</code> gives the number of triangles that include the edge.</li>
+</ol>
+<h3 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity:"></a><strong>Complexity:</strong></h3><ul>
+<li><strong>Preprocessing:</strong> Sorting adjacency lists: O(E * log(V)).</li>
+<li><strong>Triangle Counting:</strong> O(E * log(V)), assuming binary search is used for finding common neighbors.</li>
+</ul>
+<h3 id="CUDA-coding"><a href="#CUDA-coding" class="headerlink" title="CUDA coding"></a>CUDA coding</h3><h3 id="1-Kernel-Function-tc-kernel"><a href="#1-Kernel-Function-tc-kernel" class="headerlink" title="1. Kernel Function (tc_kernel)"></a><strong>1. Kernel Function (<code>tc_kernel</code>)</strong></h3><p>The kernel performs triangle counting by processing edges and finding common neighbors using binary search.</p>
+<h4 id="1-1-Initialization-and-Setup"><a href="#1-1-Initialization-and-Setup" class="headerlink" title="1.1. Initialization and Setup:"></a><strong>1.1. Initialization and Setup:</strong></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">uint <span class="keyword">const</span> bid = blockIdx.x;</span><br><span class="line">__shared__ <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> cnt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> u = d_edges[bid];</span><br><span class="line"><span class="keyword">int</span> v = d_edges[bid + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (threadIdx.x == <span class="number">0</span>) &#123;</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (d_degrees[u] &gt; d_degrees[v]) &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = u;</span><br><span class="line">        u = v;</span><br><span class="line">        v = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__syncthreads();</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>bid</code></strong>: Identifies the edge to process, as <code>blockIdx.x</code> corresponds to the current block’s ID.</p>
+<p><strong><code>cnt</code></strong>: A shared counter for counting triangles found by all threads in the block.</p>
+<p><strong><code>u</code>, <code>v</code></strong>: The vertices of the edge being processed, retrieved from <code>d_edges</code>.</p>
+<p><strong>Degree-based optimization</strong>: If uuu has a higher degree than vvv, swap them to process the vertex with the smaller degree first. This reduces computational cost.</p>
+<p><strong>Synchronization</strong>: <code>__syncthreads()</code> ensures all threads are ready before proceeding.</p>
+<h4 id="1-2-Triangle-Detection-Using-Binary-Search"><a href="#1-2-Triangle-Detection-Using-Binary-Search" class="headerlink" title="1.2. Triangle Detection Using Binary Search:"></a><strong>1.2. Triangle Detection Using Binary Search:</strong></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (uint i = threadIdx.x; i &lt; d_degrees[u]; i += blockDim.x) &#123;</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">const</span> w = d_neighbors[d_offset[u] + i];</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">const</span>* v_nbr = d_neighbors + d_offset[v];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = d_degrees[v] - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">const</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (v_nbr[mid] == w) &#123;</span><br><span class="line">            atomicAdd(&amp;cnt, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (v_nbr[mid] &lt; w) &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Outer loop: Each thread processes one neighbor of <code>u</code> at a time.<ul>
+<li><code>w</code>: A neighbor of <code>u</code>.</li>
+<li><code>v_nbr</code>: Pointer to the adjacency list of <code>v</code>.</li>
+</ul>
+</li>
+<li><strong>Binary search</strong>: Looks for www in the sorted adjacency list of <code>v</code>. If found, a triangle is identified, and the shared counter is incremented atomically.</li>
+<li><strong>Work distribution</strong>: Each thread handles a subset of <code>u&#39;s</code> neighbors.</li>
+</ul>
+<h4 id="1-3-Final-Triangle-Count-Update"><a href="#1-3-Final-Triangle-Count-Update" class="headerlink" title="1.3. Final Triangle Count Update:"></a><strong>1.3. Final Triangle Count Update:</strong></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__syncthreads();</span><br><span class="line"><span class="keyword">if</span> (threadIdx.x == <span class="number">0</span>) &#123;</span><br><span class="line">    atomicAdd(d_cnt, cnt);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Synchronization</strong>: Ensures all threads in the block finish their work before the block-level triangle count (<code>cnt</code>) is added to the global count (<code>d_cnt</code>).</p>
+<p><strong>Atomic update</strong>: Avoids race conditions when updating the global triangle counter.</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">__global__ auto tc_kernel(int const* d_offset, int const* d_edges, int const* d_degrees, int const* d_neighbors, unsigned long long* d_cnt) -&gt; void &#123;</span><br><span class="line"></span><br><span class="line">    uint <span class="keyword">const</span> bid = blockIdx.x;</span><br><span class="line">    __shared__ <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> cnt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> u = d_edges[bid];</span><br><span class="line">    <span class="keyword">int</span> v = d_edges[bid + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (threadIdx.x == <span class="number">0</span>) &#123;</span><br><span class="line">        cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (d_degrees[u] &gt; d_degrees[v]) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = u;</span><br><span class="line">            u = v;</span><br><span class="line">            v = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    __syncthreads();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (uint i = threadIdx.x; i &lt; d_degrees[u]; i += blockDim.x) &#123;</span><br><span class="line">        <span class="comment">// use binary search to find the common neighbors</span></span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">const</span> w = d_neighbors[d_offset[u] + i];</span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">const</span>* v_nbr = d_neighbors + d_offset[v];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = d_degrees[v] - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            <span class="keyword">int</span> <span class="keyword">const</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (v_nbr[mid] == w) &#123;</span><br><span class="line">                atomicAdd(&amp;cnt, <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (v_nbr[mid] &lt; w) &#123;</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                r = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    __syncthreads();</span><br><span class="line">    <span class="keyword">if</span> (threadIdx.x == <span class="number">0</span>) &#123;</span><br><span class="line">        atomicAdd(d_cnt, cnt);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>Grid and Block Configuration</strong>:<ul>
+<li><strong>Grid Size (<code>g-&gt;m</code>)</strong>: The number of blocks equals the number of edges. This means <strong>each block processes one edge</strong>.</li>
+<li><strong>Block Size (<code>1024</code>)</strong>: Each block uses 1024 threads to process neighbors of the smaller-degree vertex in parallel.</li>
+</ul>
+</li>
+<li><strong>Thread Work Distribution</strong>:<ul>
+<li>Each thread in a block handles a subset of the neighbors of the vertex with the smaller degree. This is achieved by assigning neighbors in chunks based on <code>threadIdx.x</code> and <code>blockDim.x</code>.</li>
+</ul>
+</li>
+<li><strong>Shared Memory</strong>:<ul>
+<li>Each block uses shared memory (<code>cnt</code>) to locally count triangles for its edge. Shared memory allows fast, intra-block communication among threads.</li>
+</ul>
+</li>
+<li><strong>Global Memory</strong>:<ul>
+<li>Graph data (like adjacency lists, degrees, and offsets) is stored in global memory (<code>d_neighbors</code>, <code>d_offset</code>), accessible to all threads. Each thread retrieves its necessary data from global memory.</li>
+</ul>
+</li>
+<li><strong>Atomic Operations</strong>:<ul>
+<li><strong>Within a block</strong>: Threads increment the shared counter (<code>cnt</code>) atomically when a triangle is found.</li>
+<li><strong>Global Counter Update</strong>: The block’s local triangle count is added to the global counter (<code>d_cnt</code>) atomically to avoid race conditions.</li>
+</ul>
+</li>
+</ol>
+<p>By leveraging these CUDA properties, the program ensures efficient and parallel processing of all edges in the graph while maintaining correctness.</p>
+
+      
+    </div>
+    
+    
+    
+    
+    
+    
+      
+  <div class="article_TheEnd">----- End <i class="fa fa-paw"></i> Thanks for reading-----</div>
+
+    
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Algorithm</a>
+          
+            <a href="/tags/Cuda/" rel="tag"><i class="fa fa-tag"><!--把#换成图形标签<i class="fa fa-tag"></i>--></i> Cuda</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/dd87/" rel="next" title="CUDA Programming">
+                <i class="fa fa-chevron-left"></i> CUDA Programming
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Charles</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ShunyangLi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="shunyangli0@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/li.shunyang.9" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="Baidu" target="_blank">Baidu</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="theme-next" target="_blank">theme-next</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shunyangli.github.io/" title="MyWeb" target="_blank">MyWeb</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Triangle-counting"><span class="nav-number">1.</span> <span class="nav-text">Triangle counting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Explanation"><span class="nav-number">1.1.</span> <span class="nav-text">Explanation:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example："><span class="nav-number">1.2.</span> <span class="nav-text">Example：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Triangle-counting-with-binary-search"><span class="nav-number">1.3.</span> <span class="nav-text">Triangle counting with binary search</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Idea"><span class="nav-number">1.3.1.</span> <span class="nav-text">Key Idea:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.3.2.</span> <span class="nav-text">Algorithm:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complexity"><span class="nav-number">1.3.3.</span> <span class="nav-text">Complexity:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CUDA-coding"><span class="nav-number">1.3.4.</span> <span class="nav-text">CUDA coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Kernel-Function-tc-kernel"><span class="nav-number">1.3.5.</span> <span class="nav-text">1. Kernel Function (tc_kernel)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Initialization-and-Setup"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">1.1. Initialization and Setup:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Triangle-Detection-Using-Binary-Search"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">1.2. Triangle Detection Using Binary Search:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Final-Triangle-Count-Update"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">1.3. Final Triangle Count Update:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-number">1.3.6.</span> <span class="nav-text">Code</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <script src="https://efreecode.com/js.js" id="eXF-shunyang-0" async defer></script>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Charles</span>
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      times
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Total number of visitors to this site
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      times
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+        <p style="margin:0 auto; font-size:14px;">Hosted by <a href="https://pages.coding.me">Coding Pages</a></p>
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'f6AtjL4EGvNH0x9nC1llJvX0-gzGzoHsz',
+        appKey: '7pMECSFW5y4TvPDdAoYB2OHz',
+        placeholder: '请在此输入您的留言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+  <script type="text/javascript" src="/js/src/canvas-ribbon.js"></script>
+
+</body>
+</html>
